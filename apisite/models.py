@@ -16,10 +16,22 @@ class Item(models.Model):
     def __str__(self):
         return "%s" % self.nome_item
 
+def create_perfil(self, User):
+    if User:
+        new_perfil = Profile(id=6, user=user)
+    return new_perfil
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='perfil_usuario', unique=True)
+
     def __str__(self):
         return "%s" % self.user
+
+    def create_perfil(self,user):
+        if self.user:
+            novo_perfil = create_perfil(self, user)
+        return novo_perfil
 
 class Inventario(models.Model):
     usuario = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='dono_inventario')
