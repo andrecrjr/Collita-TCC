@@ -1,11 +1,15 @@
 {% extends "layout/base.html"%}
 
 {% block content %}
-<h1>Login</h1>
-<form method='POST'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
+{% if user.is_authenticated %}
+<p>Você está autenticado não precisa se logar</p>
+{% else %}
+    <h1>Login</h1>
+    <form method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+{% endif %}
 {%endblock%}
 

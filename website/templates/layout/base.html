@@ -8,7 +8,7 @@
 </head>
 <body>
     {% if user.is_authenticated %}
-    <b>Olá {{ user }}</b>
+    <b>Olá {{ user }}</b>, <a href="/logout">Logout</a>.
     {% endif %}
     {% block content %}
     {% endblock %}
