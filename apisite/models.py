@@ -1,8 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-# Create your models here.
 
 class Item(models.Model):
     nome_item = models.CharField(max_length=35)
@@ -16,11 +17,11 @@ class Item(models.Model):
     def __str__(self):
         return "%s" % self.nome_item
 
-def create_perfil(self, User):
-    if User:
-        new_perfil = Profile(id=6, user=user)
-    return new_perfil
-
+#após criar o usuário, crie o seu perfil no banco
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='perfil_usuario', unique=True)
@@ -33,9 +34,15 @@ class Profile(models.Model):
             novo_perfil = create_perfil(self, user)
         return novo_perfil
 
+#após salvar no banco do perfil crie um inventário de sua instancia
+@receiver(post_save, sender=Profile)
+def create_inventario_user(sender, instance, created, **kwargs):
+    if created:
+        Inventario.objects.create(usuario=instance)
+
 class Inventario(models.Model):
     usuario = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='dono_inventario')
-    moeda = models.IntegerField(default=10)
+    moeda = models.IntegerField(default=0)
 
     def __str__(self):
         return "%s %s" % (self.usuario, self.moeda)

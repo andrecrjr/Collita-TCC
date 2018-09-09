@@ -8,8 +8,7 @@
 </head>
 <body>
     {% for usuario in usuarios %}
-        <li>{{ usuario.user.first_name }} {{usuario.user.last_name}}</li>
-
+        <li><a href="">{{ usuario.user.email }}</a></li>
     {% endfor %}
 </body>
 </html>
