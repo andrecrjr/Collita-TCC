@@ -7,6 +7,9 @@
     <title>Index</title>
 </head>
 <body>
+    {% if user.is_authenticated %}
+    <b>Olá {{ user }}</b>
+    {% endif %}
     {% block content %}
     {% endblock %}
 </body>
