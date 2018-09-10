@@ -8,7 +8,12 @@
 </head>
 <body>
     {% if user.is_authenticated %}
-    <b>Olá {{ user }}</b>, <a href="/logout">Logout</a>.
+    <b>Olá <a href="{% url 'perfil' user.id %}">{{ user }}</a></b> , <a href="{% url 'logout' %}">Logout</a>.
+        {% else %}
+    <nav>
+        <ul><li><a href="{% url 'cadastro' %}">Cadastro</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li></ul>
+    </nav>
     {% endif %}
     {% block content %}
     {% endblock %}
