@@ -21,3 +21,8 @@ def signup(request):
         else:
             form = UserCreationForm(request.POST or None)
     return render(request, 'signup.html', {'form': form})
+
+def perfil(request,id):
+    perfil = Profile.objects.filter(id=id)
+    print(perfil)
+    return render(request, 'perfil.html', {'dados':perfil})

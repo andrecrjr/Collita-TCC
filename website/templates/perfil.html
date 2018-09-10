@@ -1,0 +1,10 @@
+{% extends "layout/base.html" %}
+{% block content %}
+<br>   
+<ul>
+    {% for dado in dados %} 
+        <li>Nome de perfil {{ dado.user }}</li>
+        <li>Numero de moedas: {{dado.dono_inventario.moeda}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

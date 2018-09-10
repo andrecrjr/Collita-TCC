@@ -2,6 +2,6 @@
 {% block content %}
     <h1>Jogadores </h1>
     {% for usuario in usuarios %}
-        <li><a href="">{{ usuario }}</a></li>
+        <li><a href="{% url 'perfil' usuario.id %} ">{{ usuario }}</a></li>
     {% endfor %}
 {% endblock %}
