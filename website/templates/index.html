@@ -1,5 +1,6 @@
 {% extends "layout/base.html" %}
 {% block content %}
+
     <h1>Jogadores </h1>
     {% for usuario in usuarios %}
         <li><a href="{% url 'perfil' usuario.id %} ">{{ usuario }}</a></li>

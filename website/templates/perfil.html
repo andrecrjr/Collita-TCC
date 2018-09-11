@@ -1,10 +1,14 @@
 {% extends "layout/base.html" %}
 {% block content %}
-<br>   
-<ul>
-    {% for dado in dados %} 
-        <li>Nome de perfil: {{ dado.user }}</li>
-        <li>Numero de moedas: {{dado.dono_inventario.moeda}}</li>
-    {% endfor %}
-</ul>
+<br>  
+{% if user.is_authenticated %}
+            {%for dado in dados %}
+                        <ul>
+                                <li>Nome de perfil: {{ dado.user }}</li>
+                                <li>Numero de moedas: {{dado.dono_inventario.moeda}}</li>
+                        </ul>
+            {% endfor %}
+        {%else %}
+            <h1>Voce não é o dono da conta</h1>
+{% endif %}
 {% endblock %}

@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 from .forms import *
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def home(request):
@@ -11,7 +12,7 @@ def home(request):
     return render(request,'index.html',{'usuarios':perfil})
 
 def signup(request):
-    form = UserCreationForm(request.POST or None)
+    form = SignUpForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
             user = form.save()
@@ -19,7 +20,7 @@ def signup(request):
             form.save()
             return redirect(home)
         else:
-            form = UserCreationForm(request.POST or None)
+            form = SignUpForm(request.POST or None)
     return render(request, 'signup.html', {'form': form})
 
 def perfil(request,id):
