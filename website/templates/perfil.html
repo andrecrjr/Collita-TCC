@@ -4,11 +4,13 @@
 {% if user.is_authenticated %}
             {%for dado in dados %}
                         <ul>
-                                <li>Nome de perfil: {{ dado.user }}</li>
+                                <li>Nome de perfil: {{ dado.user }}</li><br>
+                                <li>Seu nome: <B>{{dado.user.first_name}} {{dado.user.last_name}}</B></li>
                                 <li>Numero de moedas: {{dado.dono_inventario.moeda}}</li>
+                                <li>Meu email: {{dado.user.email}} </li>
                         </ul>
             {% endfor %}
         {%else %}
-            <h1>Voce não é o dono da conta</h1>
+            <h1>Voce não está logado</h1>
 {% endif %}
 {% endblock %}

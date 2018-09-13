@@ -8,7 +8,7 @@
 </head>
 <body>
     {% if user.is_authenticated %}
-    <b>Olá <a href="{% url 'perfil' user.id %}">{{ user }}</a></b> , <a href="{% url 'logout' %}">Logout</a>.
+    <b>Olá <a href="{% url 'perfil' user.id %}">{{ user }}</a></b> | <a href="#">transação</a> , <a href="{% url 'logout' %}">Logout</a>.
         {% else %}
     <nav>
         <ul><li><a href="{% url 'cadastro' %}">Cadastro</a></li>

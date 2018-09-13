@@ -29,11 +29,6 @@ class Profile(models.Model):
     def __str__(self):
         return "%s" % self.user
 
-    def create_perfil(self,user):
-        if self.user:
-            novo_perfil = create_perfil(self, user)
-        return novo_perfil
-
 #após salvar no banco do perfil crie um inventário de sua instancia
 @receiver(post_save, sender=Profile)
 def create_inventario_user(sender, instance, created, **kwargs):
