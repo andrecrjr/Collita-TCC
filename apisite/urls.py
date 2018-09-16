@@ -3,5 +3,6 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('api/', index, name='Api site'),
+    path('', ProfileList.as_view(), name='Profile api'),
+    path('<int:pk>/', ProfileDetails.as_view())
 ]

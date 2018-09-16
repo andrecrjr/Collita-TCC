@@ -36,8 +36,8 @@ def create_inventario_user(sender, instance, created, **kwargs):
         Inventario.objects.create(usuario=instance)
 
 class Inventario(models.Model):
-    usuario = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='dono_inventario')
-    moeda = models.BigIntegerField()
+    usuario = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='inventario_usuario')
+    moeda = models.BigIntegerField(default=0)
 
     def __str__(self):
         return "%s %s" % (self.usuario, self.moeda)

@@ -1,7 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-# Create your views here.
+from rest_framework import generics
 
-def index(request):
-    response = "You're looking at the results of question."
-    return HttpResponse(response)
+from .models import *
+from .serializers import *
+
+class ProfileList(generics.ListAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+
+class ProfileDetails(generics.RetrieveAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
