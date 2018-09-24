@@ -24,6 +24,10 @@ def create_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
 class Profile(models.Model):
+
+    class Meta:
+        db_table = 'perfil'
+
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='perfil_usuario', unique=True)
 
     def __str__(self):
@@ -38,6 +42,9 @@ def create_inventario_user(sender, instance, created, **kwargs):
 class Inventario(models.Model):
     usuario = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='inventario_usuario')
     moeda = models.BigIntegerField(default=0)
+
+    class Meta:
+        db_table = 'inventario'
 
     def __str__(self):
         return "%s %s" % (self.usuario, self.moeda)
