@@ -11,6 +11,12 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ('profile_id','username', 'first_name','last_name', 'moeda', )
+
+class InventarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Inventario
+        fields = ('usuario','moeda',)
+
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
