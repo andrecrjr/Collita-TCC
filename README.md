@@ -12,16 +12,19 @@ O django ele é uma plataforma via bash então não tem interface bonitinha tem 
 
 
 crie o ambiente virtual dentro da pasta(tem que entrar pelo bash na pastinha)
-que voce clonou(ou seja o repositorio) (quando tiver -> pra escrever no terminal)
+que voce clonou(ou seja o repositorio) (digitar no terminal estará de cinza de fundo)
+
 > python3 -m venv venv 
+
 Esse é o ambiente virtual do python, dentro dele poderá ser instalado as dependencias externas necessarias(django por exemplo)
 
 agora dentro da pasta pelo terminal
+
 > pip install -r requirements_env.txt
 
 beleza ele vai baixar umas parada loca, são as dependencias pro bagulho funfar
 agora o django vai funfar no nosso projetinho
-proximo passo
+
 > python manage.py migrate
 > python manage.py migrate apisite
 
