@@ -1,11 +1,11 @@
 # tcc-site
-#pra entrar na API precisa estar pela branch dev (depois mergirei e criarei outra dev)
+# pra entrar na API precisa estar pela branch dev (depois mergirei e criarei outra dev)
 
 Clone esse cretino no PC
 
 tenha o bash instalado ou use o terminal do rwindows python no path [pesquisa aí se não souber](http://lmgtfy.com/?q=python+terminal+windows]) se for o caso
 
-#Vamos lá
+# Vamos lá
 primeiro baixe o python mais recente no seu pc da xuxa.
 
 O django ele é uma plataforma via bash então não tem interface bonitinha tem que ser por aqui.
@@ -26,6 +26,7 @@ beleza ele vai baixar umas parada loca, são as dependencias pro bagulho funfar
 agora o django vai funfar no nosso projetinho
 
 > python manage.py migrate
+
 > python manage.py migrate apisite
 
 pronto django criou o banco baseado nos modelos o primeiro é o banco do cadastro de usuario
