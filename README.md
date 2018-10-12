@@ -29,7 +29,7 @@ No prompt windows:
 No bash pro windows 10 creio eu:
 > . venv\Scripts\activate
 
-Agora vai ter que instalar as dependencias desse ambiente que necessita(virtual env é tal qual java com maven)
+Agora vai ter que instalar as dependencias desse ambiente que necessita espero que já esteja na branch de dev usando aquele turtoise(virtual env é tal qual java com maven)
 
 > pip install -r requirements_env.txt
 
