@@ -1,9 +1,9 @@
 # tcc-site
-# pra entrar na API precisa estar pela branch dev (depois mergirei e criarei outra dev)
+## pra entrar na API precisa estar pela branch dev (depois mergirei e criarei outra dev)
 
 Clone esse cretino no PC
 
-tenha o bash instalado ou use o terminal do rwindows python no path [pesquisa aí se não souber](http://lmgtfy.com/?q=python+terminal+windows]) se for o caso
+tenha o bash instalado ou use o terminal do rwindows python no path [pesquisa aí se não souber](http://lmgtfy.com/?q=python+terminal+windows) se for o caso
 
 # Vamos lá
 primeiro baixe o python mais recente no seu pc da xuxa.
@@ -20,7 +20,8 @@ O que estiver cinza de fundo é pra digitar no terminal
 
 Esse é o ambiente virtual do python, dentro dele poderá ser instalado as dependencias externas necessarias(django por exemplo)
 
-agora dentro da pasta pelo terminal voce vai precisar ativar esse ambiente do python dentro da pasta
+agora dentro da pasta pelo terminal voce vai precisar ativar esse ambiente do python dentro da pasta.
+
 No prompt windows:
 
 > venv\Scripts\activate
