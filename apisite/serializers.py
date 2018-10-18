@@ -1,21 +1,40 @@
 from rest_framework import serializers
 from .models import *
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id','username', 'first_name', 'last_name', 'email')
 
 class ProfileSerializer(serializers.ModelSerializer):
-    profile_id = serializers.CharField(source='user.id')
-    username = serializers.CharField(source='user.username')
-    first_name = serializers.CharField(source='user.first_name')
-    last_name = serializers.CharField(source='user.last_name')
-    moeda = serializers.CharField(source='inventario_usuario.moeda')
+    user = UserSerializer(required=True)
     class Meta:
         model = Profile
-        fields = ('profile_id','username', 'first_name','last_name', 'moeda', )
+        fields = ('user',)
+    
+    def create(self, validated_data):
+        """
+        Overriding the default create method of the Model serializer.
+        :param validated_data: data containing all the details of profile
+        :return: returns a successfully created profile record
+        """
+        user_data = validated_data.pop('user')
+        user = UserSerializer.create(UserSerializer(), validated_data=user_data)
+        profile, created = Profile.objects.update_or_create(user=user)
+        return profile
 
 class InventarioSerializer(serializers.ModelSerializer):
+    usuario = ProfileSerializer(required=True)
     class Meta:
         model = Inventario
         fields = ('usuario','moeda',)
+
+    def create(self, validated_data):
+        user_data = validated_data.pop('usuario')
+        user = ProfileSerializer.create(ProfileSerializer(), validated_data=user_data)
+        inventario = Invetario.objects.update_or_create(usario=user)
+        return inventario
+
 
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
