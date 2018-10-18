@@ -20,7 +20,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         """
         user_data = validated_data.pop('user')
         user = UserSerializer.create(UserSerializer(), validated_data=user_data)
-        profile, created = Profile.objects.update_or_create(user=user)
+        profile = Profile.objects.update_or_create(user=user)
         return profile
 
 class InventarioSerializer(serializers.ModelSerializer):
