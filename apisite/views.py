@@ -17,7 +17,7 @@ class InventarioList(generics.ListAPIView):
     queryset = Inventario.objects.all()
     serializer_class = InventarioSerializer
 
-class InventarioCompraMoeda(generics.RetrieveUpdateAPIView):
+class InventarioDetails(generics.RetrieveAPIView):
     queryset = Inventario.objects.all()
     serializer_class = InventarioSerializer
 
