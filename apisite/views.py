@@ -8,7 +8,6 @@ class ProfileList(generics.ListAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
-
 class ProfileDetails(generics.RetrieveAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
@@ -20,7 +19,6 @@ class InventarioList(generics.ListAPIView):
 class InventarioDetails(generics.RetrieveAPIView):
     queryset = Inventario.objects.all()
     serializer_class = InventarioSerializer
-
 
 class ItemList(generics.ListAPIView):
     queryset = Item.objects.all()

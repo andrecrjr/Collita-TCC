@@ -35,7 +35,6 @@ class InventarioSerializer(serializers.ModelSerializer):
         inventario = Invetario.objects.update_or_create(usario=user)
         return inventario
 
-
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
