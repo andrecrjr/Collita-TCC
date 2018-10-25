@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.views import APIView
 
 from .models import *
 from .serializers import *
@@ -19,6 +22,8 @@ class InventarioList(generics.ListAPIView):
 class InventarioDetails(generics.RetrieveAPIView):
     queryset = Inventario.objects.all()
     serializer_class = InventarioSerializer
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
 
 class ItemList(generics.ListAPIView):
     queryset = Item.objects.all()
