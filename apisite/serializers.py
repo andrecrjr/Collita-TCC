@@ -28,7 +28,7 @@ class InventarioSerializer(serializers.ModelSerializer):
     usuario = ProfileSerializer(required=True)
     class Meta:
         model = Inventario
-        fields = ('usuario','moeda',)
+        fields = ('usuario',)
 
     def create(self, validated_data):
         user_data = validated_data.pop('usuario')

@@ -14,10 +14,6 @@ class ProfileDetails(generics.RetrieveAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
-class InventarioList(generics.ListAPIView):
-    queryset = Inventario.objects.all()
-    serializer_class = InventarioSerializer
-
 class InventarioDetails(generics.RetrieveAPIView):
     queryset = Inventario.objects.all()
     serializer_class = InventarioSerializer
