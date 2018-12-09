@@ -24,6 +24,10 @@ def create_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
 class Profile(models.Model):
+
+    class Meta:
+        db_table = 'perfil'
+
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='perfil_usuario', unique=True)
 
     def __str__(self):
@@ -36,16 +40,11 @@ def create_inventario_user(sender, instance, created, **kwargs):
         Inventario.objects.create(usuario=instance)
 
 class Inventario(models.Model):
-    usuario = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='dono_inventario')
-    moeda = models.IntegerField(default=0)
+    usuario = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='inventario_usuario')
+    moeda = models.BigIntegerField(default=0)
+
+    class Meta:
+        db_table = 'inventario'
 
     def __str__(self):
         return "%s %s" % (self.usuario, self.moeda)
-
-class Transaction(models.Model):
-    item = models.OneToOneField(Item, on_delete=models.CASCADE, related_name='pega_item')
-    inventario = models.OneToOneField(Inventario, on_delete=models.CASCADE)
-    data_transact = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return "%s, %s, %s" % (self.item, self.inventario, self.data_transact)

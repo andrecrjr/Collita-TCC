@@ -5,4 +5,3 @@ from apisite.models import *
 admin.site.register(Profile)
 admin.site.register(Inventario)
 admin.site.register(Item)
-admin.site.register(Transaction)
