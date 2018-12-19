@@ -1,5 +1,9 @@
 # tcc-site
-API e Site do TCC já estão no master.
+
+Estrutura das pastas
+Appsite -> Settings do django(configuração principal do projeto, não alterar, grato)
+Apisite -> API do site para o jogo e vice versa, onde está toda a logica de construção da API
+Appsite -> Site do TCC onde está toda a logica para o site
 
 Clone esse cretino no PC
 
