@@ -1,8 +1,11 @@
 # tcc-site
 
 Estrutura das pastas
+
 Appsite -> Settings do django(configuração principal do projeto, não alterar, grato)
+
 Apisite -> API do site para o jogo e vice versa, onde está toda a logica de construção da API
+
 Appsite -> Site do TCC onde está toda a logica para o site
 
 Clone esse cretino no PC
@@ -29,7 +32,7 @@ No prompt windows:
 No bash pro windows 10 creio eu:
 > . venv\Scripts\activate
 
-Agora vai ter que instalar as dependencias desse ambiente que necessita espero que já esteja na branch de dev usando aquele turtoise(virtual env é tal qual java com maven) 
+Agora vai ter que instalar as dependencias desse ambiente que necessita espero que já esteja na branch de dev usando aquele turtoise(virtual env é tal qual java com maven). 
 
 Agora só digitar no terminal:
 > pip install -r requirements_env.txt
@@ -53,7 +56,7 @@ Os endereço da API:
 
 > http:localhost:8000/api/items/{params}
 
->http:localhost:8000/api/inventario/{params}
+> http:localhost:8000/api/inventario/{params}
 
 
 Para as transações, o website irá redirecionar um item para o pagseguro, movido a microtransações.
