@@ -5,20 +5,16 @@ Clone esse cretino no PC
 
 tenha o bash instalado ou use o terminal do rwindows python no path [pesquisa aí se não souber](http://lmgtfy.com/?q=python+terminal+windows) se for o caso
 
-# Vamos lá
-primeiro baixe o python mais recente no seu pc da xuxa.
+Vamos lá
+1. Primeiro baixe o python mais recente no seu pc da xuxa.. 
+ O django ele é uma plataforma via bash então não tem interface bonitinha tem que pelo terminal.
 
-O django ele é uma plataforma via bash então não tem interface bonitinha tem que ser por aqui.
-
-
-crie o ambiente virtual dentro da pasta(tem que entrar pelo bash na pastinha)
-que voce clonou(ou seja o repositorio) 
-
-O que estiver cinza de fundo é pra digitar no terminal
-
+O ambiente virtual python é criado pelo terminal, você deve clonar esse repositorio no seu pc.
+Com esse projeto já no seu computador, pelo terminal entre no diretorio do projeto no pc:
+Digite:
 > python3 -m venv venv 
 
-Esse é o ambiente virtual do python, dentro dele poderá ser instalado as dependencias externas necessarias(django por exemplo)
+Isso criará o ambiente virtual do python, dentro dele poderá ser instalado as dependencias externas necessarias(django por exemplo)
 
 agora dentro da pasta pelo terminal voce vai precisar ativar esse ambiente do python dentro da pasta.
 
@@ -29,12 +25,14 @@ No prompt windows:
 No bash pro windows 10 creio eu:
 > . venv\Scripts\activate
 
-Agora vai ter que instalar as dependencias desse ambiente que necessita espero que já esteja na branch de dev usando aquele turtoise(virtual env é tal qual java com maven)
+Agora vai ter que instalar as dependencias desse ambiente que necessita espero que já esteja na branch de dev usando aquele turtoise(virtual env é tal qual java com maven) 
 
+Agora só digitar no terminal:
 > pip install -r requirements_env.txt
 
-beleza ele vai baixar umas parada loca, são as dependencias pro bagulho funfar
-agora o django vai funfar no nosso projetinho
+Ele vai baixar umas parada loca, são as dependencias para o site e API funcionar
+
+Ao terminar você terá que subir o banco, no django ele fará esse trabalho sozinho mandando os seguintes comandos no terminal:
 
 > python manage.py migrate
 
@@ -45,19 +43,15 @@ o segundo é a api que vai ser alimentada.
 
 > python manage.py runserver 
 
-## agora vai rodar o servidor web, só bater o localhost:8000 no navegador
+Os endereço da API:
 
-para a api ele baterá no link http:localhost:8000/api/
+> http:localhost:8000/api/{params}
 
-já listando todos os usuários para cadastrar
-só cadastrar no site (depois vou arrumar pra ele rotear os links da api toda nessa pagina)
+> http:localhost:8000/api/items/{params}
+
+>http:localhost:8000/api/inventario/{params}
 
 
-> http:localhost:8000/api/<id:usuario>
-
-> http:localhost:8000/api/items/<id:item>
-
-Futuramente teremos que transacionar(vender) via esse cara então teremos que formular o json pelo unity pra fazer o POST por um link que baterá nesse cara
-
+Para as transações, o website irá redirecionar um item para o pagseguro, movido a microtransações.
 
 
