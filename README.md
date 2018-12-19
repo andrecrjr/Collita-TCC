@@ -1,5 +1,5 @@
 # tcc-site
-## pra entrar na API precisa estar pela branch dev (depois mergirei e criarei outra dev)
+API e Site do TCC já estão no master.
 
 Clone esse cretino no PC
 
