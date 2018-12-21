@@ -8,7 +8,7 @@ Apisite -> API do site para o jogo e vice versa, onde está toda a logica de con
 
 Appsite -> Site do TCC onde está toda a logica para o site
 
-Clone esse cretino no PC
+Clone esse repositorio no PC
 
 tenha o bash instalado ou use o terminal do rwindows python no path [pesquisa aí se não souber](http://lmgtfy.com/?q=python+terminal+windows) se for o caso
 
