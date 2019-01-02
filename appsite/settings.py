@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apisite',
     'website',
+    'transacaosite',
     'rest_framework',
     'corsheaders',
     'rest_framework.authtoken',

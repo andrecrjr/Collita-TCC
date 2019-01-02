@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.views import APIView
 from .models import *
+from transacaosite.models import *
 from .serializers import *
 
 class ProfileList(generics.ListAPIView):

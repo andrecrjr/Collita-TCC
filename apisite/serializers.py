@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+from transacaosite.models import *
 from rest_framework.authtoken.models import Token
 
 class UserSerializer(serializers.ModelSerializer):
