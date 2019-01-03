@@ -25,6 +25,7 @@ class Profile(models.Model):
 @receiver(post_save, sender=Profile)
 def create_inventario_user(sender, instance, created, **kwargs):
     if created:
+        print(instance)
         Inventario.objects.create(usuario=instance)
 
 class Inventario(models.Model):

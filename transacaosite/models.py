@@ -24,3 +24,12 @@ class Pedido(models.Model):
             return "Usuário: %s, Codigo pagseguro: %s" % (self.usuario_pedido, self.codigo_pagseguro)
         else:
             return "%s ainda não pagou" % self.usuario_pedido.usuario
+
+'''
+@receiver(post_save, sender=Pedido)
+def create_notafiscal_from_pedido(sender, instance, created, **kwargs):
+    if created:
+        if instance.codigo_pagseguro is not '':
+            NotaFiscal.objects.create(notafiscal=instance)
+
+'''
