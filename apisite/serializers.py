@@ -33,8 +33,8 @@ class InventarioSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user_data = validated_data.pop('usuario')
-        user = ProfileSerializer.create(ProfileSerializer(), validated_data=user_data)
-        inventario = Invetario.objects.update_or_create(usario=user)
+        perfil = ProfileSerializer.create(ProfileSerializer(), validated_data=user_data)
+        inventario = Inventario.objects.update_or_create(usuario=perfil)
         return inventario
 
 class ItemSerializer(serializers.ModelSerializer):

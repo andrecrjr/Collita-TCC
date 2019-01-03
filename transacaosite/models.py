@@ -21,6 +21,6 @@ class Pedido(models.Model):
 
     def __str__(self):
         if self.codigo_pagseguro:
-            return "%s" % self.codigo_pagseguro
+            return "Usuário: %s, Codigo pagseguro: %s" % (self.usuario_pedido, self.codigo_pagseguro)
         else:
             return "%s ainda não pagou" % self.usuario_pedido.usuario

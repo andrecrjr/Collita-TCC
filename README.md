@@ -58,6 +58,11 @@ Os endereço da API:
 
 > http:localhost:8000/api/inventario/{params}
 
+Autenticação - POST no link abaixo com usuario e senha cadastrado
+
+> localhost:8000/api/auth/login/
+
+Retornará o token e o id do usuário para utilização geral do jogo.
 
 Para as transações, o website irá redirecionar um item para o pagseguro, movido a microtransações.
 
