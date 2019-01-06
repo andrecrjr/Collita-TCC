@@ -23,7 +23,7 @@ class Pedido(models.Model):
         if self.codigo_pagseguro:
             return "Usuário: %s, Codigo pagseguro: %s" % (self.usuario_pedido, self.codigo_pagseguro)
         else:
-            return "%s ainda não pagou" % self.usuario_pedido.usuario
+            return "%s ainda não pagou" % self.usuario_pedido
 
 '''
 @receiver(post_save, sender=Pedido)
