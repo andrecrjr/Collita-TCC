@@ -19,7 +19,7 @@ def signup(request):
             user = form.save()
             user.refresh_from_db()
             form.save()
-            return redirect(to_perfil())
+            return redirect(home())
         else:
             form = SignUpForm(request.POST or None)
     return render(request, 'signup.html', {'form': form})
@@ -34,6 +34,7 @@ def perfil(request,id):
                 'item_nome':item.item_pedido,
                 'item_preco':item.item_pedido.valor_item
             })
+    data_items.reverse()
     return render(request, 'perfil.html', {'dados':perfil,'items':data_items})
     
 

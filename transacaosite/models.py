@@ -17,7 +17,7 @@ class Pedido(models.Model):
 
     item_pedido = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="item_pedido")
     usuario_pedido = models.ForeignKey(Inventario, on_delete=models.CASCADE, related_name="inventario_pedido")
-    codigo_pagseguro = models.CharField(unique=True, blank=True, max_length=60)
+    codigo_pagseguro = models.CharField(blank=True, max_length=60)
 
     def __str__(self):
         if self.codigo_pagseguro:
