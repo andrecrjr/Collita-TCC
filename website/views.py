@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from apisite.models import *
+from transacaosite.models import *
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
@@ -18,12 +19,24 @@ def signup(request):
             user = form.save()
             user.refresh_from_db()
             form.save()
-            return redirect(home)
+            return redirect(to_perfil())
         else:
             form = SignUpForm(request.POST or None)
     return render(request, 'signup.html', {'form': form})
 
 def perfil(request,id):
-    perfil = Profile.objects.filter(id=id)
-    print(perfil)
-    return render(request, 'perfil.html', {'dados':perfil})
+    perfil = Inventario.objects.filter(usuario=id)
+    items = Pedido.objects.filter(usuario_pedido=id)
+    data_items = []
+    if items:
+        for item in items:
+            data_items.append({
+                'item_nome':item.item_pedido,
+                'item_preco':item.item_pedido.valor_item
+            })
+    return render(request, 'perfil.html', {'dados':perfil,'items':data_items})
+    
+
+    
+
+

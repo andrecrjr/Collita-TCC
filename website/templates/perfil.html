@@ -1,16 +1,35 @@
 {% extends "layout/base.html" %}
+
+{% block title %}
+    {% for dado in dados %}
+    Jogador {{dado.usuario}}
+    {% endfor %}
+{% endblock%}
+
 {% block content %}
 <br>  
 {% if user.is_authenticated %}
             {%for dado in dados %}
                         <ul>
-                                <li>Nome de perfil: {{ dado.user }}</li><br>
-                                <li>Seu nome: <B>{{dado.user.first_name}} {{dado.user.last_name}}</B></li>
-                                <li>Numero de moedas: {{dado.inventario_usuario.moeda}}</li>
-                                <li>Meu email: {{dado.user.email}} </li>
+                                <li>Nome de perfil: {{ dado.usuario }}</li><br>
+                                <li>Seu nome: <B>{{dado.usuario.user.first_name}} {{dado.usuario.user.last_name}}</B></li>
+                                <li>Meu email: {{dado.usuario.user.email}} </li>
                         </ul>
             {% endfor %}
         {%else %}
             <h1>Voce não está logado</h1>
 {% endif %}
+<hr>
+<div class="pedidosUltimo">
+    <h1>Ultimos Pedidos</h1>
+    {% if items %}
+        {% for item in items %}
+            <p>{{item.item_nome}}</p>
+            <p>{{item.item_preco}}</p>
+        {% endfor %}
+    {% else %}
+        <p>Nenhum item para o jogo comprado</p>
+    {% endif %}
+</div>
+
 {% endblock %}
