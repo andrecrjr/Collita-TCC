@@ -14,7 +14,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ('user',)
     
-    def create(self, validated_data):
+    def create_user(self, validated_data):
         """
         Overriding the default create method of the Model serializer.
         :param validated_data: data containing all the details of profile
@@ -24,6 +24,24 @@ class ProfileSerializer(serializers.ModelSerializer):
         user = UserSerializer.create(UserSerializer(), validated_data=user_data)
         profile = Profile.objects.update_or_create(user=user)
         return profile
+
+
+class ItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = '__all__'
+
+class PedidoSerializer(serializers.ModelSerializer):
+    item_pedido = ItemSerializer(required=True)
+    class Meta:
+        model = Pedido
+        fields = ('id', 'item_pedido')
+    
+    def create_inventario(self, validated_data):
+        item_data = validated_data.pop('item_pedido')
+        items_inventario = ItemSerializer.create(ItemSerializer(), validated_data=item_data)
+        inventario = Pedido.objects.update_or_create(usuario=items_inventario)
+        return inventario
 
 class InventarioSerializer(serializers.ModelSerializer):
     usuario = ProfileSerializer(required=True)
@@ -37,10 +55,6 @@ class InventarioSerializer(serializers.ModelSerializer):
         inventario = Inventario.objects.update_or_create(usuario=perfil)
         return inventario
 
-class ItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Item
-        fields = '__all__'
 
 class TokenSerializer(serializers.ModelSerializer):
     class Meta:

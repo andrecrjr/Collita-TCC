@@ -14,7 +14,6 @@ class Item(models.Model):
         return "%s" % self.nome_item
 
 class Pedido(models.Model):
-
     item_pedido = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="item_pedido")
     usuario_pedido = models.ForeignKey(Inventario, on_delete=models.CASCADE, related_name="inventario_pedido")
     codigo_pagseguro = models.CharField(blank=True, max_length=60)

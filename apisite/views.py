@@ -7,6 +7,14 @@ from .models import *
 from transacaosite.models import *
 from .serializers import *
 
+class PedidoList(generics.ListAPIView):
+    serializer_class = PedidoSerializer
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    def get_queryset(self):
+        user = self.kwargs['pk']
+        return Pedido.objects.filter(usuario_pedido=user)    
+
 class ProfileList(generics.ListAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
@@ -20,12 +28,4 @@ class InventarioDetails(generics.RetrieveAPIView):
     serializer_class = InventarioSerializer
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
-
-class ItemList(generics.ListAPIView):
-    queryset = Item.objects.all()
-    serializer_class = ItemSerializer
-
-class ItemDetails(generics.RetrieveAPIView):
-    queryset = Item.objects.all()
-    serializer_class = ItemSerializer
 

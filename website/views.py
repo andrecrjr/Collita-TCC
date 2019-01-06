@@ -7,10 +7,10 @@ from django.shortcuts import redirect
 from .forms import *
 from django.contrib.auth import authenticate, login
 
-# Create your views here.
+
 def home(request):
-    perfil = Profile.objects.all()
-    return render(request,'index.html',{'usuarios':perfil})
+    profile = Profile.objects.all()
+    return render(request, 'index.html',{'usuarios':profile})
 
 def signup(request):
     form = SignUpForm(request.POST or None)
@@ -24,9 +24,9 @@ def signup(request):
             form = SignUpForm(request.POST or None)
     return render(request, 'signup.html', {'form': form})
 
-def perfil(request,id):
-    perfil = Inventario.objects.filter(usuario=id)
-    items = Pedido.objects.filter(usuario_pedido=id)
+def perfil(request, id_user):
+    inventario = Inventario.objects.filter(usuario=id_user)
+    items = Pedido.objects.filter(usuario_pedido=id_user)
     data_items = []
     if items:
         for item in items:
@@ -35,9 +35,4 @@ def perfil(request,id):
                 'item_preco':item.item_pedido.valor_item
             })
     data_items.reverse()
-    return render(request, 'perfil.html', {'dados':perfil,'items':data_items})
-    
-
-    
-
-
+    return render(request, 'perfil.html', {'dados':inventario, 'items':data_items})
