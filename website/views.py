@@ -9,8 +9,10 @@ from django.contrib.auth import authenticate, login
 
 
 def home(request):
-    profile = Profile.objects.all()
-    return render(request, 'index.html',{'usuarios':profile})
+    profile = []
+    if request.user.is_authenticated:
+        profile = Inventario.objects.all()
+    return render(request, 'index.html', {'usuarios':profile})
 
 def signup(request):
     form = SignUpForm(request.POST or None)
@@ -19,20 +21,20 @@ def signup(request):
             user = form.save()
             user.refresh_from_db()
             form.save()
-            return redirect(home())
+            return redirect(perfil)
         else:
             form = SignUpForm(request.POST or None)
     return render(request, 'signup.html', {'form': form})
 
 def perfil(request, id_user):
-    inventario = Inventario.objects.filter(usuario=id_user)
-    items = Pedido.objects.filter(usuario_pedido=id_user)
+    inventario = Inventario.objects.filter(id=id_user)
+    pedidos = Inventario.objects.get(id=id_user)
     data_items = []
-    if items:
-        for item in items:
-            data_items.append({
+    for item in pedidos.inventario_pedido.all():
+        data_items.append({
                 'item_nome':item.item_pedido,
                 'item_preco':item.item_pedido.valor_item
-            })
+        })
     data_items.reverse()
     return render(request, 'perfil.html', {'dados':inventario, 'items':data_items})
+
