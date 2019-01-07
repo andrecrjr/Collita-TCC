@@ -21,6 +21,3 @@ class Inventario(models.Model):
 
     def __str__(self):
         return "%s" % (self.usuario)
-    
-    def get_absolute_url(self):
-        return "/perfil/%s" % (self.id)
