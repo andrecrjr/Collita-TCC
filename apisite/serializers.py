@@ -17,7 +17,7 @@ class PedidoSerializer(serializers.ModelSerializer):
     item_pedido = ItemSerializer(required=True)
     class Meta:
         model = Pedido
-        fields = ('id', 'item_pedido')
+        fields = ('item_pedido')
     
     def create_inventario(self, validated_data):
         item_data = validated_data.pop('item_pedido')
