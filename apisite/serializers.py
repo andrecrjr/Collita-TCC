@@ -21,7 +21,7 @@ class PedidoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Pedido
-        fields = ('item_pedido')
+        fields = '__all__'
 
     @staticmethod
     def create_inventario(self, validated_data):
