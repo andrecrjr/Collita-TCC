@@ -1,18 +1,14 @@
 from django.shortcuts import render
-from apisite.models import *
 from transacaosite.models import *
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 from .forms import *
-from django.contrib.auth import authenticate, login
-
 
 def home(request):
     profile = []
     if request.user.is_authenticated:
         profile = Inventario.objects.all()
     return render(request, 'index.html', {'usuarios':profile})
+
 
 def signup(request):
     form = SignUpForm(request.POST or None)
@@ -26,6 +22,7 @@ def signup(request):
             form = SignUpForm(request.POST or None)
     return render(request, 'signup.html', {'form': form})
 
+
 def perfil(request, id_user):
     inventario = Inventario.objects.filter(id=id_user)
     pedidos = Inventario.objects.get(id=id_user)
@@ -37,3 +34,16 @@ def perfil(request, id_user):
         })
     data_items.reverse()
     return render(request, 'perfil.html', {'dados':inventario, 'items':data_items})
+
+
+def home_marketplace(request):
+    items = Item.objects.all()
+    items_estoque = []
+    for item in items:
+        items_estoque.append({
+            'item_nome':item.nome_item,
+            'item_preco':item.valor_item,
+            'item_id': item.id
+        })
+
+    return render(request, 'marketplace.html', {'items':items_estoque})

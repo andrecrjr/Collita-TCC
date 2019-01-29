@@ -4,7 +4,9 @@ from django.utils import timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
+'''
+Modelos do inventário, onde o inventário é criado no banco de dados.
+'''
 
 #após salvar no banco do perfil crie um inventário de sua instancia
 @receiver(post_save, sender=User)

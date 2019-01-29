@@ -1,6 +1,7 @@
 from django.db import models
 from apisite.models import Inventario
 
+
 class Item(models.Model):
     nome_item = models.CharField(max_length=35)
     valor_item = models.IntegerField()
@@ -12,6 +13,7 @@ class Item(models.Model):
 
     def __str__(self):
         return "%s" % self.nome_item
+
 
 class Pedido(models.Model):
     item_pedido = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="item_pedido")

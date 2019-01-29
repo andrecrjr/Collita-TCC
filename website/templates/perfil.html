@@ -17,18 +17,18 @@
                         </ul>
             {% endfor %}
 <hr>
-<div class="pedidosUltimo">
-    <h1>Ultimos Pedidos</h1>
-    {% if items %}
-        {% for item in items %}
-            <p>{{item.item_nome}}</p>
-            <p>{{item.item_preco}}</p>
-        {% endfor %}
-    {% else %}
-        <p>Nenhum item para o jogo comprado</p>
-    {% endif %}
-</div>
-{%else %}
+    <div class="pedidosUltimo">
+        <h1>Ultimos Pedidos</h1>
+        {% if items %}
+            {% for item in items %}
+                <p>{{item.item_nome}}</p>
+                <p>{{item.item_preco}}</p>
+            {% endfor %}
+        {% else %}
+            <p>Nenhum item para o jogo comprado</p>
+        {% endif %}
+    </div>
+{% else %}
     <h1>Voce não está logado</h1>
 {% endif %}
 
