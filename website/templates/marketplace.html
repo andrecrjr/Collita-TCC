@@ -2,18 +2,24 @@
 
 {% block content %}
     <div class="marketplace-items">
-    {% if items %}
-            {% for item in items %}
-                <div class="item">
-                    <h2>{{ item.item_nome }}</h2>
-                    <p>{{ item.item_preco }}</p>
-                    <a href="{%  url "checkout" item.item_id %}">Compra</a>
-                </div>
-            {% endfor %}
-    {% else %}
-        <h1>Nenhum item para compra</h1>
+    <p class="warning-red">{{ error }}</p>
+    {% if not error %}
+        {% if items %}
+                {% for item in items %}
+                    <div class="item">
+                        <h2>{{ item.item_nome }}</h2>
+                        <p>{{ item.item_preco }}</p>
+                        <a href="{%  url "checkout" item.item_id %}">Compra</a>
+                    </div>
+                {% endfor %}
+        {% else %}
+            <h1>Nenhum item para compra</h1>
+        {% endif %}
+
+        {% else %}
+        <a href="/marketplace">Volte para o marketplace</a>
     {% endif %}
     </div>
 
 
-{% endblock %}
+{% endblock content %}

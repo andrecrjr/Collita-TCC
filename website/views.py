@@ -52,12 +52,12 @@ def home_marketplace(request):
 def marketplace_checkout(request, item_id):
     if request.user.is_authenticated:
         if item_id:
-            checkout = []
             item = Item.objects.filter(id=item_id).values()
             for dado_item in item:
                 check_data = add_trasaction_item(dado_item['id'], dado_item['nome_item'], dado_item['valor_item'])
                 return redirect(check_data['redirect_url'])
-            return render(request, 'redirect_pagseguro.html', {'dados_checkout':checkout})
+            if not item:
+                return render(request, 'marketplace.html', {'error':'Item não existente, lamentamos pelo transtorno'})
         return redirect(signup)
 
 
