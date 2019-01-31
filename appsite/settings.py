@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apisite',
     'website',
     'transacaosite',
+    'pagseguro',
     'rest_framework',
     'corsheaders',
     'rest_framework.authtoken',
@@ -146,3 +147,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ]
 }
+
+PAGSEGURO_EMAIL = 'andre-carlos@live.com'
+PAGSEGURO_TOKEN = '76A6AA72746F422FB1940BB0AF339850'
+PAGSEGURO_SANDBOX = True

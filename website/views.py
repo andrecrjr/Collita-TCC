@@ -2,6 +2,7 @@ from django.shortcuts import render
 from transacaosite.models import *
 from django.shortcuts import redirect
 from .forms import *
+from transacaosite.helpers.checkout_helper import add_trasaction_item
 
 def home(request):
     profile = []
@@ -47,3 +48,18 @@ def home_marketplace(request):
         })
 
     return render(request, 'marketplace.html', {'items':items_estoque})
+
+def marketplace_checkout(request, item_id):
+    if request.user.is_authenticated:
+        if item_id:
+            checkout = []
+            item = Item.objects.filter(id=item_id).values()
+            for dado_item in item:
+                check_data = add_trasaction_item(dado_item['id'], dado_item['nome_item'], dado_item['valor_item'])
+                return redirect(check_data['redirect_url'])
+            return render(request, 'redirect_pagseguro.html', {'dados_checkout':checkout})
+        return redirect(signup)
+
+
+def retorno_pagseguro(request):
+    print('retorno pagseguro')

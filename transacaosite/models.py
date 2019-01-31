@@ -4,7 +4,7 @@ from apisite.models import Inventario
 
 class Item(models.Model):
     nome_item = models.CharField(max_length=35)
-    valor_item = models.IntegerField()
+    valor_item = models.DecimalField(decimal_places=2, max_digits=5)
 
     class Meta:
         db_table = 'item'

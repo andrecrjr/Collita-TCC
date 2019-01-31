@@ -9,5 +9,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout_site'),
     path('perfil/<int:id_user>/', perfil, name='inventario_user'),
     path('marketplace/', home_marketplace, name='marketplace_site'),
-    #path('<int:item_id>/', perfil, name='sell_item')
+    path('checkout/<int:item_id>/', marketplace_checkout, name='checkout')
 ]
