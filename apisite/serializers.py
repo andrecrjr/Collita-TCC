@@ -23,7 +23,6 @@ class PedidoSerializer(serializers.ModelSerializer):
         model = Pedido
         fields = '__all__'
 
-    @staticmethod
     def create_inventario(self, validated_data):
         item_data = validated_data.pop('item_pedido')
         items_inventario = ItemSerializer.create(ItemSerializer(), validated_data=item_data)

@@ -44,7 +44,8 @@ def home_marketplace(request):
         items_estoque.append({
             'item_nome':item.nome_item,
             'item_preco':item.valor_item,
-            'item_id': item.id
+            'item_id': item.id,
+            'item_img':item.imagem_item
         })
 
     return render(request, 'marketplace.html', {'items':items_estoque})

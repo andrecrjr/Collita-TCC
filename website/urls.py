@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import *
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('', home, name='Home'),
@@ -11,3 +13,6 @@ urlpatterns = [
     path('marketplace/', home_marketplace, name='marketplace_site'),
     path('checkout/<int:item_id>/', marketplace_checkout, name='checkout')
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

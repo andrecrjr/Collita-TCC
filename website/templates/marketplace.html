@@ -9,6 +9,7 @@
                     <div class="item">
                         <h2>{{ item.item_nome }}</h2>
                         <p>{{ item.item_preco }}</p>
+                        <img src="http://localhost:8000/media/{{ item.item_img }}" alt="{{ item.item_nome }}"/>
                         <a href="{%  url "checkout" item.item_id %}">Compra</a>
                     </div>
                 {% endfor %}

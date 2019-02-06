@@ -1,5 +1,4 @@
 from django.contrib import admin
-from apisite.models import *
 from transacaosite.models import *
 
 # Register your models here.
