@@ -1,4 +1,4 @@
-from pagseguro.api import PagSeguroItem, PagSeguroApi
+from pagseguro.api import PagSeguroItem, PagSeguroApi, PagSeguroApiTransparent
 from django.conf import settings
 
 #from pagseguro.models import Transaction, Checkout, TransactionHistory
@@ -18,7 +18,11 @@ def add_trasaction_item(id, nome, valor_item):
         data = checkout_app(new_item)
         return data
 
-
+def create_session_id():
+    transparente = PagSeguroApiTransparent()
+    data = transparente.get_session_id()
+    session_id = data['session_id']
+    return session_id
 
 
 

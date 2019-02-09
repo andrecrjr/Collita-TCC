@@ -1,6 +1,7 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
+    <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
     <div class="marketplace-items">
     <p class="warning-red">{{ error }}</p>
     {% if not error %}

@@ -11,7 +11,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout_site'),
     path('perfil/<int:id_user>/', perfil, name='inventario_user'),
     path('marketplace/', home_marketplace, name='marketplace_site'),
-    path('checkout/<int:item_id>/', marketplace_checkout, name='checkout')
+    path('marketplace/checkout/<int:item_id>/', marketplace_checkout, name='checkout'),
 ]
 
 if settings.DEBUG:

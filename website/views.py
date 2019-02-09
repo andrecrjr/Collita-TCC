@@ -2,7 +2,7 @@ from django.shortcuts import render
 from transacaosite.models import *
 from django.shortcuts import redirect
 from .forms import *
-from transacaosite.helpers.checkout_helper import add_trasaction_item
+from transacaosite.helpers.checkout_helper import create_session_id
 
 def home(request):
     profile = []
@@ -51,7 +51,10 @@ def home_marketplace(request):
     return render(request, 'marketplace.html', {'items':items_estoque})
 
 def marketplace_checkout(request, item_id):
-    if request.user.is_authenticated:
+    user = []
+    return render(request, 'checkout.html')
+
+'''
         if item_id:
             item = Item.objects.filter(id=item_id).values()
             for dado_item in item:
@@ -60,7 +63,7 @@ def marketplace_checkout(request, item_id):
             if not item:
                 return render(request, 'marketplace.html', {'error':'Item não existente, lamentamos pelo transtorno'})
         return redirect(signup)
-
+        '''
 
 def retorno_pagseguro(request):
     print('retorno pagseguro')
