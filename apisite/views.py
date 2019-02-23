@@ -4,13 +4,13 @@ from rest_framework.authentication import TokenAuthentication
 from .serializers import *
 
 
-class PedidoList(generics.ListAPIView):
-    serializer_class = PedidoSerializer
+class InventarioItemList(generics.ListAPIView):
+    serializer_class = ItemsUsuarioSerializer
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
     def get_queryset(self):
         user = self.kwargs['pk']
-        return Pedido.objects.filter(usuario_pedido=user)    
+        return Transacao.objects.filter(usuario_transacao=user)    
 
 
 class InventarioDetails(generics.RetrieveAPIView):

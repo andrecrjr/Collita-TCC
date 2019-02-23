@@ -16,22 +16,29 @@ class Item(models.Model):
         return "%s" % self.nome_item
 
 
-class Pedido(models.Model):
-    item_pedido = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="item_pedido")
-    usuario_pedido = models.ForeignKey(Inventario, on_delete=models.CASCADE, related_name="inventario_pedido")
-    codigo_pagseguro = models.CharField(blank=True, max_length=15)
+class Transacao(models.Model):
+
+    class Meta:
+        db_table = 'transacao'
+        verbose_name = 'transação do site'
+        verbose_name_plural = 'transações do site'
+
+    item_comprado = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="item_usuario")
+    usuario_transacao = models.ForeignKey(Inventario, on_delete=models.CASCADE, related_name="transacao_inventario")
+    status_boleto = models.BooleanField(verbose_name='Status do boleto', default=False)
+
 
     def __str__(self):
-        if self.codigo_pagseguro and self.codigo_pagseguro >= 8:
-            return "Usuário: %s, Codigo pagseguro: %s" % (self.usuario_pedido, self.codigo_pagseguro)
+        if self.status_boleto is not False:
+            return "Boleto pago, transação aceita"
         else:
-            return "%s ainda não pagou" % self.usuario_pedido
+            return "%s ainda não pagou" % self.usuario_transacao
 
 '''
-@receiver(post_save, sender=Pedido)
-def create_notafiscal_from_pedido(sender, instance, created, **kwargs):
+@receiver(post_save, sender=Transacao)
+def create_notafiscal_from_transacao(sender, instance, created, **kwargs):
     if created:
-        if instance.codigo_pagseguro is not '':
+        if instance['status_boleto'] is not False:
             NotaFiscal.objects.create(notafiscal=instance)
 
 '''

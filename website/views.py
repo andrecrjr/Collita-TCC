@@ -2,7 +2,6 @@ from django.shortcuts import render
 from transacaosite.models import *
 from django.shortcuts import redirect
 from .forms import *
-from transacaosite.helpers.checkout_helper import create_session_id
 
 def home(request):
     profile = []
@@ -28,7 +27,7 @@ def perfil(request, id_user):
     inventario = Inventario.objects.filter(id=id_user)
     pedidos = Inventario.objects.get(id=id_user)
     data_items = []
-    for item in pedidos.inventario_pedido.all():
+    for item in pedidos.transacao_inventario.all():
         data_items.append({
                 'item_nome':item.item_pedido,
                 'item_preco':item.item_pedido.valor_item
@@ -52,18 +51,8 @@ def home_marketplace(request):
 
 def marketplace_checkout(request, item_id):
     user = []
+    '''
+    from transacaosite.helper import gerar_boleto
+    boleto_final = gerar_boleto(item_id)
+    '''
     return render(request, 'checkout.html')
-
-'''
-        if item_id:
-            item = Item.objects.filter(id=item_id).values()
-            for dado_item in item:
-                check_data = add_trasaction_item(dado_item['id'], dado_item['nome_item'], dado_item['valor_item'])
-                return redirect(check_data['redirect_url'])
-            if not item:
-                return render(request, 'marketplace.html', {'error':'Item não existente, lamentamos pelo transtorno'})
-        return redirect(signup)
-        '''
-
-def retorno_pagseguro(request):
-    print('retorno pagseguro')

@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'apisite',
     'website',
     'transacaosite',
-    'pagseguro',
     'rest_framework',
     'corsheaders',
     'rest_framework.authtoken',
@@ -148,9 +147,9 @@ REST_FRAMEWORK = {
     ]
 }
 
-PAGSEGURO_EMAIL = 'andre-carlos@live.com'
-PAGSEGURO_TOKEN = '76A6AA72746F422FB1940BB0AF339850'
-PAGSEGURO_SANDBOX = True
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+PAGAR_ME_TOKEN = 'ak_test_XQmg4SDyW9YL0Yk1krcS48NsYalrfl'
+

@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import *
-from transacaosite.models import *
+from .models import Inventario, User
+from transacaosite.models import Item, Transacao
 from rest_framework.authtoken.models import Token
 
 
@@ -16,17 +16,17 @@ class ItemSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class PedidoSerializer(serializers.ModelSerializer):
+class ItemsUsuarioSerializer(serializers.ModelSerializer):
     item_pedido = ItemSerializer(required=True)
 
     class Meta:
-        model = Pedido
+        model = Transacao
         fields = '__all__'
 
     def create_inventario(self, validated_data):
         item_data = validated_data.pop('item_pedido')
         items_inventario = ItemSerializer.create(ItemSerializer(), validated_data=item_data)
-        inventario = Pedido.objects.update_or_create(usuario=items_inventario)
+        inventario = Transacao.objects.update_or_create(usuario=items_inventario)
         return inventario
 
 
