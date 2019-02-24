@@ -6,14 +6,12 @@ $('.comprar').click(function(){
     let preco_item = $(this).closest("div.item_marketplace").find("input[name='preco_item']").val();
     let nome_item = $(this).closest("div.item_marketplace").find("input[name='nome_item']").val();
     let csrf_token = $(this).closest("div.item_marketplace").find("input[name='csrf']").val();
-    let data_cart = JSON.stringify(
-    {
-        "id_produto":id_item,
-        "nome_produto":nome_item,
-        "preco_produto":preco_item
-    }
-    )
-    /*
+
+    var data_cart = new Object()
+    data_cart.id_produto = id_item;
+    data_cart.nomeproduto = nome_item
+    data_cart.precoitem = preco_item
+        /*
     $.post(url,{data:data_cart,'csrfmiddlewaretoken':csrf_token}, function(data){
         console.log('foi')
     }).fail(function(data){
@@ -22,14 +20,15 @@ $('.comprar').click(function(){
     console.log(JSON.stringify(data_cart))
     $.ajax({
         method: "POST",
+        beforeSend: function(xhrObj){
+            xhrObj.setRequestHeader("Content-Type","application/json");
+            xhrObj.setRequestHeader("Accept","application/json");
+        },
         url: url,
-        data: { data:data_cart,
-            'csrfmiddlewaretoken':csrf_token},
-      })
-        .done(function( msg ) {
+        dataType: "json",
+        data: JSON.stringify(data_cart)
+      }).done(function( msg ) {
           alert( "Data Saved: " + msg );
-        }).fail(function( a ){
-            console.log('error', a)
         })
 })
 

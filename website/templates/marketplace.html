@@ -20,6 +20,10 @@
                         <button class="comprar">Compra</button>
                     </div>
                 {% endfor %}
+                <div class="cart">
+                    
+                </div>
+                
         {% else %}
             <h1>Nenhum item para compra</h1>
         {% endif %}
@@ -27,9 +31,6 @@
         {% else %}
         <a href="/marketplace">Volte para o marketplace</a>
     {% endif %}
-    <div class='cartMarket'style="float:right">
-            <p>carrinho</p>
-    </div>
     </div>
 
 {% endblock content %}
