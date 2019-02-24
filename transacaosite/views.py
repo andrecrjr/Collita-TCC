@@ -2,9 +2,12 @@ import json
 from django.shortcuts import HttpResponse, render
 
 
-
 def add_item_cart(request):
-	return HttpResponse(request.session['cart'])
+	if request.is_ajax():
+		if request.method == 'POST':
+			valor = json.loads(request.body.decode('utf-8'))
+			print(valor['data'])
+	return HttpResponse('ok')
 
 def session_id(request):
     if request.user.is_authenticated:

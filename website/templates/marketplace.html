@@ -4,7 +4,7 @@
 <script type="text/javascript" src="{% static 'js/cart_marketplace.js' %}"></script>
 {% endblock js %}
 {% block content %}
-    <div class="marketplace-items">
+    <div class="marketplace-items" style="width:250px;">
     <p class="warning-red">{{ error }}</p>
     {% if not error %}
         {% if items %}
@@ -27,7 +27,9 @@
         {% else %}
         <a href="/marketplace">Volte para o marketplace</a>
     {% endif %}
+    <div class='cartMarket'style="float:right">
+            <p>carrinho</p>
     </div>
-
+    </div>
 
 {% endblock content %}
