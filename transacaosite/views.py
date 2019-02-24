@@ -1,6 +1,10 @@
 import json
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, render
 
+
+
+def cart_marketplace(request):
+	return HttpResponse('OLÁ')
 
 def session_id(request):
     if request.user.is_authenticated:

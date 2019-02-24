@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from transacaosite.models import *
 from django.shortcuts import redirect
 from .forms import *
+from transacaosite.models import *
 
 def home(request):
     profile = []
@@ -48,11 +48,3 @@ def home_marketplace(request):
         })
 
     return render(request, 'marketplace.html', {'items':items_estoque})
-
-def marketplace_checkout(request, item_id):
-    user = []
-    '''
-    from transacaosite.helper import gerar_boleto
-    boleto_final = gerar_boleto(item_id)
-    '''
-    return render(request, 'checkout.html')
