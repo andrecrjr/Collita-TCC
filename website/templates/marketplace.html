@@ -1,17 +1,23 @@
 {% extends "layout/base.html" %}
-
+{% load static %}
+{% block js %}
+<script type="text/javascript" src="{% static 'js/cart_marketplace.js' %}"></script>
+{% endblock js %}
 {% block content %}
-    <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
     <div class="marketplace-items">
     <p class="warning-red">{{ error }}</p>
     {% if not error %}
         {% if items %}
                 {% for item in items %}
-                    <div class="item">
-                        <h2>{{ item.item_nome }}</h2>
-                        <p>{{ item.item_preco }}</p>
+                    <div class="item_marketplace">
+                        <input type="hidden" name="id_item" value="{{item.item_id}}">
+                        <input type="hidden" name="preco_item" value="{{item.item_preco}}">
+                        <input type="hidden" name="nome_item" value="{{item.item_nome}}">
+                        <input type="hidden" name="csrf" value='{{csrf_token}}'>
+                        <h2 class="item_titulo">{{ item.item_nome }}</h2>
+                        <p class="item_preco">{{ item.item_preco }}</p>
                         <img src="http://localhost:8000/media/{{ item.item_img }}" alt="{{ item.item_nome }}"/>
-                        <a href="{% url 'transacaosite:checkout' %}">Compra</a>
+                        <button class="comprar">Compra</button>
                     </div>
                 {% endfor %}
         {% else %}

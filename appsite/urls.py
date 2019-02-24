@@ -5,5 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('apisite.urls')),
     path('', include('website.urls')),
-    path('', include(('transacaosite.urls','transacaosite'), namespace='transacaosite'))
+    path('marketplace/', include(('transacaosite.urls','transacaosite'), namespace='transacaosite'))
 ]
