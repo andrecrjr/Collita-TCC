@@ -17,14 +17,14 @@ class ItemSerializer(serializers.ModelSerializer):
 
 
 class ItemsUsuarioSerializer(serializers.ModelSerializer):
-    item_pedido = ItemSerializer(required=True)
+    item_comprado = ItemSerializer(required=True)
 
     class Meta:
         model = Transacao
         fields = '__all__'
 
     def create_inventario(self, validated_data):
-        item_data = validated_data.pop('item_pedido')
+        item_data = validated_data.pop('item_comprado')
         items_inventario = ItemSerializer.create(ItemSerializer(), validated_data=item_data)
         inventario = Transacao.objects.update_or_create(usuario=items_inventario)
         return inventario

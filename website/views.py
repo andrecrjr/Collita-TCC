@@ -29,8 +29,8 @@ def perfil(request, id_user):
     data_items = []
     for item in pedidos.transacao_inventario.all():
         data_items.append({
-                'item_nome':item.item_pedido,
-                'item_preco':item.item_pedido.valor_item
+                'item_nome':item.item_comprado,
+                'item_preco':item.item_comprado.valor_item
         })
     data_items.reverse()
     return render(request, 'perfil.html', {'dados':inventario, 'items':data_items})
