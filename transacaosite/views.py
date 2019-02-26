@@ -7,7 +7,8 @@ from django.views.decorators.csrf import csrf_exempt
 def add_item_cart(request):
 	usuario = request.user.username
 	if request.method == 'POST':
-		cart_session = request.session[usuario]
+		print(usuario)
+		cart_session = request.session.get(usuario, [])
 		cart_session.append(json.loads(request.body.decode('utf-8')))
 		request.session[usuario] = cart_session
 		print(request.session[usuario])
@@ -29,7 +30,7 @@ def delete_item(request):
 '''
 
 def delete_cart(request):
-	data = request.session[request.user.username]
+	data = request.session.get(request.user.username)
 	if data:
 		data.clear()
 		request.session.modified = True
