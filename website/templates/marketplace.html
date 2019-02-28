@@ -1,7 +1,7 @@
 {% extends "layout/base.html" %}
 {% load static %}
 {% block js %}
-<script type="text/javascript" src="{% static 'js/cart_marketplace.js' %}"></script>
+
 {% endblock js %}
 {% block content %}
     <div class="marketplace-items" style="width:250px;">
@@ -29,6 +29,7 @@
                 <h1>
                     Meu carrinho
                 </h1>
+                <button class="remove_itens"> Delete Carrinho</button>
 
             </div>
         {% else %}

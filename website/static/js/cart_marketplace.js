@@ -1,7 +1,8 @@
 $( document ).ready(function() {
 let link = 'http://localhost:8000/marketplace/';
-let newProduct = false
-$('.comprar').click(function(){
+listCart()
+
+$('.comprar').on("click",function(){
 
     let id_item = $(this).closest("div.item_marketplace").find("input[name='id_item']").val();
     let preco_item = $(this).closest("div.item_marketplace").find("input[name='preco_item']").val();
@@ -22,27 +23,43 @@ $('.comprar').click(function(){
         url: `${link}add_item/`,
         dataType: "json",
         data: JSON.stringify(data_cart)
-      }).done(function( msg ) {
-          console.log('success')
-      })
-    console.log(newProduct)
-})
+    })
     listCart()
-    function listCart() {
-    let productsCart = 0
-        $.get(`${link}list_item/`, function(data){
-            if(data) {
-                for (let i in data) {
-                    console.log(data[i].nomeproduto);
-                }
-                productsCart = data.length
-            }else{
-            console.log('nada n')
-            }
-        })
-        console.log(productsCart)
-    }
+})
 
+function listCart() {
+    $.get(`${link}list_item/`, function(data){
+        if(data) {
+            for (let i in data) {
+                console.log(data[i].nomeproduto);
+            }
+            let contagem = data.length
+            if((!data.length || !contagem)){
+                contagem = 0;
+            }
+            console.log(contagem)
+            countCart(contagem)
+        }else{
+            console.log('nada n')
+        }
+    });
+}
+
+function countCart(contando){
+    let contagem = `${contando}`
+    $('.items_menu_count').text(contagem)
+}
+
+function deleteItem(){
+    $.get(`${link}delete`, function(data){
+        console.log('deletado');
+        countCart(0)
+    });
+}
+
+$('.remove_itens').on('click',function(){
+    deleteItem();
+})
 
 })
 

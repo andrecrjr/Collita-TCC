@@ -18,22 +18,23 @@ def add_item_cart(request):
 
 
 def list_items(request):
-
 	data = request.session.get(request.user.username)
 	return HttpResponse(json.dumps(data), content_type="application/json")
 
 '''
-def delete_item(request):
+def delete_item(request, cart_id):
 	cart = request.session.get(request.user.username)
-	del data[item_id]
+	del cart[item_id]
+	request.session.modified = True
 	return HttpResponse()
 '''
 
 def delete_cart(request):
-	data = request.session.get(request.user.username)
-	if data:
-		data.clear()
-		request.session.modified = True
-		return HttpResponse('apagado com sucesso')
-	else:
-		return HttpResponse('nada')
+	if request.method == 'GET':
+		data = request.session.get(request.user.username)
+		if data:
+			data.clear()
+			request.session.modified = True
+			return HttpResponse('apagado com sucesso')
+		else:
+			return HttpResponse('nada')
