@@ -1,4 +1,3 @@
-const link = '{% url transacaosite:add_item %}';
 
 const addCartItem = document.querySelectorAll('button.comprar');
 for(let i = 0; i < addCartItem.length; i++){
@@ -35,5 +34,7 @@ deleteButton.addEventListener('click', ()=>{
     fetch(`delete/`)
         .then(function(ok){
         countCart(0)
+            cart = document.querySelector('.total-market')
+            cart.innerHTML = ''
     })
 })

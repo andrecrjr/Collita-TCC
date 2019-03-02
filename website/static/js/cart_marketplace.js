@@ -9,7 +9,6 @@ function listCart() {
                 //updateCart(result)
                 if(!result){
                     countCart(0)
-                    console.log(result)
                 }else {
                     countCart(result.length)
                 }
@@ -20,4 +19,6 @@ function listCart() {
 function countCart(contando){
     let contagem = `${contando}`
     document.querySelector('.items-menu-count').innerHTML = contagem
+    takeInfo()
 }
+
