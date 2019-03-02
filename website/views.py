@@ -46,5 +46,5 @@ def home_marketplace(request):
             'item_id': item.id,
             'item_img':item.imagem_item
         })
-
+    items_estoque.reverse()
     return render(request, 'marketplace.html', {'items':items_estoque})

@@ -10,7 +10,6 @@ def add_item_cart(request):
 		cart_session = request.session.get(usuario, [])
 		cart_session.append(json.loads(request.body))
 		request.session[usuario] = cart_session
-		print(request.session[usuario])
 		return HttpResponse('ok')
 	else:
 		return HttpResponse('erro 404')
@@ -18,7 +17,6 @@ def add_item_cart(request):
 
 def list_items(request):
 	data = request.session.get(request.user.username)
-	print(data)
 	return HttpResponse(json.dumps(data), content_type="application/json")
 
 '''

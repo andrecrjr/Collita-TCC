@@ -1,22 +1,24 @@
 {% extends "layout/base.html" %}
 {% load static %}
-{% block js %}
 
-{% endblock js %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/marketplace.css' %}"/>
+{% endblock css %}
+
 {% block content %}
+<div class="marketplace">
 
-    <div class="marketplace-items" style="width:250px;">
+    <div class="marketplace-items">
     <p class="warning-red">{{ error }}</p>
     {% if not error %}
         {% if items %}
                 {% for item in items %}
-                    <div class="item_marketplace">
+                    <div class="item-marketplace">
                         <input type="hidden" name="id_item" value="{{item.item_id}}">
-                        <input type="hidden" name="csrf" value='{{csrf_token}}'>
-                        <h2 class="item_titulo">{{ item.item_nome }}</h2>
+                        <p class="item_titulo">{{ item.item_nome }}</p>
                         <p class="item_preco">{{ item.item_preco }}</p>
-                        <img src="http://localhost:8000/media/{{ item.item_img }}" alt="{{ item.item_nome }}"/>
-                        <button class="comprar">Compra</button>
+                        <img src="http://localhost:8000/media/{{ item.item_img }}" alt="{{ item.item_nome }}" width="80"/>
+                        <button class="comprar"><span class="cart_market">Adicionar ao carrinho</span></button>
                     </div>
                 {% endfor %}
         {% else %}
@@ -25,14 +27,14 @@
         {% else %}
         <a href="/marketplace">Volte para o marketplace</a>
     {% endif %}
-    <div class="cartDiv" >
-                <h1>
-                    Meu carrinho
-                </h1>
-                <button class="remove-itens"> Delete Carrinho</button>
-
     </div>
+    <div class="my-cart">
+            <div class="cart">
+            </div>
+            <button class="remove-itens"> Delete Carrinho</button>
+    </div>
+</div>
+
+
     <script type="text/javascript" src="{% static 'js/add_cart.js' %}"></script>
-    </div>
-
 {% endblock content %}

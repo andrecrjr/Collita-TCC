@@ -7,9 +7,11 @@ function listCart() {
             .then(
             result =>{
                 //updateCart(result)
-                countCart(result.length)
-                if(!result.length){
+                if(!result){
                     countCart(0)
+                    console.log(result)
+                }else {
+                    countCart(result.length)
                 }
             }
         );
