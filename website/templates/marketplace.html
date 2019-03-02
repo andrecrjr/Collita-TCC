@@ -4,6 +4,7 @@
 
 {% endblock js %}
 {% block content %}
+
     <div class="marketplace-items" style="width:250px;">
     <p class="warning-red">{{ error }}</p>
     {% if not error %}
@@ -11,8 +12,6 @@
                 {% for item in items %}
                     <div class="item_marketplace">
                         <input type="hidden" name="id_item" value="{{item.item_id}}">
-                        <input type="hidden" name="preco_item" value="{{item.item_preco}}">
-                        <input type="hidden" name="nome_item" value="{{item.item_nome}}">
                         <input type="hidden" name="csrf" value='{{csrf_token}}'>
                         <h2 class="item_titulo">{{ item.item_nome }}</h2>
                         <p class="item_preco">{{ item.item_preco }}</p>
@@ -20,21 +19,20 @@
                         <button class="comprar">Compra</button>
                     </div>
                 {% endfor %}
-
-                
         {% else %}
             <h1>Nenhum item para compra</h1>
         {% endif %}
-            <div class="cartDiv" >
-                <h1>
-                    Meu carrinho
-                </h1>
-                <button class="remove_itens"> Delete Carrinho</button>
-
-            </div>
         {% else %}
         <a href="/marketplace">Volte para o marketplace</a>
     {% endif %}
+    <div class="cartDiv" >
+                <h1>
+                    Meu carrinho
+                </h1>
+                <button class="remove-itens"> Delete Carrinho</button>
+
+    </div>
+    <script type="text/javascript" src="{% static 'js/add_cart.js' %}"></script>
     </div>
 
 {% endblock content %}
