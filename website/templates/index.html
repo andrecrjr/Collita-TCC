@@ -1,8 +1,8 @@
 {% extends "layout/base.html" %}
 {% block content %}
 
-    <h1>Jogadores </h1>
     {% for usuario in usuarios %}
+    <h1>Ranking:</h1>
         <li><a href="{% url 'inventario_user' usuario.id %} ">{{ usuario }}</a></li>
     {% endfor %}
 {% endblock %}

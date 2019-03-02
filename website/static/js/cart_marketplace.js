@@ -2,8 +2,21 @@ $( document ).ready(function() {
 let link = 'http://localhost:8000/marketplace/';
 listCart()
 
-$('.comprar').on("click",function(){
+const requestData = (data_cart) =>( 
+    fetch(`${link}add_item/`,{
+        method:'POST',
+        body: JSON.stringify(data_cart),
+        headers: new Headers({
+            'Content-Type': 'text/plain'
+          })
+    }).then(function(response){
+        console.log(response)
+        listCart()
+    })
+    
+)
 
+$('.comprar').on("click",function(){
     let id_item = $(this).closest("div.item_marketplace").find("input[name='id_item']").val();
     let preco_item = $(this).closest("div.item_marketplace").find("input[name='preco_item']").val();
     let nome_item = $(this).closest("div.item_marketplace").find("input[name='nome_item']").val();
@@ -13,18 +26,7 @@ $('.comprar').on("click",function(){
     data_cart.id_produto = id_item;
     data_cart.nomeproduto = nome_item
     data_cart.precoitem = preco_item
-
-    $.ajax({
-        method: "POST",
-        beforeSend: function(xhrObj){
-            xhrObj.setRequestHeader("Content-Type","application/json");
-            xhrObj.setRequestHeader("Accept","application/json");
-        },
-        url: `${link}add_item/`,
-        dataType: "json",
-        data: JSON.stringify(data_cart)
-    })
-    listCart()
+    requestData(data_cart)
 })
 
 function listCart() {
@@ -33,21 +35,16 @@ function listCart() {
             for (let i in data) {
                 console.log(data[i].nomeproduto);
             }
-            let contagem = data.length
-            if((!data.length || !contagem)){
-                contagem = 0;
-            }
-            console.log(contagem)
-            countCart(contagem)
+            countCart(data.length)
         }else{
-            console.log('nada n')
+            countCart(0)
         }
     });
 }
 
 function countCart(contando){
     let contagem = `${contando}`
-    $('.items_menu_count').text(contagem)
+    $('.items-menu-count').text(contagem)
 }
 
 function deleteItem(){

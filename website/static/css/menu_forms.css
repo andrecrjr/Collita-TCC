@@ -1,0 +1,69 @@
+
+nav.main-menu ul{
+    list-style: none;
+    display: inline;
+    padding:0;
+    margin:0;
+}
+
+.main-menu ul li{
+    display:inline-block;
+    padding-top:5px;
+    margin-left:25px;
+}
+
+.main-menu ul li a{
+    text-decoration:none;
+}
+
+.login-menu, .signup-menu{
+    margin: 0 auto;
+    border-bottom:1px black solid;
+    border-bottom-color: black;
+}
+
+ul.form-login{
+    list-style: none;
+    padding:0;   
+}
+
+ul.form-login li input{
+    width:96.5%;
+}
+
+ul.form-login li{
+    margin-top:15px;
+}
+
+.form-group{
+    max-width: 500px;
+    margin:0 auto;
+}
+
+h1.title-section{
+    font-size:2em;
+}
+
+.form-group button{
+    float:right;
+    background:green;
+    color:white;
+    width:200px;
+    font-size:1.1em;
+    padding:10px;
+    border-radius:5px;
+    border: 1px solid black;
+}
+
+span.helptext{
+    font-size:0.8em;
+}
+
+.form-group ul.form-login li:last-of-type{
+    margin-bottom:20px;
+}
+
+.form-group button:hover{
+    background-color:lightgreen;
+    transition: background-color 1s;
+}

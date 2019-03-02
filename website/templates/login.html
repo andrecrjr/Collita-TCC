@@ -4,12 +4,16 @@
     {% if user.is_authenticated %}
     <p>Você está autenticado não precisa se logar</p>
     {% else %}
-        <h1>Login</h1>
+    <div class="form-group">
+        <h1 class="title-section">Login</h1>
         <form method='POST'>
-            {% csrf_token %}
-            {{ form.as_p }}
+            <ul class="form-login">
+                {% csrf_token %}
+                {{ form.as_ul }}
+            </ul>
             <button type="submit">Login</button>
         </form>
+    </div>        
     {% endif %}
 {%endblock%}
 
