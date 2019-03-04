@@ -8,6 +8,7 @@ body{
     height:auto;
     display: flex;
     flex-direction: column;
+    font-family: 'arial', tahoma, verdana;
 }
 
 header{

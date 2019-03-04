@@ -15,10 +15,12 @@
                 {% for item in items %}
                     <div class="item-marketplace">
                         <input type="hidden" name="id_item" value="{{item.item_id}}">
-                        <p class="item_titulo">{{ item.item_nome }}</p>
-                        <p class="item_preco">{{ item.item_preco }}</p>
+                        <div class="item-titulo">
+                            <p>{{ item.item_nome }}</p>
+                        </div>
+                        <p class="item-preco">{{ item.item_preco }}</p>
                         <img src="http://localhost:8000/media/{{ item.item_img }}" alt="{{ item.item_nome }}" width="80"/>
-                        <button class="comprar"><span class="cart_market">Adicionar ao carrinho</span></button>
+                        <button class="comprar"><span class="cart-market">Adicionar ao carrinho</span></button>
                     </div>
                 {% endfor %}
         {% else %}
@@ -29,6 +31,7 @@
     {% endif %}
     </div>
     <div class="my-cart">
+        <ul class="list-cart"></ul>
             <div class="total-market">
 
             </div>

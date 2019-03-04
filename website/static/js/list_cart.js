@@ -1,16 +1,5 @@
-takeInfo()
-
-function takeInfo(){
-    fetch(`list_item/`)
-        .then(response => response.json())
-            .then(
-            result => {
-                //updateCart(result)
-               printTotal(result)
-            }
-        );
-
-}
+totalCart = document.querySelector('.total-market')
+cartList = document.querySelector('.list-cart')
 
 function printTotal(result){
     let total_cart = 0;
@@ -20,10 +9,17 @@ function printTotal(result){
             if(!result){
                 total_cart = 0
             }
-    cart = document.querySelector('.total-market')
-    if (total_cart >  0) {
-        cart.innerHTML = `<p>Total no carrinho: R$ ${total_cart}</p>`
-    }
 
+    if (total_cart >  0) {
+        totalCart.innerHTML = `<p>Total no carrinho: R$ ${total_cart}</p>`
+    }
 }
+
+const printToCart = (nome, preco) =>{
+    const itemCart = document.createElement("li");
+    const nameItem = document.createTextNode(nome)
+    itemCart.appendChild(nameItem)
+    cartList.appendChild(itemCart)
+}
+
 
