@@ -10,9 +10,8 @@ function printTotal(result){
                 total_cart = 0
             }
 
-    if (total_cart >  0) {
-        totalCart.innerHTML = `<p>Total no carrinho: R$ ${total_cart}</p>`
-    }
+    return totalCart.innerHTML = `<p>Total no carrinho: R$ ${total_cart.toFixed(2)}</p>`
+    
 }
 
 const printToCart = (nome, preco) =>{
