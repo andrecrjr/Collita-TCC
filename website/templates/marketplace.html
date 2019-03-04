@@ -31,12 +31,13 @@
     {% endif %}
     </div>
     <div class="my-cart">
-        <ul class="list-cart"></ul>
+        <table>
+            <tbody class="cart-list">   
+            </tr>
+        </table>
             <div class="total-market">
-
             </div>
-        <div class="subtitle">Confira seu <a href="">carrinho</a></div>
-            <button class="finaliza-cart">Finalizar Compra</button>
+            <a href="{{ request.get_full_path }}"><button class="finaliza-cart">Finalizar Compra</button></a>
             <button class="remove-itens"> Delete Carrinho</button>
         </div>
 </div>

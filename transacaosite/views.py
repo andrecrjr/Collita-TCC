@@ -25,6 +25,13 @@ def delete_item(request, cart_id):
 	del cart[item_id]
 	request.session.modified = True
 	return HttpResponse()
+
+
+def create_boleto(request):
+	cart = request.session.get(request.user.username)
+	boleto = 
+	
+
 '''
 
 def delete_cart(request):

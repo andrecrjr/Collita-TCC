@@ -1,24 +1,38 @@
-totalCart = document.querySelector('.total-market')
-cartList = document.querySelector('.list-cart')
+const totalCart = document.querySelector('.total-market')
+const tabela = document.querySelector('table')
 
 function printTotal(result){
     let total_cart = 0;
-            for(let i in result) {
-               total_cart += parseFloat(result[i].preco_item)
-            }
-            if(!result){
-                total_cart = 0
-            }
+    let item_name = 'item';
 
-    return totalCart.innerHTML = `<p>Total no carrinho: R$ ${total_cart.toFixed(2)}</p>`
+    for(let i in result) {
+        total_cart += parseFloat(result[i].preco_item)
+    }
     
+    if(total_cart > 0){
+        if (result.length > 1) {
+            item_name = 'itens'
+        }
+        return totalCart.innerHTML = `<p>
+        Você já tem ${result.length} ${item_name} no carrinho.<br>
+        Total da transação: R$ ${total_cart.toFixed(2)}</p>`
+    }
 }
 
 const printToCart = (nome, preco) =>{
-    const itemCart = document.createElement("li");
-    const nameItem = document.createTextNode(nome)
-    itemCart.appendChild(nameItem)
-    cartList.appendChild(itemCart)
+    
+    const cartList = document.querySelector('.cart-list')
+    cartList.innerHTML += `<tr>
+                                <td>${nome}</td>
+                                <td>${preco}</td>
+                           </td> `/*
+    let nomeCart = document.createElement("td");
+    let precoCart = document.createElement("td");
+    let nameItem = document.createTextNode(nome);
+    let precoItem = document.createTextNode(preco);
+    nomeCart.appendChild(nameItem);
+    precoCart.appendChild(precoItem);
+    cartList.appendChild(nomeCart);
+    cartList.appendChild(precoCart);*/
 }
-
 

@@ -4,21 +4,19 @@ for(let i = 0; i < addCartItem.length; i++){
     addCartItem[i].addEventListener('click', function(){
         let preco_item = this.closest("div.item-marketplace").childNodes[5].textContent;
         let id_item = this.closest("div.item-marketplace").childNodes[1].getAttribute("value");
-        let nome_item = this.closest("div.item-marketplace").childNodes[3].textContent;
+        let nome_item = this.closest("div.item-marketplace").childNodes[3].innerText;
         console.log(preco_item)
         var data_cart = new Object()
         data_cart.id_item = id_item;
         data_cart.nome_item = nome_item
         printToCart(nome_item, preco_item)
         data_cart.preco_item = parseFloat(preco_item.replace(',','.'));
-        listCart()
         postCompra(data_cart)
-        console.log('atualiza')
     })
 }
 
 const postCompra = (data_cart) =>(
-    fetch(`add_item/`,{
+    fetch(`http://127.0.0.1:8000/marketplace/add_item/`,{
         method:'POST',
         body: JSON.stringify(data_cart),
         headers: new Headers({
@@ -39,7 +37,7 @@ deleteButton.addEventListener('click', ()=>{
             cart = document.querySelector('.total-market')
             cart.innerHTML = ''
     })
-    const cartList = document.querySelector('.list-cart')
+    const cartList = document.querySelector('.cart-list')
     while (cartList.firstChild) {
         cartList.removeChild(cartList.firstChild);
     }
