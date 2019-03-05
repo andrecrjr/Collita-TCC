@@ -1,5 +1,5 @@
 const totalCart = document.querySelector('.total-market')
-const tabela = document.querySelector('table')
+const cartList = document.querySelector('.cart-list')
 
 function printTotal(result){
     let total_cart = 0;
@@ -20,19 +20,9 @@ function printTotal(result){
 }
 
 const printToCart = (nome, preco) =>{
-    
-    const cartList = document.querySelector('.cart-list')
     cartList.innerHTML += `<tr>
                                 <td>${nome}</td>
                                 <td>${preco}</td>
-                           </td> `/*
-    let nomeCart = document.createElement("td");
-    let precoCart = document.createElement("td");
-    let nameItem = document.createTextNode(nome);
-    let precoItem = document.createTextNode(preco);
-    nomeCart.appendChild(nameItem);
-    precoCart.appendChild(precoItem);
-    cartList.appendChild(nomeCart);
-    cartList.appendChild(precoCart);*/
+                           </td> `
 }
 

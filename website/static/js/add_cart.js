@@ -34,11 +34,11 @@ deleteButton.addEventListener('click', ()=>{
     fetch(`delete/`)
         .then(function(){
         countCart(0)
-            cart = document.querySelector('.total-market')
-            cart.innerHTML = ''
+        cart = document.querySelector('.total-market')
     })
     const cartList = document.querySelector('.cart-list')
     while (cartList.firstChild) {
         cartList.removeChild(cartList.firstChild);
     }
+    
 })

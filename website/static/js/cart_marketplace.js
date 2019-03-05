@@ -21,4 +21,3 @@ function countCart(contando){
     let contagem = `${contando}`
     document.querySelector('.items-menu-count').innerHTML = contagem
 }
-
