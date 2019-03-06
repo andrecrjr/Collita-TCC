@@ -23,7 +23,7 @@ class Transacao(models.Model):
         verbose_name = 'transação do site'
         verbose_name_plural = 'transações do site'
 
-    item_comprado = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="item_usuario")
+    item_comprado = models.ManyToManyField(Item, related_name="item_usuario", through='Carrinho')
     usuario_transacao = models.ForeignKey(Inventario, on_delete=models.CASCADE, related_name="transacao_inventario")
     status_boleto = models.BooleanField(verbose_name='Status do boleto', default=False)
 
@@ -40,5 +40,9 @@ def create_notafiscal_from_transacao(sender, instance, created, **kwargs):
     if created:
         if instance['status_boleto'] is not False:
             NotaFiscal.objects.create(notafiscal=instance)
-
 '''
+
+class Carrinho(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    transacao = models.ForeignKey(Transacao, on_delete=models.CASCADE)
+

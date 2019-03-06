@@ -24,27 +24,35 @@ def signup(request):
 
 
 def perfil(request, id_user):
-    inventario = Inventario.objects.filter(id=id_user)
-    pedidos = Inventario.objects.get(id=id_user)
     data_items = []
-    for item in pedidos.transacao_inventario.all():
-        data_items.append({
-                'item_nome':item.item_comprado,
-                'item_preco':item.item_comprado.valor_item
-        })
-    data_items.reverse()
-    return render(request, 'perfil.html', {'dados':inventario, 'items':data_items})
+    try:        
+        inventario = Inventario.objects.get(id=id_user)
+        pedidos = Transacao.objects.filter(usuario_transacao=inventario)
+        for data in pedidos:
+            for item in data.item_comprado.all():
+                data_items.append({
+                        'item_nome':item.nome_item,
+                        'item_preco':item.valor_item
+                })
+        perfil = Inventario.objects.filter(id=id_user)
+        data_items.reverse()
+    except:
+        perfil = None
+    return render(request, 'perfil.html', {'dados': perfil,'items':data_items})
 
 
 def home_marketplace(request):
-    items = Item.objects.all()
     items_estoque = []
-    for item in items:
-        items_estoque.append({
-            'item_nome':item.nome_item,
-            'item_preco':item.valor_item,
-            'item_id': item.id,
-            'item_img':item.imagem_item
-        })
-    items_estoque.reverse()
+    try:
+        items = Item.objects.all()
+        for item in items:
+            items_estoque.append({
+                'item_nome':item.nome_item,
+                'item_preco':item.valor_item,
+                'item_id': item.id,
+                'item_img':item.imagem_item
+            })
+        items_estoque.reverse()
+    except:
+        items_estoque = None
     return render(request, 'marketplace.html', {'items':items_estoque})

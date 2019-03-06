@@ -9,11 +9,12 @@
 {% block content %}
 <br>  
 {% if user.is_authenticated %}
+{% if dados %}
             {%for dado in dados %}
                         <ul>
                                 <li>Nome de perfil: {{ dado.usuario }}</li><br>
-                                <li>Seu nome: <B>{{dado.usuario.user.first_name}} {{dado.usuario.user.last_name}}</B></li>
-                                <li>Meu email: {{dado.usuario.user.email}} </li>
+                                <li>Seu nome: <B>{{dado.usuario.first_name}} {{dado.usuario.last_name}}</B></li>
+                                <li>Meu email: {{dado.usuario.email}} </li>
                         </ul>
             {% endfor %}
 <hr>
@@ -29,8 +30,11 @@
         {% endif %}
     </div>
 {% else %}
-    <h1>Voce não está logado</h1>
+    <h1>Perfil inexistente</h1>
 {% endif %}
 
+{% else %}
+    <h1>Voce não está logado</h1>
+{% endif %}
 
 {% endblock %}
