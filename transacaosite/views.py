@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, redirect
 from django.views.decorators.csrf import csrf_exempt
 from apisite.models import Inventario
 from .models import *
@@ -50,7 +50,7 @@ def cart_to_profile(request):
 			print('deu certo', valor_total)
 		else:
 			pass
-		return HttpResponse("ok")
+		return redirect('/')
 	except:
 		return HttpResponse("Error")
 	
