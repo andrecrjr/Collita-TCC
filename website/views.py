@@ -32,8 +32,10 @@ def perfil(request, id_user):
             for item in data.item_comprado.all():
                 data_items.append({
                         'item_nome':item.nome_item,
-                        'item_preco':item.valor_item
+                        'item_preco':item.valor_item,
+                        'item_img':item.imagem_item
                 })
+                print(item.imagem_item)
         perfil = Inventario.objects.filter(id=id_user)
         data_items.reverse()
     except:

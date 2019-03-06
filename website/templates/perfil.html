@@ -22,6 +22,7 @@
         <h1>Ultimos Pedidos</h1>
         {% if items %}
             {% for item in items %}
+            <img src="http://127.0.0.1:8000/media/{{ item.item_img }}" alt="{{item.item_nome}}"/>
                 <p>{{item.item_nome}}</p>
                 <p>{{item.item_preco}}</p>
             {% endfor %}
