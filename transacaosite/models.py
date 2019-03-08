@@ -6,6 +6,7 @@ class Item(models.Model):
     nome_item = models.CharField(max_length=35)
     valor_item = models.DecimalField(decimal_places=2, max_digits=5)
     imagem_item = models.FileField(verbose_name='Imagem do item', upload_to='item_folder/', default='')
+    utilizavel = models.BooleanField(default=True, verbose_name='Utilizavel')
 
     class Meta:
         db_table = 'item'
@@ -43,6 +44,6 @@ def create_notafiscal_from_transacao(sender, instance, created, **kwargs):
 '''
 
 class Carrinho(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    transacao = models.ForeignKey(Transacao, on_delete=models.CASCADE)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='item_in_inventario')
+    transacao = models.ForeignKey(Transacao, on_delete=models.CASCADE, related_name='cart_to_transacao')
 

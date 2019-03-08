@@ -19,3 +19,6 @@ class InventarioDetails(generics.RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
 
+class UpdateCart(generics.ListAPIView):
+    queryset = Carrinho.objects.all()
+    serializer_class = CarrinhoSerializer

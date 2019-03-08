@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Inventario, User
-from transacaosite.models import Item, Transacao
+from transacaosite.models import Item, Transacao, Carrinho
 from rest_framework.authtoken.models import Token
 
 
@@ -15,12 +15,17 @@ class ItemSerializer(serializers.ModelSerializer):
         model = Item
         fields = '__all__'
 
-class ItemsUsuarioSerializer(serializers.ModelSerializer):
-    item_comprado = ItemSerializer(required=True, many=True)
+class CarrinhoSerializer(serializers.ModelSerializer):
+    item = ItemSerializer(required=True)
+    class Meta:
+        model = Carrinho
+        fields = '__all__'
 
+class ItemsUsuarioSerializer(serializers.ModelSerializer):
+    cart_to_transacao = CarrinhoSerializer(many=True)
     class Meta:
         model = Transacao
-        fields = '__all__'
+        fields = ('id', 'cart_to_transacao')
 
 class InventarioSerializer(serializers.ModelSerializer):
     usuario = UserSerializer(required=True)
