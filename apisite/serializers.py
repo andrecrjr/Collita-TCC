@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = '__all__'
+        fields = ('id', 'nome_item', 'utilizavel')
 
 class CarrinhoSerializer(serializers.ModelSerializer):
     item = ItemSerializer(required=True)
@@ -25,7 +25,7 @@ class ItemsUsuarioSerializer(serializers.ModelSerializer):
     cart_to_transacao = CarrinhoSerializer(many=True)
     class Meta:
         model = Transacao
-        fields = ('id', 'cart_to_transacao')
+        fields = ('id','cart_to_transacao')
 
 class InventarioSerializer(serializers.ModelSerializer):
     usuario = UserSerializer(required=True)
