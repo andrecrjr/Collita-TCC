@@ -1,4 +1,9 @@
 {% extends "layout/base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/perfil.css' %}"/>
+{% endblock css %}
 
 {% block title %}
     {% for dado in dados %}
@@ -7,24 +12,36 @@
 {% endblock%}
 
 {% block content %}
-<br>  
+
 {% if user.is_authenticated %}
+<div class="perfil-usuario">
 {% if dados %}
+        <div class="dados-usuario">
+            <div class="info-usuario">
             {%for dado in dados %}
-                        <ul>
-                                <li>Nome de perfil: {{ dado.usuario }}</li><br>
-                                <li>Seu nome: <B>{{dado.usuario.first_name}} {{dado.usuario.last_name}}</B></li>
-                                <li>Meu email: {{dado.usuario.email}} </li>
-                        </ul>
+                <ul>
+                        <li>Username: {{ dado.usuario }}</li>
+                        <li>Nome do jogador: <B>{{dado.usuario.first_name}} {{dado.usuario.last_name}}</B></li>
+                        <li>E-mail: {{dado.usuario.email}} </li>
+                </ul>
             {% endfor %}
-<hr>
-    <div class="pedidosUltimo">
-        <h1>Ultimos Pedidos</h1>
+            </div>
+            <div class="boletos-usuario">
+                <p>Ultimo boleto:</p>
+                <p>Status: Em aprovação</p>
+                <p>Prazo do pagamento: 20 de janeiro</p>
+                <a href="#">Todos os boletos</a>
+            </div>
+        </div>
+    <div class="inventario-usuario">
+        <h1>Ultimos Items comprados</h1>
         {% if items %}
             {% for item in items %}
-            <img src="http://127.0.0.1:8000/media/{{ item.item_img }}" alt="{{item.item_nome}}"/>
-                <p>{{item.item_nome}}</p>
-                <p>{{item.item_preco}}</p>
+                <section class="item-inventario">
+                    <img src="http://127.0.0.1:8000/media/{{ item.item_img }}" alt="{{item.item_nome}}"/>
+                        <p>{{item.item_nome}}</p>
+                        <p>{{item.item_preco}}</p>
+                </section>                
             {% endfor %}
         {% else %}
             <p>Nenhum item para o jogo comprado</p>

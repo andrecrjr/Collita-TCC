@@ -31,12 +31,6 @@
   width:100%;
 }
 
-section#main-content{
-    margin-top:40px;
-    width: auto;
-    margin: 0 auto;
-}
-
 button.comprar{
   width:100%;
   background:green;

@@ -23,3 +23,10 @@ footer{
     width:100%;
     margin-top:15%;
 }
+
+
+section#main-content{
+    margin-top:40px;
+    width: auto;
+    margin: 0 auto;
+}

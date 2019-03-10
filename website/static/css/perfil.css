@@ -1,0 +1,34 @@
+.perfil-usuario{
+    display:flex;
+    width: auto;
+    height: auto;
+    flex-direction:column;
+}
+
+.inventario-usuario{
+    width: 350px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    margin-top:30px;
+}
+
+section.item-inventario{
+   max-width:100px;
+   margin-left:10px;
+}
+
+section.item-inventario img{
+    width: 100%;
+}
+
+.dados-usuario{
+    display:flex;
+    width:600px;
+    height: auto;
+    justify-content: space-around;
+}
+
+.dados-usuario ul{
+    list-style-type: none;
+}
