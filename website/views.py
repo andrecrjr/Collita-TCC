@@ -11,16 +11,19 @@ def home(request):
 
 
 def signup(request):
-    form = SignUpForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            user = form.save()
-            user.refresh_from_db()
-            form.save()
-            return redirect(home)
-        else:
-            form = SignUpForm(request.POST or None)
-    return render(request, 'signup.html', {'form': form})
+    if request.user.is_authenticated:
+        return redirect(home)
+    else:
+        form = SignUpForm(request.POST or None)
+        if request.method == 'POST':
+            if form.is_valid():
+                user = form.save()
+                user.refresh_from_db()
+                form.save()
+                return redirect(home)
+            else:
+                form = SignUpForm(request.POST or None)
+        return render(request, 'signup.html', {'form': form})
 
 
 def perfil(request, id_user):
