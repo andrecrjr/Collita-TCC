@@ -41,9 +41,9 @@ def cart_to_profile(request):
 		data_cart = request.session.get(request.user.username)
 		valor_total = 0
 		for dados in data_cart:
-			novo_item = Item.objects.get(id=int(dados['id_item']))
+			novo_item = Item.objects.get(id_item=int(dados['id_item']))
 			valor_total += dados['preco_item']
-			add = Carrinho.objects.create(transacao=nova_transacao, item=novo_item)
+			add = ItemInfo.objects.create(transacao=nova_transacao, item=novo_item, quantidade=1, id_usuario=request.user.pk)
 			add.save()
 		if valor_total > 0:
 			request.session[request.user.username] = []

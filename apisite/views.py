@@ -2,15 +2,16 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from .serializers import *
+from transacaosite.models import *
 
 
 class InventarioItemList(generics.ListAPIView):
-    serializer_class = ItemsUsuarioSerializer
+    serializer_class = ItemInfoSerializer
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
     def get_queryset(self):
         user = self.kwargs['pk']
-        return Transacao.objects.filter(usuario_transacao=user)    
+        return ItemInfo.objects.filter(id_usuario=user)   
 
 
 class InventarioDetails(generics.RetrieveAPIView):
@@ -19,6 +20,3 @@ class InventarioDetails(generics.RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
 
-class UpdateCart(generics.ListAPIView):
-    queryset = Carrinho.objects.all()
-    serializer_class = CarrinhoSerializer

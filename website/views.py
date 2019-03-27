@@ -54,7 +54,7 @@ def home_marketplace(request):
             items_estoque.append({
                 'item_nome':item.nome_item,
                 'item_preco':item.valor_item,
-                'item_id': item.id,
+                'item_id': item.id_item,
                 'item_img':item.imagem_item
             })
         items_estoque.reverse()

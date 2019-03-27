@@ -3,6 +3,7 @@ from apisite.models import Inventario
 
 
 class Item(models.Model):
+    id_item = models.AutoField(primary_key=True)
     nome_item = models.CharField(max_length=35)
     valor_item = models.DecimalField(decimal_places=2, max_digits=5)
     imagem_item = models.FileField(verbose_name='Imagem do item', upload_to='item_folder/', default='')
@@ -24,9 +25,10 @@ class Transacao(models.Model):
         verbose_name = 'transação do site'
         verbose_name_plural = 'transações do site'
 
-    item_comprado = models.ManyToManyField(Item, related_name="item_usuario", through='Carrinho')
+    item_comprado = models.ManyToManyField(Item, related_name="item_usuario", through='ItemInfo')
     usuario_transacao = models.ForeignKey(Inventario, on_delete=models.CASCADE, related_name="transacao_inventario")
     status_boleto = models.BooleanField(verbose_name='Status do boleto', default=False)
+    codigo_boleto = models.CharField(max_length=45, default=0)
 
 
     def __str__(self):
@@ -43,7 +45,9 @@ def create_notafiscal_from_transacao(sender, instance, created, **kwargs):
             NotaFiscal.objects.create(notafiscal=instance)
 '''
 
-class Carrinho(models.Model):
+class ItemInfo(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='item_in_inventario')
     transacao = models.ForeignKey(Transacao, on_delete=models.CASCADE, related_name='cart_to_transacao')
+    quantidade = models.IntegerField(default=0)
+    id_usuario = models.BigIntegerField()
 
