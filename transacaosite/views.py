@@ -35,29 +35,33 @@ def get_total(request):
 	total = json.loads(request.body)
 	return HttpResponse(json.dumps(total), content_type="application/json")
 '''
-def cart_to_profile(request):
+def generate_boleto(request):
     #gerar boleto com o valor dos itens
-    usuario = Inventario.objects.get(id=request.user.pk)
-    nova_transacao = Transacao.objects.create(usuario_transacao=usuario, status_boleto=False)
-    data_cart = request.session.get(request.user.username)
-    boletao = 'boleto_' + request.user.username
-    valor_total = 0
-    request.session[boletao] = data_cart
-    for dados in data_cart:
-        valor_total += dados['preco_item']
-    if valor_total > 0:
-        request.session[request.user.username] = []
-    else:
-        pass
-    return redirect('/marketplace/boleto/')
+    try:
+        usuario = Inventario.objects.get(id=request.user.pk)
+        nova_transacao = Transacao.objects.create(usuario_transacao=usuario, status_boleto=False)
+        data_cart = request.session.get(request.user.username)
+        boletao = 'boleto_' + request.user.username
+        valor_total = 0
+        request.session[boletao] = data_cart
+        for dados in data_cart:
+            valor_total += dados['preco_item']
+        if valor_total > 0:
+            request.session[request.user.username] = []
+            wait_boleto(request)
+        else:
+            pass
+        return redirect('/marketplace/boleto/')
+    except:
+        return HttpResponse('Problem')
 
 
 def delete_cart(request):
-	if request.method == 'GET':
-		data = request.session.get(request.user.username)
-		if data:
-			data.clear()
-			request.session.modified = True
-			return HttpResponse('apagado com sucesso')
-		else:
-			return HttpResponse('nada')
+    if request.method == 'GET':
+        data = request.session.get(request.user.username)
+        if data:
+            data.clear()
+            request.session.modified = True
+            return HttpResponse('apagado com sucesso')
+        else:
+            return HttpResponse('nada')
