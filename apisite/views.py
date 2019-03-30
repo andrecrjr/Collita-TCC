@@ -11,7 +11,7 @@ class InventarioItemList(generics.ListAPIView):
     authentication_classes = (TokenAuthentication,)
     def get_queryset(self):
         user = self.kwargs['pk']
-        return ItemInfo.objects.filter(id_usuario=user)   
+        return ItemCompra.objects.filter(id_usuario=user)
 
 
 class InventarioDetails(generics.RetrieveAPIView):

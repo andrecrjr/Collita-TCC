@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
 from .forms import *
@@ -61,3 +62,13 @@ def home_marketplace(request):
     except:
         items_estoque = None
     return render(request, 'marketplace.html', {'items':items_estoque})
+
+def boleto_marketplace(request):
+    try:
+        usuario = Inventario.objects.get(id=request.user.pk)
+        boletos = []
+        for data in Transacao.objects.filter(usuario_transacao=usuario):
+            boletos.append(data)
+        return render(request, 'boleto_wait.html', {'boletos':boletos})
+    except:
+        return HttpResponse('problem')

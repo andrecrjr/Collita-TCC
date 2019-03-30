@@ -7,7 +7,6 @@ class Item(models.Model):
     nome_item = models.CharField(max_length=35)
     valor_item = models.DecimalField(decimal_places=2, max_digits=5)
     imagem_item = models.FileField(verbose_name='Imagem do item', upload_to='item_folder/', default='')
-    utilizavel = models.BooleanField(default=True, verbose_name='Utilizavel')
 
     class Meta:
         db_table = 'item'
@@ -18,6 +17,11 @@ class Item(models.Model):
         return "%s" % self.nome_item
 
 
+class ItemCompra(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='item_in_inventario')
+    quantidade = models.IntegerField(default=0)
+    id_usuario = models.BigIntegerField()
+
 class Transacao(models.Model):
 
     class Meta:
@@ -25,7 +29,7 @@ class Transacao(models.Model):
         verbose_name = 'transação do site'
         verbose_name_plural = 'transações do site'
 
-    item_comprado = models.ManyToManyField(Item, related_name="item_usuario", through='ItemInfo')
+    item_comprado = models.ForeignKey(ItemCompra, related_name="item_usuario", on_delete=models.CASCADE, null=True)
     usuario_transacao = models.ForeignKey(Inventario, on_delete=models.CASCADE, related_name="transacao_inventario")
     status_boleto = models.BooleanField(verbose_name='Status do boleto', default=False)
     codigo_boleto = models.CharField(max_length=45, default=0)
@@ -45,9 +49,4 @@ def create_notafiscal_from_transacao(sender, instance, created, **kwargs):
             NotaFiscal.objects.create(notafiscal=instance)
 '''
 
-class ItemInfo(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='item_in_inventario')
-    transacao = models.ForeignKey(Transacao, on_delete=models.CASCADE, related_name='cart_to_transacao')
-    quantidade = models.IntegerField(default=0)
-    id_usuario = models.BigIntegerField()
 
