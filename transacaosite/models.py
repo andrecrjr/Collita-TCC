@@ -18,9 +18,17 @@ class Item(models.Model):
 
 
 class ItemCompra(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='item_in_inventario')
+    class Meta:
+        db_table = 'item_transacao'
+        verbose_name = 'item da compra'
+        verbose_name_plural = 'items da compra'
+
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='item_inventario')
     quantidade = models.IntegerField(default=0)
     id_usuario = models.BigIntegerField()
+
+    def __str__(self):
+        return "Item: %s \n Quantidade: %d" % (self.item, self.quantidade)
 
 class Transacao(models.Model):
 
