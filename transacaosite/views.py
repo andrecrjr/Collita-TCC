@@ -1,7 +1,6 @@
 import json
-from django.shortcuts import HttpResponse, redirect
+from django.shortcuts import HttpResponse, redirect, render
 from django.views.decorators.csrf import csrf_exempt
-from apisite.models import Inventario
 from .pagamento_boleto import *
 from .models import *
 
@@ -37,27 +36,20 @@ def get_total(request):
 '''
 def generate_boleto(request):
     #gerar boleto com o valor dos itens
-    try:
+    if request.method == 'GET':
         boletao = 'boleto_' + request.user.username
-        if not request.session.get(boletao):
-            usuario = Inventario.objects.get(id=request.user.pk)
-            nova_transacao = Transacao.objects.create(usuario_transacao=usuario, status_boleto=False)
+        if request.session.get(boletao):
             data_cart = request.session.get(request.user.username)
-            boletao = 'boleto_' + request.user.username
-            valor_total = 0
-            request.session[boletao] = data_cart
-            for dados in data_cart:
-                valor_total += dados['preco_item']
-            if valor_total > 0:
+            if len(data_cart) > 0:
+                request.session[boletao] = data_cart
                 request.session[request.user.username] = []
-                wait_boleto(request)
+                request_boleto(request)
+                #Transacao.objects.create(usuario_transacao=usuario, status_boleto=False, codigo_boleto=url_boleto)
+                return redirect('/marketplace/boleto/')
             else:
-                pass
-            return redirect('/marketplace/boleto/')
-        else:
-            return HttpResponse('Não pode mais de um boleto')
-    except:
-        return HttpResponse('Problem')
+                return render(request, 'marketplace.html', {'error': 'Você não tem itens no carrinho'})
+
+    return redirect('/marketplace/')
 
 
 def delete_cart(request):
