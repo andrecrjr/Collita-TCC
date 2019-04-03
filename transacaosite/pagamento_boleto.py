@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 
 from apisite.models import Inventario
+from transacaosite.models import *
+
 pagarme.authentication_key(settings.PAGAR_ME_TOKEN)
 
 def calc_total_boleto(trans):
@@ -15,7 +17,7 @@ def calc_total_boleto(trans):
 
 def request_boleto(request):
     if request.method == 'GET':
-        data = Inventario.objects.get(id=request.user.pk)
+        usuario = Inventario.objects.get(id=request.user.pk)
         trans = request.session.get('boleto_' + request.user.username)
         valor_total = calc_total_boleto(trans)
         params = {
@@ -35,12 +37,23 @@ def request_boleto(request):
                 }
             }
         transact = pagarme.transaction.create(params)
-        print(transact)
-    return redirect('/marketplace/boletos/')
+        #Transacao.objects.create(usuario_transacao=usuario,
+        #                                           status_boleto=False,
+        #                                              codigo_boleto=transact['tid'])
+        print(transact['tid'])
+        request.session['codigo_boleto'] = transact['tid']
+        return redirect('/marketplace/boleto/')
 
-
+'''
 def paid_boleto(request):
     if request.method == 'GET':
-        itens = request.session.get('boleto_' + request.user.username, [])
-        print(itens)
-
+        itens = request.session['boleto_' + request.user.username]
+        #trans = Transacao.objects.get(codigo_boleto=codigo)
+        if itens:
+            for data in itens:
+                print(data)
+                itens = ItemCompra(data)
+                #trans.item_comprado = item
+        #trans.clear()
+        #request.session.modified = True
+'''

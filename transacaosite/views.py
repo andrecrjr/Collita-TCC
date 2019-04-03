@@ -38,23 +38,27 @@ def generate_boleto(request):
     #gerar boleto com o valor dos itens
     if request.method == 'GET':
         boletao = 'boleto_' + request.user.username
-        if request.session.get(boletao):
+        if not request.session.get(boletao):
             data_cart = request.session.get(request.user.username)
             if len(data_cart) > 0:
                 request.session[boletao] = data_cart
                 request.session[request.user.username] = []
-                request_boleto(request)
-                #Transacao.objects.create(usuario_transacao=usuario, status_boleto=False, codigo_boleto=url_boleto)
-                return redirect('/marketplace/boleto/')
+                return request_boleto(request)
             else:
                 return render(request, 'marketplace.html', {'error': 'Você não tem itens no carrinho'})
+        else:
+            return HttpResponse('você já tem boleto esperando')
 
     return redirect('/marketplace/')
 
 
 def delete_cart(request):
     if request.method == 'GET':
+        trans = request.session['boleto_' + request.user.username]
+        trans.clear()
+        request.session.modified = True
         data = request.session.get(request.user.username)
+
         if data:
             data.clear()
             request.session.modified = True
