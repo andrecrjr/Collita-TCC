@@ -13,12 +13,15 @@ function printTotal(result){
         if (result.length > 1) {
             item_name = 'itens'
         }
-        if (cartList.childNodes[1].innerText === "Nenhum item"){
-            cartList.removeChild(cartList.childNodes[1])
+
+        if (cartList.innerHTML.includes("Nenhum item")){
+            cartList.innerHTML.replace("Nenhum item", "")
         }
+
         return totalCart.innerHTML = `<p>
-        Você já tem ${result.length} ${item_name} no carrinho.<br>
-        Total da transação: R$ ${total_cart.toFixed(2)}</p>`
+                        Você já tem ${result.length} ${item_name} no carrinho.<br>
+                        Total da transação: R$ ${total_cart.toFixed(2)}
+                    </p>`
     }
 }
 
@@ -29,9 +32,11 @@ const printToCart = (nome, preco, quantidade) => {
                                 <td>${preco}</td>
                                 <td style="width:50px;">x ${quantidade}</td>
                            </td> `
-        }
-    if (cartList.childNodes[1].innerText === "Nenhum item"){
-        cartList.removeChild(cartList.childNodes[1])
+        }else{
+        cartList.innerHTML += `<tr><td>Nenhum item</td></tr>`
+    }
+    if (cartList.innerHTML.includes("Nenhum item")){
+        cartList.removeChild(cartList.firstChild)
     }
 }
 
