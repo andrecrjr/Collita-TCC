@@ -38,7 +38,7 @@ def request_boleto(request):
             }
         transact = pagarme.transaction.create(params)
         #Transacao.objects.create(usuario_transacao=usuario,
-        #                                           status_boleto=False,
+        #                                       status_boleto=False,
         #                                              codigo_boleto=transact['tid'])
         print(transact['tid'])
         request.session['codigo_boleto'] = transact['tid']
@@ -48,12 +48,14 @@ def request_boleto(request):
 def paid_boleto(request):
     if request.method == 'GET':
         itens = request.session['boleto_' + request.user.username]
-        #trans = Transacao.objects.get(codigo_boleto=codigo)
-        if itens:
-            for data in itens:
-                print(data)
-                itens = ItemCompra(data)
-                #trans.item_comprado = item
-        #trans.clear()
-        #request.session.modified = True
+        codigo = request.session['codigo_boleto']
+        if itens and codigo:
+            #trans = Transacao.objects.get(codigo_boleto=codigo)
+            for dados in itens:
+                novo_item = Item.objects.get(id_item=int(dados['id_item']))
+                add = ItemCompra.objects.create(transacao=trans, item=novo_item, quantidade=1, id_usuario=request.user.pk)
+                add.save()
+            #itens.clear()
+            #codigo.clear()
+            #request.session.modified = True
 '''
