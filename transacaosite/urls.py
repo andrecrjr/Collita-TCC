@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import *
-#from .pagamento_boleto import paid_boleto
+from .pagamento_boleto import paid_boleto
 
 '''
 json do cart
@@ -11,5 +11,6 @@ urlpatterns = [
     path('list_item/', list_items, name='list_items'),
     path('delete/', delete_cart, name='delete'),
     path('finalizar/', generate_boleto, name='finalizar'),
-    path('create_boleto/', request_boleto, name='request_boleto')
+    path('create_boleto/', request_boleto, name='request_boleto'),
+    path('boleto_pay/', paid_boleto, name='paid_boleto')
 ]

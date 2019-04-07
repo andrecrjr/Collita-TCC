@@ -47,18 +47,14 @@ def generate_boleto(request):
             else:
                 return render(request, 'marketplace.html', {'error': 'Você não tem itens no carrinho'})
         else:
-            return HttpResponse('você já tem boleto esperando')
+            return render(request, 'marketplace.html', {'error': 'Você ainda tem boleto em esperando pagamento'})
 
     return redirect('/marketplace/')
 
 
 def delete_cart(request):
     if request.method == 'GET':
-        trans = request.session['boleto_' + request.user.username]
-        trans.clear()
-        request.session.modified = True
         data = request.session.get(request.user.username)
-
         if data:
             data.clear()
             request.session.modified = True

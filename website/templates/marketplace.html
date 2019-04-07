@@ -7,7 +7,6 @@
 
 {% block content %}
 <div class="marketplace">
-
     <div class="marketplace-items">
     <p class="warning-red">{{ error }}</p>
     {% if not error %}
@@ -27,10 +26,11 @@
             <h1>Nenhum item para compra</h1>
         {% endif %}
         {% else %}
+        <br>
         <a href="/marketplace">Volte para o marketplace</a>
     {% endif %}
     </div>
-    <div class="my-cart">
+    <aside class="my-cart">
         <table>
             <thead>
                 <td>
@@ -48,7 +48,7 @@
             </div>
             <a href="{% url 'transacaosite:finalizar' %}"><button class="finaliza-cart">Finalizar Compra</button></a>
             <button class="remove-itens"> Delete Carrinho</button>
-        </div>
+        </aside>
 </div>
 
     <script type="text/javascript" src="{% static 'js/list_cart.js' %}"></script>

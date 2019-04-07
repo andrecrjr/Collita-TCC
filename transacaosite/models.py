@@ -17,19 +17,6 @@ class Item(models.Model):
         return "%s" % self.nome_item
 
 
-class ItemCompra(models.Model):
-    class Meta:
-        db_table = 'item_transacao'
-        verbose_name = 'item da compra'
-        verbose_name_plural = 'items da compra'
-
-    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='item_inventario')
-    quantidade = models.IntegerField(default=0)
-    id_usuario = models.BigIntegerField()
-
-    def __str__(self):
-        return "Item: %s \n Quantidade: %d" % (self.item, self.quantidade)
-
 class Transacao(models.Model):
 
     class Meta:
@@ -37,7 +24,6 @@ class Transacao(models.Model):
         verbose_name = 'transação do site'
         verbose_name_plural = 'transações do site'
 
-    item_comprado = models.ForeignKey(ItemCompra, related_name="item_usuario", on_delete=models.CASCADE, null=True)
     usuario_transacao = models.ForeignKey(Inventario, on_delete=models.CASCADE, related_name="transacao_inventario")
     status_boleto = models.BooleanField(verbose_name='Status do boleto', default=False)
     codigo_boleto = models.CharField(max_length=45, default=0)
@@ -58,3 +44,17 @@ def create_notafiscal_from_transacao(sender, instance, created, **kwargs):
 '''
 
 
+
+class ItemCompra(models.Model):
+    class Meta:
+        db_table = 'item_transacao'
+        verbose_name = 'item da compra'
+        verbose_name_plural = 'items da compra'
+
+    item_transacao = models.ForeignKey(Transacao, related_name="item_transacao", on_delete=models.CASCADE, null=True)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='item_itens')
+    quantidade = models.IntegerField(default=0)
+    id_usuario = models.BigIntegerField()
+
+    def __str__(self):
+        return "Item: %s \n Quantidade: %d" % (self.item, self.quantidade)

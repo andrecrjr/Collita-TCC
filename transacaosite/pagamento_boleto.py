@@ -41,22 +41,26 @@ def request_boleto(request):
         Transacao.objects.create(usuario_transacao=usuario,
                                                 status_boleto=False,
                                                 codigo_boleto=transact['tid'])
-        print(transact['tid'])
         request.session['codigo_boleto'] = transact['tid']
         return redirect('/marketplace/boleto/')
 
-'''
+
 def paid_boleto(request):
     if request.method == 'GET':
         itens = request.session['boleto_' + request.user.username]
         codigo = request.session['codigo_boleto']
         if itens and codigo:
-            #trans = Transacao.objects.get(codigo_boleto=codigo)
+            trans = Transacao.objects.get(codigo_boleto=codigo)
             for dados in itens:
                 item = Item.objects.get(id_item=int(dados['id_item']))
-                pedido = ItemCompra.objects.create(transacao=trans, item=item, quantidade=1, id_usuario=request.user.pk)
+                pedido = ItemCompra.objects.create(item=item,
+                                                   item_transacao=trans,
+                                                   quantidade=dados['quantidade'],
+                                                   id_usuario=request.user.pk)
                 pedido.save()
-            #itens.clear()
-            #codigo.clear()
-            #request.session.modified = True
-'''
+            trans.status_boleto = True
+            trans.save()
+            itens.clear()
+            del codigo
+            request.session.modified = True
+        return redirect('/marketplace/')
