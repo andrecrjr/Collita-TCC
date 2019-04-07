@@ -13,7 +13,7 @@ function printTotal(result){
         if (result.length > 1) {
             item_name = 'itens'
         }
-        if (cartList.childNodes[1].innerText == "Nenhum item"){
+        if (cartList.childNodes[1].innerText === "Nenhum item"){
             cartList.removeChild(cartList.childNodes[1])
         }
         return totalCart.innerHTML = `<p>
@@ -30,7 +30,7 @@ const printToCart = (nome, preco, quantidade) => {
                                 <td style="width:50px;">x ${quantidade}</td>
                            </td> `
         }
-    if (cartList.childNodes[1].innerText == "Nenhum item"){
+    if (cartList.childNodes[1].innerText === "Nenhum item"){
         cartList.removeChild(cartList.childNodes[1])
     }
 }
