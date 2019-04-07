@@ -12,5 +12,4 @@ urlpatterns = [
     path('delete/', delete_cart, name='delete'),
     path('finalizar/', generate_boleto, name='finalizar'),
     path('create_boleto/', request_boleto, name='request_boleto')
-    #path('paid_boleto/', paid_boleto, name='boleto_pay')
 ]

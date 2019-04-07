@@ -1,5 +1,4 @@
 listCart()
-cartList = document.querySelector('.cart_list')
 
 function listCart() {
     const link = 'http://127.0.0.1:8000/marketplace/';

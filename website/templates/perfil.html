@@ -17,19 +17,19 @@
 <div class="perfil-usuario">
         <div class="dados-usuario">
             <div class="info-usuario">
-            {%for dado in dados %}
-                <ul>
-                        <li>Username: {{ dado.usuario }}</li>
-                        <li>Nome do jogador: <B>{{dado.usuario.first_name}} {{dado.usuario.last_name}}</B></li>
-                        <li>E-mail: {{dado.usuario.email}} </li>
-                </ul>
-            {% endfor %}
+                {%for dado in dados %}
+                    <ul>
+                            <li>Username: {{ dado.usuario }}</li>
+                            <li>Nome do jogador: <B>{{dado.usuario.first_name}} {{dado.usuario.last_name}}</B></li>
+                            <li>E-mail: {{dado.usuario.email}} </li>
+                    </ul>
+                {% endfor %}
             </div>
             <div class="boletos-usuario">
-                <p>Ultimo boleto:</p>
-                <p>Status: Em aprovação</p>
-                <p>Prazo do pagamento: 20 de janeiro</p>
-                <a href="#">Todos os boletos</a>
+                    <p>Ultimo boleto:</p>
+                    <p>Status: Em aprovação</p>
+                    <p>Prazo do pagamento: 20 de janeiro</p>
+                    <a href="#">Todos os boletos</a>
             </div>
         </div>
     <div class="inventario-usuario">
