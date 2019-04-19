@@ -1,0 +1,29 @@
+{% extends "layout/base.html" %}
+{% block content %}
+<section class="boletos">
+        <h1>Boleto pendente:</h1>
+        {% if boletos %}
+            {% for boleto in boletos %}
+                {% if boleto.status_boleto is False %}
+                <p>Código do boleto: {{ boleto.codigo_boleto }}</p>
+                <p>Status do boleto: {{ boleto.status_boleto }}</p>
+                <p>Data da transação:</p>
+                {% endif %}
+
+            {% endfor %}
+        <div>
+            <h1>Ultimos boletos pagos:</h1>
+                {% for boleto in boletos %}
+                     {% if boleto.status_boleto is True %}
+                    <p>Código do {{ boleto.codigo_boleto }}</p>
+                    <p>Status do boleto: {{ boleto.status_boleto }}</p>
+                    <p>Data da transação:</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+        <h1>Nenhuma compra efetuada</h1>
+    {% endif %}
+
+</section>
+{% endblock %}

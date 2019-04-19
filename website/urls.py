@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout_site'),
     path('perfil/<int:id_user>/', perfil, name='inventario_user'),
     path('marketplace/', home_marketplace, name='marketplace_site'),
+    path('marketplace/boleto/', boleto_marketplace, name='boleto_final')
 ]
 
 if settings.DEBUG:

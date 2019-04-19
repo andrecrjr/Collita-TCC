@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Inventario, User
-from transacaosite.models import Item, Transacao, ItemInfo
+from transacaosite.models import Item, Transacao, ItemCompra
 from rest_framework.authtoken.models import Token
 
 
@@ -18,7 +18,7 @@ class ItemSerializer(serializers.ModelSerializer):
 class ItemInfoSerializer(serializers.ModelSerializer):
     item = ItemSerializer(required=True)
     class Meta:
-        model = ItemInfo
+        model = ItemCompra
         fields = ('id', 'item', 'quantidade')
 
 class ItemUsuarioSerializer(serializers.ModelSerializer):

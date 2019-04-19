@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
 from .forms import *
@@ -32,13 +33,12 @@ def perfil(request, id_user):
         inventario = Inventario.objects.get(id=id_user)
         pedidos = Transacao.objects.filter(usuario_transacao=inventario)
         for data in pedidos:
-            for item in data.item_comprado.all():
+            for itens in data.item_transacao.all():
                 data_items.append({
-                        'item_nome':item.nome_item,
-                        'item_preco':item.valor_item,
-                        'item_img':item.imagem_item
+                        'item_nome':itens.item,
+                        'item_preco':itens.quantidade,
+                        'item_img':itens.item.imagem_item
                 })
-                print(item.imagem_item)
         perfil = Inventario.objects.filter(id=id_user)
         data_items.reverse()
     except:
@@ -61,3 +61,13 @@ def home_marketplace(request):
     except:
         items_estoque = None
     return render(request, 'marketplace.html', {'items':items_estoque})
+
+def boleto_marketplace(request):
+    try:
+        usuario = Inventario.objects.get(id=request.user.pk)
+        boletos = []
+        for data in Transacao.objects.filter(usuario_transacao=usuario):
+            boletos.append(data)
+        return render(request, 'boleto_wait.html', {'boletos':boletos})
+    except:
+        return HttpResponse('problem')
