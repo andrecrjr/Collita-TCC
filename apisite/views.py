@@ -14,6 +14,7 @@ class InventarioItemList(generics.ListAPIView):
         return ItemCompra.objects.filter(id_usuario=user, quantidade__gt=0)
 
 
+
 class InventarioDetails(generics.RetrieveAPIView):
     queryset = Inventario.objects.all()
     serializer_class = InventarioSerializer

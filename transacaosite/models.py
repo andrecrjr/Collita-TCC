@@ -28,24 +28,15 @@ class Transacao(models.Model):
     status_boleto = models.BooleanField(verbose_name='Status do boleto', default=False)
     codigo_boleto = models.CharField(max_length=45, default=0)
 
-
     def __str__(self):
         if self.status_boleto is not False:
             return "Boleto pago, transação aceita"
         else:
             return "%s ainda não pagou" % self.usuario_transacao
 
-'''
-@receiver(post_save, sender=Transacao)
-def create_notafiscal_from_transacao(sender, instance, created, **kwargs):
-    if created:
-        if instance['status_boleto'] is not False:
-            NotaFiscal.objects.create(notafiscal=instance)
-'''
-
-
 
 class ItemCompra(models.Model):
+
     class Meta:
         db_table = 'item_transacao'
         verbose_name = 'item da compra'

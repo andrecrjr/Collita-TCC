@@ -1,8 +1,7 @@
 import json
-from django.shortcuts import HttpResponse, redirect, render
+from django.shortcuts import render, HttpResponse, redirect
 from django.views.decorators.csrf import csrf_exempt
-from .pagamento_boleto import *
-from .models import *
+from .pagamento_boleto import request_boleto
 
 
 @csrf_exempt

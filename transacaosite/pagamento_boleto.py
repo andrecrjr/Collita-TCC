@@ -1,10 +1,10 @@
 import pagarme
 from django.conf import settings
-from django.http import HttpResponse
 from django.shortcuts import redirect
-
-from apisite.models import Inventario
 from transacaosite.models import *
+from apisite.models import Inventario
+import requests
+
 
 pagarme.authentication_key(settings.PAGAR_ME_TOKEN)
 
@@ -16,27 +16,31 @@ def calc_total_boleto(trans):
     valor_total = valor_total * 100
     return str(valor_total)
 
+def params_boleto(valor_total, email_usuario, nome_usuario):
+    params = {
+        'amount': valor_total,
+        'payment_method': 'boleto',
+        'customer': {
+            'type': 'individual',
+            'country': 'br',
+            'email': email_usuario,
+            'name': nome_usuario,
+            'documents': [
+                {
+                    'type': 'cpf',
+                    'number': '00000000000'
+                }
+            ]
+        }
+    }
+    return params
+
 def request_boleto(request):
     if request.method == 'GET':
         usuario = Inventario.objects.get(id=request.user.pk)
         trans = request.session.get('boleto_' + request.user.username)
         valor_total = calc_total_boleto(trans)
-        params = {
-                'amount': valor_total,
-                'payment_method': 'boleto',
-                'customer': {
-                    'type': 'individual',
-                    'country': 'br',
-                    'email': 'andre-carlos@live.com',
-                    'name': 'andre carlos',
-                    'documents': [
-                        {
-                            'type': 'cpf',
-                            'number': '00000000000'
-                        }
-                    ]
-                }
-            }
+        params = params_boleto(valor_total, request.user.email, request.user.first_name)
         transact = pagarme.transaction.create(params)
         Transacao.objects.create(usuario_transacao=usuario,
                                                 status_boleto=False,
