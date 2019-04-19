@@ -14,6 +14,7 @@ def calc_total_boleto(trans):
         preco_com_quantidade = dados['preco_item'] * dados['quantidade']
         valor_total += preco_com_quantidade
     valor_total = valor_total * 100
+    valor_total = int(valor_total)
     return str(valor_total)
 
 def params_boleto(valor_total, email_usuario, nome_usuario):

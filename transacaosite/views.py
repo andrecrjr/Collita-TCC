@@ -12,9 +12,9 @@ def add_item_cart(request):
         data = json.loads(request.body)
         cart_session.append(data)
         request.session[usuario] = cart_session
-        return HttpResponse('ok')
+        return HttpResponse(status=200)
     else:
-        return HttpResponse('erro 404')
+        return HttpResponse('erro 400', status=400)
 
 
 def list_items(request):
