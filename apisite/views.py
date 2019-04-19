@@ -20,11 +20,6 @@ class InventarioUpdate(generics.UpdateAPIView):
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
 
-    def get_queryset(self):
-        user = self.kwargs['pk']
-        transacao = self.kwargs['transacao']
-        return ItemCompra.objects.filter(id_usuario=user, id=transacao, quantidade__gt=0)
-
     def update(self, request, *args, **kwargs):
         transacao = self.kwargs['transacao']
         user = self.kwargs['pk']
@@ -38,7 +33,7 @@ class InventarioUpdate(generics.UpdateAPIView):
             serializer = ItemCompra.objects.get(id_usuario=user, id=transacao)
             serializer.quantidade = qtd
             serializer.save()
-            return JsonResponse({'message':'Quantidade atualizada com sucesso'},status=200)
+            return JsonResponse({'message':'Quantidade atualizada com sucesso'}, status=200)
 
 
 class InventarioDetails(generics.RetrieveAPIView):
