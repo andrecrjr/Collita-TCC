@@ -33,18 +33,19 @@
             </div>
         </div>
     <div class="inventario-usuario">
-        <h1>Ultimos Items comprados</h1>
-        {% if items %}
-            {% for item in items %}
-                <section class="item-inventario">
-                    <img src="http://127.0.0.1:8000/media/{{ item.item_img }}" alt="{{item.item_nome}}"/>
-                        <p>{{item.item_nome}}</p>
-                        <p>{{item.item_preco}}</p>
-                </section>                
-            {% endfor %}
-        {% else %}
-            <p>Nenhum item para o jogo comprado</p>
-        {% endif %}
+        <h1>Inventário:</h1>
+            <h1>Ultimos Power-ups/Itens comprados</h1>
+            {% if items %}
+                {% for item in items %}
+                    <section class="item-inventario">
+                        <img src="http://127.0.0.1:8000/media/{{ item.item_img }}" alt="{{item.item_nome}}"/>
+                            <p>{{item.item_nome}}</p>
+                            <p>x {{item.item_quantidade}}</p>
+                    </section>
+                {% endfor %}
+            {% else %}
+                <p>Nenhum power up comprado</p>
+            {% endif %}
     </div>
 {% else %}
     <h1>Voce não está logado</h1>

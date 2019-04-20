@@ -34,11 +34,12 @@ def perfil(request, id_user):
         pedidos = Transacao.objects.filter(usuario_transacao=inventario)
         for data in pedidos:
             for itens in data.item_transacao.all():
-                data_items.append({
-                        'item_nome':itens.item,
-                        'item_preco':itens.quantidade,
-                        'item_img':itens.item.imagem_item
-                })
+                if itens.quantidade != 0:
+                    data_items.append({
+                            'item_nome':itens.item,
+                            'item_quantidade':itens.quantidade,
+                            'item_img':itens.item.imagem_item
+                    })
         perfil = Inventario.objects.filter(id=id_user)
         data_items.reverse()
     except:

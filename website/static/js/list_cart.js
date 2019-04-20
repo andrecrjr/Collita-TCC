@@ -7,9 +7,10 @@ function printTotal(result){
     let item_name = 'item';
 
 
-    for(let i = 0; i <= result.length; i++) {
+    for(let i = 0; i <= result.length-1; i++) {
         total_cart += parseFloat(result[i].preco_item) * result[i].quantidade
         unity_cart += parseInt(result[i].quantidade)
+        console.log(total_cart)
     }
 
     if(total_cart > 0){
