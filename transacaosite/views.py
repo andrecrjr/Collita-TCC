@@ -21,6 +21,22 @@ def list_items(request):
     items = request.session.get(request.user.username)
     return HttpResponse(json.dumps(items), content_type="application/json")
 
+@csrf_exempt
+def update_cart_same_item(request, id, new_quantity):
+    if request.method == 'PUT':
+        cart = request.session[request.user.username]
+        cart[id]['quantidade'] = int(cart[id]['quantidade'])
+        cart[id]['quantidade'] += new_quantity
+        cart[id]['quantidade'] = str(cart[id]['quantidade'])
+        request.session.modified = True
+        return HttpResponse(status=200)
+
+
+
+
+
+
+
 '''
 def delete_item(request, cart_id):
     cart = request.session.get(request.user.username)

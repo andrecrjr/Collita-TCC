@@ -6,12 +6,18 @@ function listCart() {
         .then(response => response.json())
             .then(
             result =>{
+
                 if(result === null){
                     countCart(0)
                 }else{
-                    countCart(result.length);
+                    counting = 0
+                    for(quantidade in result) {
+                        counting = counting + parseInt(result[quantidade].quantidade)
+                    }
+                    countCart(counting);
+                    printTotal(result);
                 }
-                printTotal(result);
+
             }
         );
 }
