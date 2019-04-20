@@ -11,7 +11,7 @@ pagarme.authentication_key(settings.PAGAR_ME_TOKEN)
 def calc_total_boleto(trans):
     valor_total = 0
     for dados in trans:
-        preco_com_quantidade = dados['preco_item'] * dados['quantidade']
+        preco_com_quantidade = float(dados['preco_item']) * int(dados['quantidade'])
         valor_total += preco_com_quantidade
     valor_total = valor_total * 100
     valor_total = int(valor_total)

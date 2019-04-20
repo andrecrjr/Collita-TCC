@@ -32,11 +32,6 @@ def update_cart_same_item(request, id, new_quantity):
         return HttpResponse(status=200)
 
 
-
-
-
-
-
 '''
 def delete_item(request, cart_id):
     cart = request.session.get(request.user.username)
