@@ -14,7 +14,6 @@ async function listCart () {
                     }
                     countCart(counting);
                     printTotal(data);
-                   printMainCart(data);
         }
     }catch{
 
