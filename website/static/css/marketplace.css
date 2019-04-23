@@ -39,10 +39,25 @@ button.comprar{
 }
 
 .my-cart{
-  width:200px;
+  width:240px;
+  height: 300px;
   margin-top:15px;
   margin-left:35px;
+  overflow: scroll;
 }
+
+.cart-list tr td:first-child{
+  width: 100px;
+}
+
+.cart-list tr td:nth-child(2){
+  width: 100px;
+}
+
+.cart-list tr td:last-child{
+   padding-left: 40px;
+}
+
 
 .item-preco::before{
   content:'R$';

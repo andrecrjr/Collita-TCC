@@ -43,4 +43,3 @@ const printToCart = (nome, preco, quantidade) => {
         cartList.removeChild(cartList.firstChild)
     }
 }
-

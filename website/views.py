@@ -72,3 +72,6 @@ def boleto_marketplace(request):
         return render(request, 'boleto_wait.html', {'boletos':boletos})
     except:
         return HttpResponse('problem')
+
+def cart_marketplace(request):
+    return render(request, 'marketplace_cart.html')

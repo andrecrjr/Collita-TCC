@@ -1,12 +1,34 @@
 {% extends "layout/base.html"%}
+{% load static %}
 
 {% block content %}
     <section>
-        <table>
-            <thead>
-            <td></td>
-            </thead>
+    <h1 class="none-cart"></h1>
+        <table class="cart-market">
+                <thead>
+                    <tr>
+                        <td>
+                            Id do pedido
+                        </td>
+                        <td>
+                            Nome do item
+                        </td>
+                        <td>
+                            Preço do item
+                        </td>
+                        <td>
+                            Quantidade do Item
+                        </td>
+                        <td>
+                            Excluir Item
+                        </td>
+                    </tr>
+                    </thead>
+            <tbody class="carrinho-main">
+
+            </tbody>
+
         </table>
     </section>
-{% endblock %}
-
+<script type="text/javascript" src="{% static 'js/main_cart_list.js' %}"></script>
+{% endblock content %}

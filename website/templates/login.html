@@ -3,6 +3,9 @@
 {% block content %}
     {% if user.is_authenticated %}
     <p>Você está autenticado não precisa se logar</p>
+
+        <br>
+        <a href="{% url 'inventario_user' user.pk  %}"/>Voltar ao perfil</a>
     {% else %}
     <div class="form-group">
         <h1 class="title-section">Login</h1>
