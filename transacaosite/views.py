@@ -50,7 +50,7 @@ def generate_boleto(request):
         boletao = 'boleto_' + request.user.username
         if not request.session.get(boletao):
             data_cart = request.session.get(request.user.username)
-            if len(data_cart) > 0:
+            if data_cart and len(data_cart) > 0:
                 request.session[boletao] = data_cart
                 request.session[request.user.username] = []
                 return request_boleto(request)
