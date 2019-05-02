@@ -45,7 +45,8 @@ def request_boleto(request):
         transact = pagarme.transaction.create(params)
         Transacao.objects.create(usuario_transacao=usuario,
                                                 status_boleto=False,
-                                                codigo_boleto=transact['tid'])
+                                                codigo_boleto=transact['tid'],
+                                                )
         request.session['codigo_boleto'] = transact['tid']
         return redirect('/marketplace/boleto/')
 
