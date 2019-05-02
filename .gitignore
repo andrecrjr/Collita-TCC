@@ -4,5 +4,5 @@ venv/*
 *.pyc
 db.sqlite3
 .idea/
-.vscode/
+.vscode/*
 media/item_folder/*

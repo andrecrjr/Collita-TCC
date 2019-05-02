@@ -26,7 +26,7 @@ class Transacao(models.Model):
 
     usuario_transacao = models.ForeignKey(Inventario, on_delete=models.CASCADE, related_name="transacao_inventario")
     status_boleto = models.BooleanField(verbose_name='Status do boleto', default=False)
-    codigo_boleto = models.CharField(max_length=47, default=0)
+    codigo_boleto = models.CharField(max_length=45, default=0)
 
     def __str__(self):
         if self.status_boleto is not False:
