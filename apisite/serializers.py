@@ -16,17 +16,11 @@ class ItemSerializer(serializers.ModelSerializer):
         fields = ('id_item', 'nome_item')
 
 class ItemInfoSerializer(serializers.ModelSerializer):
-    item = ItemSerializer(required=True)
+    item = ItemSerializer(required=True,)
     class Meta:
         model = ItemCompra
         fields = ('id', 'item', 'quantidade')
 
-class ItemUsuarioSerializer(serializers.ModelSerializer):
-    item_comprado = ItemInfoSerializer(required=True)
-
-    class Meta:
-        model = Transacao
-        fields = ('id','item_comprado')
 
 class InventarioSerializer(serializers.ModelSerializer):
     usuario = UserSerializer(required=True)
