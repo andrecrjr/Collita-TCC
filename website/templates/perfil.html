@@ -13,7 +13,6 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
 <div class="perfil-usuario">
         <div class="dados-usuario">
             <div class="info-usuario">
@@ -47,8 +46,5 @@
                 <p>Nenhum power up comprado</p>
             {% endif %}
     </div>
-{% else %}
-    <h1>Voce não está logado</h1>
-{% endif %}
-
-{% endblock %}
+</div>
+{% endblock content %}

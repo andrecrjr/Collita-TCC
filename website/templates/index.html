@@ -1,10 +1,22 @@
 {% extends "layout/base.html" %}
 {% block content %}
-    <h1>Ultimos jogadores cadastrados:</h1>
-    <ul>
-    {% for usuario in usuarios %}
-        <li><a href="{% url 'inventario_user' usuario.id %} ">{{ usuario }}</a></li>
-    {% endfor %}
-    </ul>
+    {% if user.is_authenticated %}
+        <h1>Ultimos jogadores cadastrados:</h1>
+        <ul>
+        {% for usuario in usuarios %}
+            <li><a href="{% url 'inventario_user' usuario.id %} ">{{ usuario }}</a></li>
+        {% endfor %}
+        </ul>
+
+        {% else %}
+        <section>
+            <div>
+                <h1>MageHut Game apresenta Collita Game!</h1>
+                <p>Aqui é onde você irá se cadastrar para jogar</p>
+                <p>Aceitamos apenas boleto bancário!</p>
+
+            </div>
+        </section>
+    {% endif %}
 
 {% endblock %}

@@ -42,6 +42,7 @@ def request_boleto(request):
         trans = request.session.get('boleto_' + request.user.username)
         valor_total = calc_total_boleto(trans)
         params = params_boleto(valor_total, request.user.email, request.user.first_name)
+
         transact = pagarme.transaction.create(params)
         Transacao.objects.create(usuario_transacao=usuario,
                                                 status_boleto=False,

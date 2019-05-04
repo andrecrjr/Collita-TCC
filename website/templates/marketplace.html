@@ -7,6 +7,7 @@
 
 {% block content %}
 <div class="marketplace">
+{% if user.is_authenticated %}
     <div class="marketplace-items">
     <p class="warning-red">{{ error }}</p>
     {% if not error %}
@@ -49,4 +50,9 @@
 
     <script type="text/javascript" src="{% static 'js/list_cart.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/add_cart.js' %}"></script>
+    {% else %}
+    <div class="warning">
+    Você não está logado!
+    </div>
+    {% endif %}
 {% endblock content %}

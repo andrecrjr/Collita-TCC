@@ -1,5 +1,7 @@
 {% extends "layout/base.html" %}
+
 {% block content %}
+{% if user.is_authenticated %}
 <section class="boletos">
         <h1>Boleto pendente:</h1>
         {% if boletos %}
@@ -24,6 +26,10 @@
         {% else %}
         <h1>Nenhuma compra efetuada</h1>
     {% endif %}
-
+{% else %}
+<div class="warning">
+    Hey você não está logado!
+</div>
+{% endif %}
 </section>
 {% endblock %}

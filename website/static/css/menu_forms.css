@@ -1,4 +1,5 @@
 
+
 nav.main-menu ul{
     list-style: none;
     display: inline;
@@ -13,6 +14,19 @@ nav.main-menu ul{
 }
 
 .main-menu ul li a{
+    color: white;
+    text-decoration:none;
+}
+
+
+.main-menu ul li a{
+    color: white;
+    text-decoration:none;
+}
+
+
+.main-menu ul li a:hover{
+    color:#8c8b8b;
     text-decoration:none;
 }
 
@@ -24,11 +38,23 @@ nav.main-menu ul{
 
 ul.form-login{
     list-style: none;
-    padding:0;   
+    padding:0;
+    width:500px;
+}
+
+ul.form-login li label{
+    margin-top:15px;
+    font-size:1em;
+    font-weight:bolder;
 }
 
 ul.form-login li input{
-    width:96.5%;
+    width:95%;
+    height:40px;
+    padding-left:10px;
+    border: 1px solid black;
+    border-radius:10px;
+    background-color:lightgrey;
 }
 
 ul.form-login li{

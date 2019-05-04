@@ -1,19 +1,24 @@
 {% extends "layout/base.html"%}
 
 {% block content %}
+
 {% if user.is_authenticated %}
-<p>Você está autenticado não precisa se logar</p>
+    <div class="warning">
+        <div class="warning-inside">
+            <p>Você já está logado!</p>
+        </div>
+    </div>
 {% else %}
-<div class="form-group">
-    <h1>Cadastro</h1>
-    <ul class="form-login">
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_ul }}
-            <button type="submit">Cadastro</button>
-        </form>
-    </ul>
-</div>
+    <div class="form-group">
+        <h1>Cadastro</h1>
+        <ul class="form-login">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_ul }}
+                <button type="submit">Cadastro</button>
+            </form>
+        </ul>
+    </div>
 {% endif %}
 {%endblock%}
 

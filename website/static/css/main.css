@@ -14,9 +14,10 @@ body{
 header{
     display: flex;
     width:100%;
-    height: 50px;
-    padding-top:15px;
-    background:aliceblue;
+    height: 40px;
+    padding-top:10px;
+    background:black;
+    margin-bottom:15px;
 }
 
 footer{
@@ -26,7 +27,7 @@ footer{
 
 
 section#main-content{
-    margin-top:40px;
     width: auto;
     margin: 0 auto;
 }
+

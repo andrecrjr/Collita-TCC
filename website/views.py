@@ -64,14 +64,14 @@ def home_marketplace(request):
     return render(request, 'marketplace.html', {'items':items_estoque})
 
 def boleto_marketplace(request):
+    boletos = []
     try:
         usuario = Inventario.objects.get(id=request.user.pk)
-        boletos = []
         for data in Transacao.objects.filter(usuario_transacao=usuario):
             boletos.append(data)
-        return render(request, 'boleto_wait.html', {'boletos':boletos})
     except:
-        return HttpResponse('problem')
+        boletos = None
+    return render(request, 'boleto_wait.html', {'boletos':boletos})
 
 def cart_marketplace(request):
     return render(request, 'marketplace_cart.html')
