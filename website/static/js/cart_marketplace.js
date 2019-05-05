@@ -1,4 +1,3 @@
-listCart()
 const link = 'http://127.0.0.1:8000/marketplace/';
 
 async function listCart () {
@@ -29,3 +28,5 @@ function countCart(contando){
     let contagem = `${contando}`
     document.querySelector('.items-menu-count').innerHTML = contagem
 }
+
+listCart()
