@@ -41,7 +41,6 @@ async function printMainCart(){
                     deletedButtons[i].addEventListener('click', function () {
                             let id_pedido = this.closest('tr').cells[0].textContent;
                             elementCart.remove()
-                            document.location.reload()
                             delete_cart(parseInt(id_pedido));
                     })
                 }
@@ -49,7 +48,10 @@ async function printMainCart(){
         }else{
             elementCart.remove()
             elementTable.remove()
-            return element.innerHTML += `Nenhum item adicionado ao carrinho, volte ao <a href="${link}">Marketplace</a>`
+            return element.innerHTML += `
+                        <div class="warning">
+                            Nenhum item adicionado ao carrinho, volte ao <a href="${link}">Marketplace</a>
+                         </div>`
         }
     }catch(err){
         elementCart.remove()
@@ -63,16 +65,11 @@ async function printMainCart(){
 async function delete_cart(id){
     try{
         fetch(`${link}delete_item/${id}/`,
-            {method:'PUT'}).then(
-            (response)=>{
-                if(response.status == 200){
-                    listCart()
-                    const response = consume().then((response)=>res)
-                    console.log(response)
-
+            {method:'PUT'}).then((response)=>{
+                if(response){
+                    document.location.reload()
                 }
-            }
-        )
+        })
     }catch(e){
         return element.textContent += `
             Sem conexão com o servidor tente mais tarde`
@@ -81,14 +78,14 @@ async function delete_cart(id){
 
 async function sum_final(data){
     try {
-        let valor_final = []
+        let valorFinal = []
         data.reduce(function (total, num) {
             total[num.nome_item] = parseFloat(num.quantidade) * num.preco_item;
-            valor_final.push(total[num.nome_item])
-            return valor_final
+            valorFinal.push(total[num.nome_item])
+            return valorFinal
             }, {});
-        let final = valor_final.reduce((total, num)=>total+num);
-        return valor_final.length > 1 ? parseFloat(final) : parseFloat(valor_final[0]);
+        let final = valorFinal.reduce((total, num)=>total+num);
+        return valorFinal.length > 1 ? parseFloat(final) : parseFloat(valorFinal[0]);
 
     }catch{
         return 0;

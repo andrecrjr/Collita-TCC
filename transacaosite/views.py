@@ -39,9 +39,9 @@ def update_cart_same_item(request, id, new_quantity):
 def delete_item(request, id):
     if request.method == 'PUT':
         cart = request.session.get(request.user.username)
+        del cart[id]
         for id, datas in enumerate(cart):
             cart[id]['id_compra'] = id
-        del cart[id]
         request.session.modified = True
         return HttpResponse(status=200)
 
