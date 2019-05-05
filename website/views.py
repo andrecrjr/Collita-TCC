@@ -31,19 +31,18 @@ def perfil(request, id_user):
     data_items = []
     try:        
         inventario = Inventario.objects.get(id=id_user)
-        pedidos = Transacao.objects.filter(usuario_transacao=inventario)
-        for data in pedidos:
-            for itens in data.item_transacao.all():
-                if itens.quantidade != 0:
-                    data_items.append({
-                            'item_nome':itens.item,
-                            'item_quantidade':itens.quantidade,
-                            'item_img':itens.item.imagem_item
-                    })
+        inventario_game = InventarioItemGame.objects.filter(usuario=inventario, quantidade__gt=0)
+        for dados in inventario_game:
+            item = Item.objects.get(id_item=dados.item_id)
+            data_items.append({
+                'item_nome':item,
+                'item_quantidade':dados.quantidade,
+                'item_img': item.imagem_item
+            })
         perfil = Inventario.objects.filter(id=id_user)
         data_items.reverse()
     except:
-        perfil = None
+        return redirect(home)
     return render(request, 'perfil.html', {'dados': perfil,'items':data_items})
 
 
