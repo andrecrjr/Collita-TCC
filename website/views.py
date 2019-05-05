@@ -3,17 +3,19 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from .forms import *
 from transacaosite.models import *
+from django.urls import reverse
 
 def home(request):
     profile = []
     if request.user.is_authenticated:
         profile = Inventario.objects.all()
+        return redirect('inventario_user', id_user=request.user.pk)
     return render(request, 'index.html', {'usuarios':profile})
 
 
 def signup(request):
     if request.user.is_authenticated:
-        return redirect(home)
+        return redirect('inventario_user', id_user=request.user.pk)
     else:
         form = SignUpForm(request.POST or None)
         if request.method == 'POST':
@@ -21,7 +23,7 @@ def signup(request):
                 user = form.save()
                 user.refresh_from_db()
                 form.save()
-                return redirect(home)
+                return redirect('login_site')
             else:
                 form = SignUpForm(request.POST or None)
         return render(request, 'signup.html', {'form': form})
