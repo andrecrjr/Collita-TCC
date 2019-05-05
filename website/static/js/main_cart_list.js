@@ -17,29 +17,39 @@ async function printMainCart(){
     try {
         let result = await fetch(`${link}list_item/`)
         let data = await result.json();
-        let i = -1;
         if(data > []){
             res = sum_final(data)
             res.then(response=>valor_total(response))
             data.map((response) => {
-                i = i + 1
                 return elementCart.innerHTML += `
+                       
                         <tr>
-                            <td>${i} </td>
+                            <td class="id_pedido">${response.id_compra}</td>
                             <td>${response.nome_item}</td>
                             <td>${response.preco_item.toFixed(2)}</td>
                             <td>${response.quantidade}</td>
-                            <td><button onClick="delete_cart(${i})">Excluir item</button></td>
+                            <td><button id="delete-button">Excluir item</button></td>
                         </tr>
                     
                     `
 
             })
+
+            let deletedButtons = document.querySelectorAll('#delete-button')
+
+            for(let i = 0; i < deletedButtons.length; i++) {
+                    deletedButtons[i].addEventListener('click', function () {
+                            let id_pedido = this.closest('tr').cells[0].textContent;
+                            elementCart.remove()
+                            document.location.reload()
+                            delete_cart(parseInt(id_pedido));
+                    })
+                }
+
         }else{
             elementCart.remove()
             elementTable.remove()
-            return element.textContent += `           
-            Nenhum item adicionado ao carrinho`
+            return element.innerHTML += `Nenhum item adicionado ao carrinho, volte ao <a href="${link}">Marketplace</a>`
         }
     }catch(err){
         elementCart.remove()
@@ -49,20 +59,17 @@ async function printMainCart(){
     }
 }
 
+
 async function delete_cart(id){
     try{
         fetch(`${link}delete_item/${id}/`,
             {method:'PUT'}).then(
             (response)=>{
                 if(response.status == 200){
-                    elementCart.remove()
-                    elementCart.children[id].remove()
-                    elementFinal.children[0].remove()
-                    let total = sum_final(response)
-                    consume().then((response)=>console.log(response))
-                    if (elementCart.children.length == 0){
-                        printMainCart()
-                    }
+                    listCart()
+                    const response = consume().then((response)=>res)
+                    console.log(response)
+
                 }
             }
         )
@@ -87,7 +94,7 @@ async function sum_final(data){
         return 0;
     }
 }
-printMainCart().then((response)=> response)
+
 
 
 async function valor_total(valor_final){
@@ -95,10 +102,13 @@ async function valor_total(valor_final){
         return elementFinal.innerHTML+= `
                                         <tr> 
                                             <td>Valor total</td>
-                                            <td>${valor_final}</td>
+                                            <td>R$ ${valor_final.toFixed(2)}</td>
+                                            <td><a href="${link}generate_boleto/"><button>Gerar boleto</button></a></td>
                                         </tr>
                                     `
     }catch{
 
     }
 }
+printMainCart()
+listCart()

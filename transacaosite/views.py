@@ -11,10 +11,12 @@ def add_item_cart(request):
         cart_session = request.session.get(usuario, [])
         data = json.loads(request.body)
         cart_session.append(data)
+        for id, datas in enumerate(cart_session):
+            cart_session[id]['id_compra'] = id
         request.session[usuario] = cart_session
         return HttpResponse(status=200)
     else:
-        return HttpResponse('erro 400', status=400)
+        return HttpResponse(status=400)
 
 
 def list_items(request):
@@ -37,6 +39,8 @@ def update_cart_same_item(request, id, new_quantity):
 def delete_item(request, id):
     if request.method == 'PUT':
         cart = request.session.get(request.user.username)
+        for id, datas in enumerate(cart):
+            cart[id]['id_compra'] = id
         del cart[id]
         request.session.modified = True
         return HttpResponse(status=200)
