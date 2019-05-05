@@ -9,7 +9,15 @@
 <div class="marketplace">
 {% if user.is_authenticated %}
     <div class="marketplace-items">
-    <p class="warning-red">{{ error }}</p>
+    {% if error %}
+    <div class="warning">
+        <span class="omg-warning"></span>
+        <div class="warning-inside">
+                <p class="error">{{ error }}</p>
+                <a href="{% url 'boleto_final' %}">Verifique seus boletos</a>
+        </div>
+    </div>
+    {% endif %}
     {% if not error %}
         {% if items %}
                 {% for item in items %}
@@ -25,7 +33,9 @@
                     </div>
                 {% endfor %}
         {% else %}
-            <h1>Nenhum item para compra</h1>
+            <div class="warning">
+                <h1>Nenhum item para compra</h1>
+            </div>
         {% endif %}
         {% else %}
         <br>
@@ -52,7 +62,7 @@
     <script type="text/javascript" src="{% static 'js/add_cart.js' %}"></script>
     {% else %}
     <div class="warning">
-    Você não está logado!
+        <h1>Você não está logado!</h1>
     </div>
     {% endif %}
 {% endblock content %}

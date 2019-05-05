@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+li a{
+    font-weight: bolder;
+}
+
 body{
     max-width: 100%;
     height:auto;
@@ -29,5 +33,12 @@ footer{
 section#main-content{
     width: auto;
     margin: 0 auto;
+}
+
+div.home-page{
+    border: 1px solid black;
+    border-radius:15px;
+    padding: 5px;
+    text-align: center;
 }
 

@@ -10,27 +10,25 @@
 <section class="boletos">
     <div class="boleto-aguarda">
         <h1>Boleto pendente:</h1>
-        {% if boletos %}
+        {% if boletos_a_pagar %}
                 <div class="boleto-aguardando">
-                {% for boleto in boletos %}
-                        {% if boleto.status_boleto is False %}
+                {% for boleto in boletos_a_pagar %}
                         <p>Código do boleto: {{ boleto.codigo_boleto }}</p>
                         <p>Status do boleto: {{ boleto.status_boleto }}</p>
                         <p>Data da transação:</p>
-                        {% endif %}
                 {% endfor %}
                 </div>
             </div>
+        {% endif %}
         <div class="boletos-pagos">
             <h1 class="titulo-aprovado">Ultimos boletos pagos:</h1>
-                {% for boleto in boletos %}
-                     {% if boleto.status_boleto is True %}
+            {% if boletos_ok %}
+                {% for boleto in boletos_ok %}
                     <div class="boleto-aprovado">
                         <p>Código do boleto: {{ boleto.codigo_boleto }}</p>
                         <p>Status do boleto: {{ boleto.status_boleto }}</p>
                         <p>Data da transação:</p>
                     </div>
-                    {% endif %}
                 {% endfor %}
             </div>
         {% else %}

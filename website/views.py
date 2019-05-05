@@ -6,11 +6,9 @@ from transacaosite.models import *
 from django.urls import reverse
 
 def home(request):
-    profile = []
     if request.user.is_authenticated:
-        profile = Inventario.objects.all()
-        return redirect('inventario_user', id_user=request.user.pk)
-    return render(request, 'index.html', {'usuarios':profile})
+        return render(request, 'index.html')
+    return render(request, 'index.html')
 
 
 def signup(request):
@@ -65,14 +63,19 @@ def home_marketplace(request):
     return render(request, 'marketplace.html', {'items':items_estoque})
 
 def boleto_marketplace(request):
-    boletos = []
+    boletos_aprovados = []
+    boletos_a_pagar = []
     try:
         usuario = Inventario.objects.get(id=request.user.pk)
-        for data in Transacao.objects.filter(usuario_transacao=usuario):
-            boletos.append(data)
+        for data in Transacao.objects.filter(usuario_transacao=usuario)[5:]:
+            if data.status_boleto == True:
+                boletos_aprovados.append(data)
+            else:
+                boletos_a_pagar.append(data)
     except:
         boletos = None
-    return render(request, 'boleto_wait.html', {'boletos':boletos})
+    return render(request, 'boleto_wait.html', {'boletos_ok' : boletos_aprovados,
+                                                'boletos_a_pagar' : boletos_a_pagar})
 
 def cart_marketplace(request):
     return render(request, 'marketplace_cart.html')

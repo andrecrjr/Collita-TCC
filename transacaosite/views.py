@@ -58,7 +58,7 @@ def generate_boleto(request):
             else:
                 return render(request, 'marketplace.html', {'error': 'Você não tem itens no carrinho'})
         else:
-            return render(request, 'marketplace.html', {'error': 'Você ainda tem boleto em esperando pagamento'})
+            return render(request, 'marketplace.html', {'error': 'Você ainda tem boleto esperando pagamento'})
 
     return redirect('/marketplace/')
 

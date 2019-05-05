@@ -1,13 +1,24 @@
 {% extends "layout/base.html" %}
 {% block content %}
     {% if user.is_authenticated %}
-        <h1>Ultimos jogadores cadastrados:</h1>
-        <ul>
-        {% for usuario in usuarios %}
-            <li><a href="{% url 'inventario_user' usuario.id %} ">{{ usuario }}</a></li>
-        {% endfor %}
-        </ul>
-
+        <h1>
+            Bem vindo {{ request.user }} !
+        </h1>
+        <div class="home-page">
+        <p>E-commerce e inventário para o jogo Collita!</p>
+            <ul style="list-style: none">
+                <li>Central de links:</li>
+                <li>
+                    <a href="{% url 'inventario_user' user.id %}">Seu inventário</a>
+                </li>
+                <li>
+                    <a href="{% url 'marketplace_site' %}">Nosso marketplace para melhorar seu jogo!</a>
+                </li>
+                <li>
+                    <a href="{% url 'boleto_final' %}">Seus boletos pagos, ou pendentes!</a>
+                </li>
+            </ul>
+        </div>
         {% else %}
         <section>
             <div>

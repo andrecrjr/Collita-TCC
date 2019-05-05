@@ -1,13 +1,16 @@
+/* error */
+
 .warning{
     border: 1px solid black;
     border-radius:15px;
     padding: 5px;
     text-align: center;
+    display:flex;
 }
 
-.warning-inside::before{
-    content:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvS3YefhpOINvtZR3Qx8noHvejp3cPYX3nICNPPWvvF88uufyk');
-    width:150px;
+.omg-warning{
+    background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvS3YefhpOINvtZR3Qx8noHvejp3cPYX3nICNPPWvvF88uufyk');
+    width:200px;
 }
 
 .warn-logout{
