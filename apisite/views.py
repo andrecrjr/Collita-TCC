@@ -11,16 +11,22 @@ class InventarioUpdate(generics.UpdateAPIView):
     authentication_classes = (TokenAuthentication,)
 
     def update(self, request, *args, **kwargs):
-        transacao = self.kwargs['transacao']
+        item = self.kwargs['item']
         user = self.kwargs['pk']
+        try:
+            user = Inventario.objects.get(id=user)
+            item = Item.objects.get(id_item=item)
+        except:
+            return JsonResponse({'error' : 'não existe usuario ou item'}, status=404)
+
         if self.request.query_params.get('quantidade'):
             qtd = self.request.query_params.get('quantidade')
         else:
-            return JsonResponse({'error': 'Nenhuma quantidade atribuida'}, status=422)
+            return JsonResponse({'error' : 'Nenhuma quantidade atribuida'}, status=422)
         if 0 > int(qtd):
-            return JsonResponse({'status': 'error', 'Message': 'Quantidade menor que zero'}, status=400)
+            return JsonResponse({'status' : 'error', 'Message': 'Quantidade menor que zero'}, status=400)
         else:
-            serializer = ItemCompra.objects.get(id_usuario=user, id=transacao)
+            serializer = InventarioItemGame.objects.get(usuario=user, item=item)
             serializer.quantidade = qtd
             serializer.save()
             return JsonResponse({'message':'Quantidade atualizada com sucesso'}, status=200)

@@ -62,8 +62,8 @@ def paid_boleto(request):
                 item = Item.objects.get(id_item=int(dados['id_item']))
                 pedido = ItemCompra.objects.create(item=item,
                                                    item_transacao=trans,
-                                                   quantidade=dados['quantidade'],
-                                                   id_usuario=request.user.pk)
+                                                   quantidade=dados['quantidade'])
+                inventario_salvo = verify_itens_in_inventario(item,request.user.pk, int(dados['quantidade']))
                 pedido.save()
             trans.status_boleto = True
             trans.save()
@@ -71,3 +71,19 @@ def paid_boleto(request):
             del codigo
             request.session.modified = True
         return redirect('/marketplace/')
+
+def verify_itens_in_inventario(item, id_usuario, quantidade_item):
+    usuario = Inventario.objects.get(usuario=id_usuario)
+    try:
+        itens_usuario = InventarioItemGame.objects.filter(usuario=usuario, item=item)
+        if itens_usuario:
+            for id,item in enumerate(itens_usuario):
+                inventario = InventarioItemGame.objects.get(id=itens_usuario[id].id)
+                inventario.quantidade += int(quantidade_item)
+                return inventario.save()
+        inventario_game = InventarioItemGame.objects.create(usuario=usuario, item=item, quantidade=quantidade_item)
+        return inventario_game.save()
+    except:
+        itens_usuario = InventarioItemGame.objects.create(usuario=usuario,
+                                                        item=item, quantidade=quantidade_item)
+        return itens_usuario.save()
