@@ -1,5 +1,4 @@
 listCart()
-const link = 'http://127.0.0.1:8000/marketplace/';
 
     const addCartItem = document.querySelectorAll('button.comprar');
     for(let i = 0; i < addCartItem.length; i++) {
@@ -8,10 +7,10 @@ const link = 'http://127.0.0.1:8000/marketplace/';
             let id_item = this.closest("div.item-marketplace").childNodes[1].getAttribute("value");
             let nome_item = this.closest("div.item-marketplace").childNodes[3].innerText;
             let quantidade = this.closest("div.item-marketplace").children[4].value
-            let data_cart = new Object()
-            data_cart.id_item = id_item;
-            data_cart.nome_item = nome_item
-            data_cart.quantidade = quantidade
+            let data_cart = mount_object(id_item, nome_item, quantidade, preco_item)
+            data_cart.then(response=>{
+                data_cart = response
+            })
             let existent = verifyItemExists(id_item, quantidade)
             printToCart(nome_item, preco_item, quantidade)
             existent.then(response => {
@@ -23,8 +22,23 @@ const link = 'http://127.0.0.1:8000/marketplace/';
             }).catch(response=>{
                 console.log('pulou fora')
             })
+            this.closest("div.item-marketplace").children[4].value = 1
             listCart()
         })
+    }
+
+    async function mount_object(id, nome, quantidade, preco){
+        try{
+            0 > quantidade ? quantidade = quantidade * -1 : quantidade
+            let data_cart = new Object()
+                data_cart.id_item = id;
+                data_cart.nome_item = nome
+                data_cart.quantidade = quantidade
+                data_cart.preco_item = preco
+            return data_cart
+        }catch{
+            console.log('deu ruim')
+        }
     }
 
     async function verifyItemExists(id_item, quantidade_item){
@@ -64,24 +78,24 @@ const link = 'http://127.0.0.1:8000/marketplace/';
     )
 
     // delete cart
-
-    const deleteButton = document.querySelector('.remove-itens')
-    deleteButton.addEventListener('click', ()=>{
-        fetch(`delete/`)
-            .then(function(){
-            countCart(0)
-            cart = document.querySelector('.total-market')
-        })
-        const cartList = document.querySelector('.cart-list')
-        const marketTotal = document.querySelector('.total-market')
-        while (cartList.firstChild) {
-            cartList.removeChild(cartList.firstChild);
-        }
-        while(marketTotal.firstChild){
-            marketTotal.removeChild(marketTotal.firstChild);
-        }
-
-        cartList.innerHTML += `<tr>
-                                        <td>Nenhum item</td>
-                                  </tr>`
+const deleteButton = document.querySelector('.remove-itens')
+deleteButton.addEventListener('click', ()=>{
+    fetch(`delete/`)
+        .then(function(){
+        countCart(0)
+        cart = document.querySelector('.total-market')
     })
+
+    const cartList = document.querySelector('.cart-list')
+    const marketTotal = document.querySelector('.total-market')
+    while (cartList.firstChild) {
+        cartList.removeChild(cartList.firstChild);
+    }
+    while(marketTotal.firstChild){
+        marketTotal.removeChild(marketTotal.firstChild);
+    }
+
+cartList.innerHTML += `<tr>
+                            <td>Nenhum item</td>
+                    </tr>`
+})

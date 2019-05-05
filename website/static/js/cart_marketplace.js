@@ -1,7 +1,7 @@
 listCart()
+const link = 'http://127.0.0.1:8000/marketplace/';
 
 async function listCart () {
-    const link = 'http://127.0.0.1:8000/marketplace/';
     try{
         result = await fetch(`${link}list_item/`)
         data = await result.json();
@@ -15,10 +15,15 @@ async function listCart () {
                     countCart(counting);
                     printTotal(data);
         }
+        if(data){
+            return data;
+        }
+
     }catch{
 
     }
 }
+
 
 function countCart(contando){
     let contagem = `${contando}`

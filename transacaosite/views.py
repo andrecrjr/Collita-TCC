@@ -21,6 +21,7 @@ def list_items(request):
     items = request.session.get(request.user.username)
     return HttpResponse(json.dumps(items), content_type="application/json")
 
+
 @csrf_exempt
 def update_cart_same_item(request, id, new_quantity):
     if request.method == 'PUT':
@@ -32,20 +33,16 @@ def update_cart_same_item(request, id, new_quantity):
         return HttpResponse(status=200)
 
 
-'''
-def delete_item(request, cart_id):
-    cart = request.session.get(request.user.username)
-    del cart[item_id]
-    request.session.modified = True
-    return HttpResponse()
-
 @csrf_exempt
-def get_total(request):
-    total = json.loads(request.body)
-    return HttpResponse(json.dumps(total), content_type="application/json")
-'''
+def delete_item(request, id):
+    if request.method == 'PUT':
+        cart = request.session.get(request.user.username)
+        del cart[id]
+        request.session.modified = True
+        return HttpResponse(status=200)
+
+
 def generate_boleto(request):
-    #gerar boleto com o valor dos itens
     if request.method == 'GET':
         boletao = 'boleto_' + request.user.username
         if not request.session.get(boletao):
@@ -68,6 +65,6 @@ def delete_cart(request):
         if data:
             data.clear()
             request.session.modified = True
-            return HttpResponse('apagado com sucesso')
+            return HttpResponse(status=200)
         else:
-            return HttpResponse('nada')
+            return HttpResponse(status=200)
