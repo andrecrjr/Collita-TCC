@@ -40,17 +40,19 @@ async function printMainCart(){
             for(let i = 0; i < deletedButtons.length; i++) {
                     deletedButtons[i].addEventListener('click', function () {
                             let id_pedido = this.closest('tr').cells[0].textContent;
-                            elementCart.remove()
                             delete_cart(parseInt(id_pedido));
+                            this.closest('tr').remove()
                     })
                 }
-
         }else{
             elementCart.remove()
             elementTable.remove()
             return element.innerHTML += `
                         <div class="warning">
-                            Nenhum item adicionado ao carrinho, volte ao <a href="${link}">Marketplace</a>
+                        <span class="omg-warning"></span>
+                            <div class="warning-inside">
+                                Nenhum item adicionado ao carrinho<br> volte ao <a href="${link}">Marketplace</a>
+                            </div>
                          </div>`
         }
     }catch(err){

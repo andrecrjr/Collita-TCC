@@ -29,7 +29,7 @@
 
 .item-marketplace img{
   width:100%;
-  height:200px;
+  height:150px;
 }
 .item-marketplace input.quantidade{
   width:100%;
@@ -63,10 +63,6 @@ button.comprar:hover{
 
 .cart-list tr td:nth-child(2){
   width: 100px;
-}
-
-.cart-list tr td:last-child{
-   padding-left: 40px;
 }
 
 
