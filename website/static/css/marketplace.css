@@ -38,9 +38,15 @@
 }
 button.comprar{
   width:100%;
-  background:green;
+  height:50px;
   font-size:1.4em;
   border-radius:6px;
+  background:url('/static/icons/cart_icon.png') no-repeat center, #2b542c;
+}
+
+button.comprar:hover{
+  background:url('/static/icons/cart_icon.png') no-repeat center, #398439;
+  transition: background .6s;
 }
 
 .my-cart{

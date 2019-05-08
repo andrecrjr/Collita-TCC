@@ -28,6 +28,7 @@ nav.main-menu ul{
 .main-menu ul li a:hover{
     color:#8c8b8b;
     text-decoration:none;
+    transition: color .7s;
 }
 
 .login-menu, .signup-menu{

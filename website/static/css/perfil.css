@@ -6,7 +6,7 @@
 }
 
 .inventario-usuario{
-    width: 460px;
+    width: 563px;
     height: auto;
     display: flex;
     flex-wrap: wrap;
@@ -15,12 +15,13 @@
 }
 
 section.item-inventario{
-   max-width:180px;
+   width:175px;
    margin-left:10px;
 }
 
 section.item-inventario img{
     width: 100%;
+    height: 150px;
 }
 
 .dados-usuario{
@@ -32,4 +33,15 @@ section.item-inventario img{
 
 .dados-usuario ul{
     list-style-type: none;
+}
+
+.titulo-inventario{
+    width:100%;
+    height: auto;
+}
+
+.nome-powerup{
+    width:100%;
+    height:50px;
+    white-space: normal;
 }

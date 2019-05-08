@@ -67,7 +67,7 @@ def boleto_marketplace(request):
     boletos_a_pagar = []
     try:
         usuario = Inventario.objects.get(id=request.user.pk)
-        for data in Transacao.objects.filter(usuario_transacao=usuario)[5:]:
+        for data in Transacao.objects.filter(usuario_transacao=usuario):
             if data.status_boleto == True:
                 boletos_aprovados.append(data)
             else:

@@ -32,14 +32,17 @@
             </div>
         </div>
     <div class="inventario-usuario">
-        <h1>Inventário:</h1>
-            <h1>Ultimos Power-ups/Itens comprados</h1>
+        <span class="titulo-inventario">
+            <h1>Inventário In-Game:</h1>
+        </span>
             {% if items %}
                 {% for item in items %}
                     <section class="item-inventario">
                         <img src="http://127.0.0.1:8000/media/{{ item.item_img }}" alt="{{item.item_nome}}"/>
-                            <p>{{item.item_nome}}</p>
-                            <p>x {{item.item_quantidade}}</p>
+                            <div class="nome-powerup">
+                                <b>Power-up: {{item.item_nome}}</b>
+                            </div>
+                            <p>Qtd: x {{item.item_quantidade}}</p>
                     </section>
                 {% endfor %}
             {% else %}

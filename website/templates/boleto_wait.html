@@ -10,16 +10,20 @@
 <section class="boletos">
     <div class="boleto-aguarda">
         <h1>Boleto pendente:</h1>
+        <div class="boleto-aguardando">
         {% if boletos_a_pagar %}
-                <div class="boleto-aguardando">
+
                 {% for boleto in boletos_a_pagar %}
                         <p>Código do boleto: {{ boleto.codigo_boleto }}</p>
                         <p>Status do boleto: {{ boleto.status_boleto }}</p>
                         <p>Data da transação:</p>
+
                 {% endfor %}
-                </div>
-            </div>
+            {% else %}
+            <p>Ooops Nenhum boleto em andamento!<br><a href="{% url "marketplace_site" %}">Compre agora!</a></p>
         {% endif %}
+        </div>
+    </div>
         <div class="boletos-pagos">
             <h1 class="titulo-aprovado">Ultimos boletos pagos:</h1>
             {% if boletos_ok %}
