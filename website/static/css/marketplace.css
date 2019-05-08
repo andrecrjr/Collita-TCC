@@ -8,7 +8,7 @@
 .marketplace-items{
   display: flex;
   flex-flow:wrap;
-  width:750px;
+  width:780px;
   height:auto;
 }
 
@@ -51,11 +51,12 @@ button.comprar:hover{
 
 .my-cart{
   width:240px;
-  height: 350px;
+  height: 320px;
   position: fixed;
   top: 95px;
-  right: 55px;
+  right: 90px;
   overflow: scroll;
+  overflow-x:hidden;
 }
 
 .cart-list tr td:first-child{
