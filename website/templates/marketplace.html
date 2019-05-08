@@ -44,18 +44,19 @@
     </div>
     </div>
     <aside class="my-cart">
-    <b>Historico de compra:</b>
-        <table>
-            <tbody class="cart-list">
+    <b style="position:fixed; top:75px;">Historico de compra:</b>
+        <div>
+            <table>
+                <tbody class="cart-list">
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
             <div class="total-market">
             </div>
             <a href="{% url 'transacaosite:generate_boleto' %}"><button class="finaliza-cart">Finalizar Compra</button></a>
             <button class="remove-itens">Limpar Carrinho</button>
-        </aside>
-
+        </div>
+    </aside>
     <script type="text/javascript" src="{% static 'js/list_cart.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/add_cart.js' %}"></script>
     {% else %}
