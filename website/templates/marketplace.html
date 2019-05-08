@@ -42,6 +42,7 @@
         <a href="/marketplace">Volte para o marketplace</a>
     {% endif %}
     </div>
+    </div>
     <aside class="my-cart">
         <table>
             <thead>
@@ -56,7 +57,6 @@
             <a href="{% url 'transacaosite:generate_boleto' %}"><button class="finaliza-cart">Finalizar Compra</button></a>
             <button class="remove-itens">Limpar Carrinho</button>
         </aside>
-</div>
 
     <script type="text/javascript" src="{% static 'js/list_cart.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/add_cart.js' %}"></script>

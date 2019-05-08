@@ -8,7 +8,7 @@
 .marketplace-items{
   display: flex;
   flex-flow:wrap;
-  width:700px;
+  width:750px;
   height:auto;
 }
 
@@ -51,9 +51,10 @@ button.comprar:hover{
 
 .my-cart{
   width:240px;
-  height: 300px;
-  margin-top:15px;
-  margin-left:35px;
+  height: 350px;
+  position: fixed;
+  top: 95px;
+  right: 55px;
   overflow: scroll;
 }
 
@@ -65,7 +66,12 @@ button.comprar:hover{
   width: 100px;
 }
 
-
 .item-preco::before{
   content:'R$';
+}
+
+.item-preco{
+  font-size:1.4em;
+  font-weight:bold;
+  text-align: center;
 }
