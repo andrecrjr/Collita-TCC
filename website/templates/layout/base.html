@@ -18,27 +18,42 @@
     <nav class="main-menu">
         <ul>
         {% if user.is_authenticated %}
+            <a href="{% url 'inventario_user' user.id %}">
                 <li>
-                    <a href="{% url 'inventario_user' user.id %}">{{ user }}</a>
+                   {{ user }}
                 </li>
+            </a>
+            <a href="{% url 'marketplace_site' %}">
                 <li>
-                    <a href="{% url 'marketplace_site' %}">Marketplace</a> 
+                    Marketplace
                 </li>
+            </a>
+             <a href="{% url 'boleto_final' %}">
                 <li>
-                    <a href="{% url 'boleto_final' %}">Boletos</a>
+                   Boletos
                 </li>
+             </a>
+            <a href="{% url 'marketplace_cart' %}">
                 <li>
-                    <a href="{% url 'marketplace_cart' %}">Carrinho: <span class="items-menu-count"></span></a>
+                    <span class="items-menu-count"></span>
                 </li>
+            </a>
+            <a href="{% url 'logout_site' %}">
                 <li>
-                    <a href="{% url 'logout_site' %}">Logout</a>
+                    Logout
                 </li>
+            </a>
             {% else %}
+            <a href="{% url 'signup_site' %}">
                 <li class="signup-menu">
-                    <a href="{% url 'signup_site' %}">Cadastro</a></li>
-                <li class="login-menu">
-                    <a href="{% url 'login_site' %}">Login</a>
+                    Cadastro
                 </li>
+            </a>
+            <a href="{% url 'login_site' %}">
+                <li class="login-menu">
+                    Login
+                </li>
+            </a>
             {% endif %}
         </ul>
     </nav>
@@ -48,7 +63,27 @@
     {% endblock %}
 </section>
 <footer>
-    <p>Collita - Mage Hut - 2019</p>
+    <nav class="footer-menu" style="flex-direction: row">
+        <ul>
+            <li style="color:white;">
+                Collita Game 2019
+            </li>
+        </ul>
+    </nav>
+    <nav class="footer-menu">
+        <ul>
+            <a href="/admin">
+                <li>
+                   admin
+                </li>
+            </a>
+            <a href="/relatorios">
+                <li>
+                   Relatorios
+                </li>
+            </a>
+            </ul>
+    </nav>
 </footer>
 </body>
 </html>

@@ -13,12 +13,12 @@ function printTotal(result){
     }
 
     if(total_cart > 0){
-         result.lengt > 1 ? item_name = 'items' : 'item'
+         result.length > 1 ? item_name = 'items' : 'item'
 
         totalCart.scrollIntoView({
           behavior: 'smooth'
         });
-         
+
         return totalCart.innerHTML =
             `<p>
                 Você já tem ${result.length} ${item_name} no total de ${unity_cart} unidades.<br>

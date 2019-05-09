@@ -6,7 +6,7 @@
 }
 
 .inventario-usuario{
-    width: 563px;
+    width: 530px;
     height: auto;
     display: flex;
     flex-wrap: wrap;
@@ -15,13 +15,21 @@
 }
 
 section.item-inventario{
-   width:175px;
-   margin-left:10px;
-   margin-top: 22px;
+   width:150px;
+   margin-top: 5px;
+}
+
+section.item-inventario{
+   width:150px;
+   margin-left: 15px;
+}
+
+section.item-inventario:nth-child(4n+1){
+   margin-top: 25px;
 }
 
 section.item-inventario img{
-    width: 100%;
+    width: 150px;
     height: 150px;
 }
 
@@ -39,7 +47,10 @@ section.item-inventario img{
 .titulo-inventario{
     width:100%;
     height: auto;
+    text-align: center;
 }
+
+
 
 .nome-powerup{
     width:100%;

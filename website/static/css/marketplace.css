@@ -8,24 +8,28 @@
 .marketplace-items{
   display: flex;
   flex-flow:wrap;
-  width:780px;
+  width:820px;
   height:auto;
 }
 
 .item-marketplace{
-  width:170px;
+  width:150px;
   margin-left:30px;
-  padding-top:15px;
+  margin-top:14px;
 }
 
 .item-marketplace div.item-titulo{
   width:100%;
-  height:50px;
+  height:45px;
   font-size:1em;
   text-align: center;
   font-weight: bold;
-  margin-top:15px;
 }
+
+.item-marketplace:nth-child(n+5){
+  padding-top:20px
+}
+
 
 .item-marketplace img{
   width:100%;
@@ -51,10 +55,10 @@ button.comprar:hover{
 
 .my-cart{
   width:240px;
-  height: 320px;
+  height: 260px;
   position: fixed;
-  top: 95px;
-  right: 90px;
+  top: 120px;
+  right: 150px;
   overflow: scroll;
   overflow-x:hidden;
 }
