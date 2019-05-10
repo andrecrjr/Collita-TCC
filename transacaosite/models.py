@@ -27,6 +27,8 @@ class Transacao(models.Model):
     usuario_transacao = models.ForeignKey(Inventario, on_delete=models.CASCADE, related_name="transacao_inventario")
     status_boleto = models.BooleanField(verbose_name='Status do boleto', default=False)
     codigo_boleto = models.CharField(max_length=45, default=0)
+    data_boleto_criado = models.DateField(auto_now=True)
+    expiration_boleto_date = models.DateField()
 
     def __str__(self):
         if self.status_boleto is not False:

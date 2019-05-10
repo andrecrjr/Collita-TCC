@@ -1,9 +1,9 @@
-import pagarme
+import pagarme, isodate
 from django.conf import settings
 from django.shortcuts import redirect
 from transacaosite.models import *
 from apisite.models import Inventario
-import requests
+
 
 
 pagarme.authentication_key(settings.PAGAR_ME_TOKEN)
@@ -42,15 +42,20 @@ def request_boleto(request):
         trans = request.session.get('boleto_' + request.user.username)
         valor_total = calc_total_boleto(trans)
         params = params_boleto(valor_total, request.user.email, request.user.first_name)
-
         transact = pagarme.transaction.create(params)
+        time_expiration = convert_data_to_datetime(transact)
         Transacao.objects.create(usuario_transacao=usuario,
                                                 status_boleto=False,
                                                 codigo_boleto=transact['tid'],
+                                                expiration_boleto_date = time_expiration
                                                 )
         request.session['codigo_boleto'] = transact['tid']
         return redirect('/marketplace/boleto/')
 
+def convert_data_to_datetime(trans):
+    data_boleto = trans['boleto_expiration_date']
+    data = isodate.parse_datetime(data_boleto)
+    return data
 
 def paid_boleto(request):
     if request.method == 'GET':

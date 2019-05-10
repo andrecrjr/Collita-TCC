@@ -16,7 +16,8 @@
                 {% for boleto in boletos_a_pagar %}
                         <p>Código do boleto: {{ boleto.codigo_boleto }}</p>
                         <p>Status do boleto: {{ boleto.status_boleto }}</p>
-                        <p>Data da transação:</p>
+                        <p>Gerado em {{ boleto.data_boleto_criado }}</p>
+                        <p>Expira em {{ boleto.expiration_boleto_date }}</p>
 
                 {% endfor %}
             {% else %}
@@ -31,7 +32,7 @@
                     <div class="boleto-aprovado">
                         <p>Código do boleto: {{ boleto.codigo_boleto }}</p>
                         <p>Status do boleto: {{ boleto.status_boleto }}</p>
-                        <p>Data da transação:</p>
+                        <p>Gerado em {{ boleto.data_boleto_criado }}</p>
                     </div>
                 {% endfor %}
             </div>
