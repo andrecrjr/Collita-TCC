@@ -1,5 +1,6 @@
 import pagarme, isodate
 from django.conf import settings
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from transacaosite.models import *
 from apisite.models import Inventario
@@ -57,10 +58,21 @@ def convert_data_to_datetime(trans):
     data = isodate.parse_datetime(data_boleto)
     return data
 
+
+def get_data_from_boleto(request):
+    if request.method == 'GET':
+        if request.session['codigo_boleto']:
+            codigo = request.session.get('codigo_boleto')
+            json = pagarme.transaction.find_by({"id":str(codigo)})
+            return JsonResponse(json, safe=False, status=200)
+        else:
+            return JsonResponse(status=404)
+
+
 def paid_boleto(request):
     if request.method == 'GET':
         itens = request.session['boleto_' + request.user.username]
-        codigo = request.session['codigo_boleto']
+        codigo = request.session.get('codigo_boleto')
         if itens and codigo:
             trans = Transacao.objects.get(codigo_boleto=codigo)
             for dados in itens:

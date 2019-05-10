@@ -14,9 +14,6 @@ async function listCart () {
                     countCart(counting);
                     printTotal(data);
         }
-        if(data){
-            return data;
-        }
 
     }catch{
 
@@ -30,3 +27,20 @@ function countCart(contando){
 }
 
 listCart()
+
+const boleto_await = async ()=>
+{
+    try {
+        data = await fetch(`${link}get_transaction`)
+        payment = await data.json()
+        if(payment.status === 'paid'){
+            console.log('pagou')
+        }else{
+            console.log('não pagou')
+        }
+    } catch (e) {
+        console.log('oops', e)
+    }
+}
+
+boleto_await()
