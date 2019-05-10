@@ -28,15 +28,19 @@ header{
 footer{
     width:100%;
     display: flex;
-    height: 35px;
+    height: 25px;
     background:black;
     margin-top:25px;
+     position:fixed;
+   left:0px;
+   bottom:0px;
 }
 
 section#main-content {
     width: auto;
     margin: 0 auto;
     margin-top: 6%;
+    margin-bottom:6%;
 }
 
 div.home-page{
@@ -46,4 +50,12 @@ div.home-page{
     text-align: center;
 }
 
+span.titulo-inventario{
+    background: url('/static/icons/plaquinha_topo.png') center no-repeat;;
+    background-size: 252px;
+    height: 70px;
+}
 
+.titulo-inventario h1{
+    padding-top:15px;
+}
