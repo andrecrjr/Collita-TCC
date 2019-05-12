@@ -30,16 +30,17 @@
   padding-top:20px
 }
 
-
 .item-marketplace img{
   width:100%;
   height:150px;
 }
+
 .item-marketplace input.quantidade{
   width:100%;
   height:25px;
   font-size:1.2em;
 }
+
 button.comprar{
   width:100%;
   height:50px;
