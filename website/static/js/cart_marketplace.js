@@ -28,6 +28,8 @@ function countCart(contando){
 
 listCart()
 
+
+/*
 const boleto_await = async ()=>
 {
     try {
@@ -43,4 +45,4 @@ const boleto_await = async ()=>
     }
 }
 
-boleto_await()
+boleto_await()*/

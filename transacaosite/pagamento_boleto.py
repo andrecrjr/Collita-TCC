@@ -61,11 +61,11 @@ def convert_data_to_datetime(trans):
 
 def get_data_from_boleto(request):
     if request.method == 'GET':
-        if request.session['codigo_boleto']:
+        try:
             codigo = request.session.get('codigo_boleto', [])
             json = pagarme.transaction.find_by({"id":str(codigo)})
             return JsonResponse(json, safe=False, status=200)
-        else:
+        except:
             return JsonResponse(status=404)
 
 
