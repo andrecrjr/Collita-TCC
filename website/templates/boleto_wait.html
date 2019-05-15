@@ -14,16 +14,37 @@
         {% if boletos_a_pagar %}
 
                 {% for boleto in boletos_a_pagar %}
-                        <p>Código do boleto: {{ boleto.codigo_boleto }}</p>
-                        <p>Status do boleto: {{ boleto.status_boleto }}</p>
-                        <p>Gerado em {{ boleto.data_boleto_criado }}</p>
-                        <p>Expira em {{ boleto.expiration_boleto_date }}</p>
-
+                    <table class="cada-boleto">
+                        <thead>
+                            <th>Descrição</th>
+                            <th>Informação</th>
+                        </thead>
+                    <tbody>
+                        <tr class="codigo-boleto">
+                                <td>Código:</td>
+                                <td> {{ boleto.codigo_boleto }}</td>
+                        </tr>
+                        <tr class="status-boleto">
+                                <td>Status do boleto:</td>
+                                <td>{{ boleto.status_boleto }}</td>
+                        </tr>
+                        <tr class="data-exp-boleto">
+                            <td>Data de expedição:</td>
+                            <td>{{ boleto.data_boleto_criado }}</td>
+                        </tr>
+                        <tr class="vencimento-boleto">
+                                <td>Data de vencimento:</td>
+                                <td>{{ boleto.expiration_boleto_date }}</td>
+                        </tr>
+                    </tbody>
+                    </table>
                 {% endfor %}
+                <button class="print-boleto">Imprimir boleto</button>
             {% else %}
             <p>Ooops Nenhum boleto em andamento!<br><a href="{% url "marketplace_site" %}">Compre agora!</a></p>
         {% endif %}
         </div>
+        
     </div>
         <div class="boletos-pagos">
             <h1 class="titulo-aprovado">Ultimos boletos pagos:</h1>
@@ -45,4 +66,5 @@
 </div>
 {% endif %}
 </section>
+<script type="text/javascript" src="{% static 'js/print_boleto.js' %}"></script>
 {% endblock %}
