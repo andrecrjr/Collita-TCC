@@ -9,13 +9,20 @@ from apisite.models import Inventario
 
 pagarme.authentication_key(settings.PAGAR_ME_TOKEN)
 
-def calc_total_boleto(trans):
+def calc_moeda(trans):
     valor_total = 0
     for dados in trans:
         preco_com_quantidade = float(dados['preco_item']) * int(dados['quantidade'])
         valor_total += preco_com_quantidade
     valor_total = valor_total * 100
     valor_total = int(valor_total)
+    return str(valor_total)
+
+def calc_total(trans):
+    valor_total = 0
+    for dados in trans:
+        preco_com_quantidade = float(dados['preco_item']) * int(dados['quantidade'])
+        valor_total += preco_com_quantidade
     return str(valor_total)
 
 def params_boleto(valor_total, email_usuario, nome_usuario):
@@ -41,15 +48,15 @@ def request_boleto(request):
     if request.method == 'GET':
         usuario = Inventario.objects.get(id=request.user.pk)
         trans = request.session.get('boleto_' + request.user.username)
-        valor_total = calc_total_boleto(trans)
-        params = params_boleto(valor_total, request.user.email, request.user.first_name)
+        valor_moeda = calc_moeda(trans)
+        params = params_boleto(valor_moeda, request.user.email, request.user.first_name)
         transact = pagarme.transaction.create(params)
         time_expiration = convert_data_to_datetime(transact)
         Transacao.objects.create(usuario_transacao=usuario,
                                                 status_boleto=False,
                                                 codigo_boleto=transact['tid'],
                                                 expiration_boleto_date = time_expiration,
-                                                valor_boleto = str(valor_total)
+                                                valor_boleto = calc_total(trans)
                                                 )
         request.session['codigo_boleto'] = transact['tid']
         return redirect('/marketplace/boleto/')
@@ -67,7 +74,7 @@ def get_data_from_boleto(request):
             json = pagarme.transaction.find_by({"id":str(codigo)})
             return JsonResponse(json, safe=False, status=200)
         except:
-            return JsonResponse(status=404)
+            return JsonResponse({'error':'nothing found'}, status=404)
 
 
 def paid_boleto(request):
