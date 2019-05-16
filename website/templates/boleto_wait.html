@@ -20,19 +20,27 @@
                             <th>Informação</th>
                         </thead>
                     <tbody>
-                        <tr class="codigo-boleto">
-                                <td>Código:</td>
+                        <tr>
+                                <td>Código da transação:</td>
                                 <td> {{ boleto.codigo_boleto }}</td>
                         </tr>
-                        <tr class="status-boleto">
-                                <td>Status do boleto:</td>
-                                <td>{{ boleto.status_boleto }}</td>
+                        <tr>
+                                <td>Código do boleto:</td>
+                                <td>123456 78910111213 1415</td>
                         </tr>
-                        <tr class="data-exp-boleto">
+                        <tr>
+                                <td>Valor do boleto:</td>
+                                <td>R${{ boleto.valor_boleto }}</td>
+                        </tr>
+                        <tr>
+                                <td>Status do boleto:</td>
+                                <td>Aguardando Pagamento</td>
+                        </tr>
+                        <tr>
                             <td>Data de expedição:</td>
                             <td>{{ boleto.data_boleto_criado }}</td>
                         </tr>
-                        <tr class="vencimento-boleto">
+                        <tr>
                                 <td>Data de vencimento:</td>
                                 <td>{{ boleto.expiration_boleto_date }}</td>
                         </tr>
@@ -52,7 +60,7 @@
                 {% for boleto in boletos_ok %}
                     <div class="boleto-aprovado">
                         <p>Código do boleto: {{ boleto.codigo_boleto }}</p>
-                        <p>Status do boleto: {{ boleto.status_boleto }}</p>
+                        <p style="color:green">Status do boleto: <b>Boleto Pago</b></p>
                         <p>Gerado em {{ boleto.data_boleto_criado }}</p>
                     </div>
                 {% endfor %}

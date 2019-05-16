@@ -29,6 +29,7 @@ class Transacao(models.Model):
     codigo_boleto = models.CharField(max_length=45, default=0)
     data_boleto_criado = models.DateField(auto_now=True)
     expiration_boleto_date = models.DateField()
+    valor_boleto = models.CharField(max_length=25, default=0)
 
     def __str__(self):
         if self.status_boleto is not False:

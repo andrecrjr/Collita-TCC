@@ -1,7 +1,8 @@
 section.boletos{
-  width: 600px;
+  width: 850px;
   height: auto;
   display: flex;
+  margin-top:25px;
 }
 
 .boletos-pagos{
@@ -22,4 +23,18 @@ section.boletos{
 h1.titulo-aprovado{
     padding-top:5px;
     text-align:center;
+}
+
+.boleto-aguarda h1{
+  text-align:center;
+  margin-right:35px;
+}
+
+.boleto-aguarda{
+  width:500px;
+}
+
+table.cada-boleto{
+  width:100%;
+  text-align:center;
 }

@@ -48,7 +48,8 @@ def request_boleto(request):
         Transacao.objects.create(usuario_transacao=usuario,
                                                 status_boleto=False,
                                                 codigo_boleto=transact['tid'],
-                                                expiration_boleto_date = time_expiration
+                                                expiration_boleto_date = time_expiration,
+                                                valor_boleto = str(valor_total)
                                                 )
         request.session['codigo_boleto'] = transact['tid']
         return redirect('/marketplace/boleto/')
