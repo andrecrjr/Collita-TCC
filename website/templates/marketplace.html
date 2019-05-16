@@ -5,18 +5,23 @@
 <link rel="stylesheet" href="{% static 'css/marketplace.css' %}"/>
 {% endblock css %}
 
+{% block title %}
+    Marketplace
+{% endblock%}
+
 {% block content %}
+{% if user.is_authenticated %}
     <span class="titulo-inventario">
             <h1 class="plaquinha">Markeplace</h1>
     </span>
 <div class="marketplace">
-{% if user.is_authenticated %}
     <div class="marketplace-items">
     {% if error %}
     <div class="warning">
         <span class="omg-warning"></span>
         <div class="warning-inside">
                 <p class="error">{{ error }}</p>
+                <a href="/marketplace">Volte para o marketplace</a><br>
                 <a href="{% url 'boleto_final' %}">Verifique seus boletos</a>
         </div>
     </div>
@@ -43,7 +48,6 @@
         {% endif %}
         {% else %}
         <br>
-        <a href="/marketplace">Volte para o marketplace</a>
     {% endif %}
     </div>
     </div>
@@ -65,7 +69,10 @@
     <script type="text/javascript" src="{% static 'js/add_cart.js' %}"></script>
     {% else %}
     <div class="warning">
-        <h1>Você não está logado!</h1>
-    </div>
+            <span class="omg-warning"></span>
+            <div class="warning-inside">
+                <h1>Você não está logado!</h1>
+            </div> 
+        </div>
     {% endif %}
 {% endblock content %}

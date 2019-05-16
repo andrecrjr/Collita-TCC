@@ -16,19 +16,26 @@
 <div class="perfil-usuario">
         <div class="dados-usuario">
             <div class="info-usuario">
-                {%for dado in dados %}
+                {% for dado in dados %}
                     <ul>
-                            <li>Username: {{ dado.usuario }}</li>
-                            <li>Nome do jogador: <B>{{dado.usuario.first_name}} {{dado.usuario.last_name}}</B></li>
-                            <li>E-mail: {{dado.usuario.email}} </li>
+                        <li>Username: {{ dado.usuario }}</li>
+                        <li>Nome do jogador: <B>{{dado.usuario.first_name}} {{dado.usuario.last_name}}</B></li>
+                        <li>E-mail: {{dado.usuario.email}} </li>
                     </ul>
                 {% endfor %}
             </div>
             <div class="boletos-usuario">
+                {% if boletos %}
                     <p>Ultimo boleto:</p>
-                    <p>Status: Em aprovação</p>
-                    <p>Prazo do pagamento: 20 de janeiro</p>
-                    <a href="#">Todos os boletos</a>
+                    <p>Código boleto: {{ boletos.codigo_boleto }}</p>
+                    <p>Status: {{ boletos.status_boleto }}</p>
+                    {% if boletos.status_boleto is False %}
+                        <p>Prazo do pagamento: {{ boletos.expiration_boleto_date }}</p>
+                    {% endif%}
+                    <a href="{% url 'boleto_final' %}">Todos os boletos</a>
+                {% else %}
+                    <p>Esse usuário tem nenhum boleto D:</p>
+                {% endif %}
             </div>
         </div>
     <div class="inventario-usuario">

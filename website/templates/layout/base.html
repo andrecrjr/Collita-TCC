@@ -72,9 +72,10 @@
     </nav>
     <nav class="footer-menu">
         <ul>
+            {% if user.is_superuser  %}
             <a href="/admin">
                 <li>
-                   admin
+                   Admin
                 </li>
             </a>
             <a href="/relatorios">
@@ -82,6 +83,7 @@
                    Relatorios
                 </li>
             </a>
+            {% endif %}
             </ul>
     </nav>
 </footer>

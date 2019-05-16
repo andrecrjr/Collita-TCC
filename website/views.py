@@ -40,10 +40,11 @@ def perfil(request, id_user):
                 'item_img': item.imagem_item
             })
         perfil = Inventario.objects.filter(id=id_user)
+        boleto = Transacao.objects.filter(usuario_transacao=inventario).last()
         data_items.reverse()
     except:
         return redirect(home)
-    return render(request, 'perfil.html', {'dados': perfil,'items':data_items})
+    return render(request, 'perfil.html', {'dados': perfil,'items':data_items, 'boletos':boleto})
 
 
 def home_marketplace(request):

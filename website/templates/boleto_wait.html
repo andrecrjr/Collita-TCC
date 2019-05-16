@@ -5,6 +5,10 @@
 <link rel="stylesheet" href="{% static 'css/boleto.css' %}"/>
 {% endblock %}
 
+{% block title %}
+    Boletos/Transações
+{% endblock%}
+
 {% block content %}
 {% if user.is_authenticated %}
 <section class="boletos">
@@ -69,9 +73,12 @@
         <h1>Nenhuma compra efetuada</h1>
     {% endif %}
 {% else %}
-<div class="warning">
-    Hey você não está logado!
-</div>
+    <div class="warning">
+        <span class="omg-warning"></span>
+        <div class="warning-inside">
+            <h1>Você não está logado!</h1>
+        </div> 
+    </div>
 {% endif %}
 </section>
 <script type="text/javascript" src="{% static 'js/print_boleto.js' %}"></script>

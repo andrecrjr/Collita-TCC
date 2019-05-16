@@ -37,28 +37,29 @@ ul.errorlist.nonfield{
 
 ul.errorlist.nonfield li{
     width:50%;
-    margin: 0 auto;
+    margin-left: 120px;
 }
 
 span.helptext ul{
     list-style-type: none;
     color:darkgreen;
-    font-weight: lighter;
+    font-size:14px;
+    font-weight: bolder;
 }
 
 ul.errorlist{
     width:95%;
-    font-size:14px;
+    height:118px;
+    font-size:16px;
     list-style: none;
     font-weight:bold;
     color:#960018;
-    background-color:#FF7F7F;
     text-align:center;
     border: 1px solid red;
     border-radius:15px;
 }
 
-ul.errorlist li::before{
-    content:url('/static/icons/404.png');
-    padding-left:10px;
+ul.errorlist{
+    background:url('/static/icons/404.png') no-repeat #FF7F7F;
+    background-size:90px;
 }
