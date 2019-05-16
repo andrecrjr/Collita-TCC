@@ -10,11 +10,11 @@
 {% endblock%}
 
 {% block content %}
-{% if user.is_authenticated %}
+{% if user.is_authenticated %}   
+<div class="marketplace">
     <span class="titulo-inventario">
             <h1 class="plaquinha">Markeplace</h1>
     </span>
-<div class="marketplace">
     <div class="marketplace-items">
     {% if error %}
     <div class="warning">
@@ -26,7 +26,6 @@
         </div>
     </div>
     {% endif %}
-
     {% if not error %}
         {% if items %}
                 {% for item in items %}

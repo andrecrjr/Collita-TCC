@@ -59,3 +59,10 @@ span.titulo-inventario{
 .titulo-inventario h1{
     padding-top:15px;
 }
+
+
+.titulo-inventario{
+    width:100%;
+    height: auto;
+    text-align: center;
+}

@@ -3,12 +3,19 @@
   display:flex;
   flex-direction:row;
   height: auto;
+  flex-wrap: wrap;
+}
+
+.titulo-inventario{
+    width:100%;
+    height: auto;
+    text-align: center;
 }
 
 .marketplace-items{
   display: flex;
   flex-flow:wrap;
-  width:820px;
+  width:732px;
   height:auto;
 }
 

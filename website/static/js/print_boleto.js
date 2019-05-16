@@ -1,5 +1,14 @@
 const boletoPrint = document.querySelector(".print-boleto")
 
+
+const convertValorBoleto = () =>{
+    const valorBoleto = document.querySelector(".valor-boleto")
+    const valorFloat = parseFloat(valorBoleto.textContent).toFixed(2)
+    return valorBoleto.textContent = valorFloat
+}
+convertValorBoleto()
+
+
 const status = {'print':false}
 
 boletoPrint.addEventListener('click', function print(e){
@@ -10,7 +19,7 @@ boletoPrint.addEventListener('click', function print(e){
 })
 
 const printElement = (div) =>{
-    let printPage = window.open('', "Print Boleto", 'height=500, width=1000')
+    let printPage = window.open('', "Print Boleto", 'height=600, width=1000')
 
     printPage.document.write(`
     <title>Boleto MageHut Collita </title>
@@ -39,16 +48,21 @@ const printElement = (div) =>{
                     <td>${div.children[1].children[1].textContent}</td>
                 </tr>
                 <tr>
+                    <td>${div.children[1].children[2].textContent}</td>
                 </tr>
                     <td>${div.children[1].children[3].textContent}</td>
                 </tr>
                 </tr>
                     <td>${div.children[1].children[4].textContent}</td>
                 </tr>
+                </tr>
+                    <td>${div.children[1].children[5].textContent}</td>
+                </tr>
             </tbody>
         </table>
     </div>
 `)
+console.log(div.children[1].children[5].textContent)
     printPage.print()
     printPage.close()
 }

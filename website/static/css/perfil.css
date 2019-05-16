@@ -56,3 +56,12 @@ section.item-inventario img{
     white-space: normal;
 }
 
+.boleto-pago{
+    color:green;
+    font-weight: 200;
+}
+
+.aguarda-pagamento{
+    color:red;
+    font-weight: bolder;
+}
