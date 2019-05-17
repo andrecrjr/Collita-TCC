@@ -66,3 +66,7 @@ span.titulo-inventario{
     height: auto;
     text-align: center;
 }
+
+button{
+    width:100%;
+}

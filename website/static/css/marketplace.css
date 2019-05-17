@@ -53,30 +53,30 @@ button.comprar{
   height:50px;
   font-size:1.4em;
   border-radius:6px;
-  background:url('/static/icons/cart_icon.png') no-repeat center, #2b542c;
+  background:url('/static/icons/cart_icon.png') no-repeat center, #1eb421;
 }
 
 button.comprar:hover{
-  background:url('/static/icons/cart_icon.png') no-repeat center, #398439;
+  background:url('/static/icons/cart_icon.png') no-repeat center, #1cca1c;
   transition: background .6s;
 }
 
 .my-cart{
-  width:240px;
+  width:280px;
   height: 260px;
   position: fixed;
-  top: 120px;
+  top: 150px;
   right: 150px;
   overflow: scroll;
   overflow-x:hidden;
 }
 
 .cart-list tr td:first-child{
-  width: 100px;
+  width: 200px;
 }
 
 .cart-list tr td:nth-child(2){
-  width: 100px;
+  width: 120px;
 }
 
 .item-preco::before{
@@ -87,4 +87,38 @@ button.comprar:hover{
   font-size:1.4em;
   font-weight:bold;
   text-align: center;
+}
+
+
+.finaliza-cart, .remove-itens{
+  height: 40px;
+  border: 1px black solid;
+  border-radius:10px;
+  color:white;
+  font-weight:bold;
+}
+
+.finaliza-cart{
+  background-color: #1eb421;
+}
+
+.finaliza-cart:hover{
+  background-color: #1cca1c;
+  transition: background-color .8s;
+}
+
+.remove-itens{
+  background-color: #d33232;
+  margin-top:5px;
+}
+
+
+.remove-itens:hover{
+  background-color: red;
+  transition: background-color .8s;
+}
+
+.total-market p{
+  margin-top:10px;
+  margin-bottom:10px;
 }

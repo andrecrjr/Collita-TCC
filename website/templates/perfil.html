@@ -14,6 +14,9 @@
 {% block content %}
 
 <div class="perfil-usuario">
+        <span class="titulo-inventario">
+                <h1 class="plaquinha">Status</h1>
+        </span>
         <div class="dados-usuario">
             <div class="info-usuario">
                 {% for dado in dados %}
@@ -25,7 +28,7 @@
                 {% endfor %}
             </div>
             <div class="boletos-usuario">
-                <p>Ultimo boleto:</p>
+                <p style="text-align: center">Ultimo boleto:</p>
                 {% if boletos %}
                     <p>Código boleto: {{ boletos.codigo_boleto }}</p>
                     <p>Status: <span class="status-boleto">{{ boletos.status_boleto }}</span></p>
