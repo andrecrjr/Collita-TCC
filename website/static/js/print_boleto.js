@@ -21,7 +21,7 @@ const printElement = (div) =>{
 
     printPage.document.write(`
     <title>Boleto MageHut Collita </title>
-    <table style="margin:0 auto;">
+    <table style="margin:0 auto; margin-top:15px;">
         <tr>
             <td>BOLETO MAGEHUT - COLLITA</td>
             <td style="border-left:1px; font-size:25px; text-indent:3px; text-align:center">${div.children[1].children[1].children[1].textContent}</td>
@@ -35,17 +35,17 @@ const printElement = (div) =>{
             <td>
                 <table>
                 <tr>
-                    <td>Beneficiário:</td>
-                    <td>${div.children[1].children[6].value}</td>   
+                    <td style="border-right:1px black solid;">Beneficiário:</td>
+                    <td style="text-align:center">${div.children[1].children[6].value}</td>   
                 </tr>
                 <tr>
-                    <td>E-mail do beneficiário:</td>
-                    <td>${div.children[1].children[7].value}</td>   
+                    <td style="border-right:1px black solid;">E-mail do beneficiário:</td>
+                    <td style="text-align:center">${div.children[1].children[7].value}</td>   
                 </tr>
                 </table>
             </td>
             <td>
-                <table>
+                <table  style="text-align:center; border-left:1px black solid">
                     <tr>
                         <td>${div.children[1].children[5].children[0].textContent}</td>
                         <td style="border-left:1px black solid;">${div.children[1].children[5].children[1].textContent}</td>
