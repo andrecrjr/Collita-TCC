@@ -79,3 +79,6 @@ def boleto_marketplace(request):
 
 def cart_marketplace(request):
     return render(request, 'marketplace_cart.html')
+
+def relatorio_transaction(request):
+    return render(request, 'relatorios.html')

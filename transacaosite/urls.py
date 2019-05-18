@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import *
 from .pagamento_boleto import paid_boleto, get_data_from_boleto
+from apisite.api_service import transaction_filter
 
 '''
 json do cart
@@ -15,6 +16,7 @@ urlpatterns = [
     path('create_boleto/', request_boleto, name='request_boleto'),
     path('paid_boleto/', paid_boleto, name='paid_boleto'),
     path('delete_item/<int:id>/', delete_item, name='delete_item'),
-    path('get_transaction/', get_data_from_boleto, name='boleto_await')
+    path('get_transaction/', get_data_from_boleto, name='boleto_await'),
+    path('filter/', transaction_filter, name="Filtrar transacoes"),
 ]
 

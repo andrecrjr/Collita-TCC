@@ -12,7 +12,8 @@ urlpatterns = [
     path('perfil/<int:id_user>/', perfil, name='inventario_user'),
     path('marketplace/', home_marketplace, name='marketplace_site'),
     path('marketplace/boleto/', boleto_marketplace, name='boleto_final'),
-    path('marketplace/cart/', cart_marketplace, name='marketplace_cart')
+    path('marketplace/cart/', cart_marketplace, name='marketplace_cart'),
+    path('relatorios/', relatorio_transaction, name='relatorio_transaction')
 ]
 
 if settings.DEBUG:

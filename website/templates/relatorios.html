@@ -4,11 +4,16 @@
 
 {% block content %}
 
-<div>
+<section class="relatorio-gerencial">
+    <div class="relatorio-filter">
+        <label for="Mês">Selecione mês e ano: </label><input type="month" min="2019-01" required>
+        <input type="number" min="1" class="qtd" value="10"/>
+        <button style="width:20%" class="get-relatorio">Filtrar Transações</button>
+    </div>
+    <section class="root-relatorio"></section>
+</section>
 
-</div>
-
-
+<script type="text/javascript" src="{% static 'js/relatorio_transaction.js' %}"></script>
 {% endblock content %}
 
 
