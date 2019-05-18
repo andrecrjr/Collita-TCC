@@ -33,11 +33,11 @@
                                 <td> {{ boleto.codigo_boleto }}</td>
                         </tr>
                         <tr>
-                                <td>Código do boleto:</td>
+                                <td>Código do documento:</td>
                                 <td>123456 78910111213 1415</td>
                         </tr>
                         <tr>
-                                <td>Valor do boleto:</td>
+                                <td>Valor do documento:</td>
                                 <td>R$<span class="valor-boleto">{{ boleto.valor_boleto }}</span></td>
                         </tr>
                         <tr>
@@ -45,13 +45,15 @@
                                 <td>Aguardando Pagamento</td>
                         </tr>
                         <tr>
-                            <td>Data de expedição:</td>
+                            <td>Data do documento:</td>
                             <td>{{ boleto.data_boleto_criado }}</td>
                         </tr>
                         <tr>
-                                <td>Data de vencimento:</td>
-                                <td>{{ boleto.expiration_boleto_date }}</td>
+                            <td>Vencimento:</td>
+                            <td>{{ boleto.expiration_boleto_date }}</td>
                         </tr>
+                        <input type="hidden" value="{{request.user.first_name}} {{ request.user.last_name}}" />
+                        <input type="hidden" value="{{request.user.email}}" />
                     </tbody>
                     </table>
                 {% endfor %}

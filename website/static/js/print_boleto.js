@@ -9,8 +9,6 @@ const convertValorBoleto = () =>{
 convertValorBoleto()
 
 
-const status = {'print':false}
-
 boletoPrint.addEventListener('click', function print(e){
     let div = document.querySelector('.cada-boleto')
     this.disabled = true
@@ -19,50 +17,70 @@ boletoPrint.addEventListener('click', function print(e){
 })
 
 const printElement = (div) =>{
-    let printPage = window.open('', "Print Boleto", 'height=600, width=1000')
+    let printPage = window.open('', "Print Boleto", 'height=750, width=1000')
 
     printPage.document.write(`
     <title>Boleto MageHut Collita </title>
-    <div>
     <table style="margin:0 auto;">
         <tr>
-            <td>
-                <img src="https://codigosdebarrasbrasil.com.br/wp-content/uploads/2016/10/1-codigo-de-barras.jpg" style="width:400px"/>
-            </td>
+            <td>BOLETO MAGEHUT - COLLITA</td>
+            <td style="border-left:1px; font-size:25px; text-indent:3px; text-align:center">${div.children[1].children[1].children[1].textContent}</td>
         </tr>
         <tr>
-            <td>Pagável em qualquer banco</td>
+            <td style="padding-left:5px;">Pagável em qualquer banco até o vencimento.</td><td><img src=""/></td>
         </tr>
     </table>
-        <table style="border:1px black solid; margin:0 auto; font-size:16px">
-            <thead>
+        <table style="border:1px black solid; margin:0 auto; font-size:16px; margin-top:20px;">
+        <tr>
+            <td>
+                <table>
                 <tr>
-                    <td style="text-align:center;border-bottom:1px black solid">BOLETO MAGEHUT - COLLITA</td>
+                    <td>Beneficiário:</td>
+                    <td>${div.children[1].children[6].value}</td>   
                 </tr>
-            </thead>
+                <tr>
+                    <td>E-mail do beneficiário:</td>
+                    <td>${div.children[1].children[7].value}</td>   
+                </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>${div.children[1].children[5].children[0].textContent}</td>
+                        <td style="border-left:1px black solid;">${div.children[1].children[5].children[1].textContent}</td>
+                    </tr>
+                    <tr>
+                        <td >${div.children[1].children[1].children[0].textContent}</td>
+                        <td style="border-left:1px black solid; padding-left:5px; padding-right:5px;">${div.children[1].children[1].children[1].textContent}</td>
+                    </tr>
+                    <tr>
+                        <td>${div.children[1].children[0].children[0].textContent}</td>
+                        <td style="border-left:1px black solid;">${div.children[1].children[0].children[1].textContent}</td>
+                    </tr>
+                    <tr>
+                        <td>${div.children[1].children[2].children[0].textContent}</td>
+                        <td style="border-left:1px black solid;">${div.children[1].children[2].children[1].textContent}</td>
+                    </tr>
+                    <tr>
+                        <td>${div.children[1].children[4].children[0].textContent}</td>
+                        <td style="border-left:1px black solid;">${div.children[1].children[4].children[1].textContent}</td>
+                    </tr>
+                    </table>
+            </td>
+        </tr>
+        </table>
+        <table style="margin: 0 auto;">
             <tbody>
-                <tr>
-                    <td style="border-bottom:1px black solid">${div.children[1].children[0].textContent}</td>
-                </tr>
-                <tr>
-                    <td>${div.children[1].children[1].textContent}</td>
-                </tr>
-                <tr>
-                    <td>${div.children[1].children[2].textContent}</td>
-                </tr>
-                    <td>${div.children[1].children[3].textContent}</td>
-                </tr>
-                </tr>
-                    <td>${div.children[1].children[4].textContent}</td>
-                </tr>
-                </tr>
-                    <td>${div.children[1].children[5].textContent}</td>
-                </tr>
+            <tr>
+                <td>
+                    <img src="https://codigosdebarrasbrasil.com.br/wp-content/uploads/2016/10/1-codigo-de-barras.jpg" style="width:400px" heigth="180px"/>
+                </td>
+            </tr>
             </tbody>
         </table>
-    </div>
 `)
-console.log(div.children[1].children[5].textContent)
+
     printPage.print()
     printPage.close()
 }
