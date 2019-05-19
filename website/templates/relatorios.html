@@ -3,7 +3,7 @@
 
 
 {% block content %}
-
+{% if user.is_superuser %}
 <section class="relatorio-gerencial">
     <div class="relatorio-filter">
         <label for="Mês">Selecione mês e ano: </label><input type="month" min="2019-01" required>
@@ -14,6 +14,14 @@
 </section>
 
 <script type="text/javascript" src="{% static 'js/relatorio_transaction.js' %}"></script>
+{% else %}
+
+<div class="warning">
+    <span class="omg-warning"></span>
+        <div class="warning-inside">Oooops!! Você não pode entrar aqui!<br><br><a href="/">Volte para a pagina principal!</a></div>
+</div>
+
+{% endif %}
 {% endblock content %}
 
 

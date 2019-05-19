@@ -1,5 +1,7 @@
 let findMonthAndYear = /\d+/g;
 let rootRelatorio = document.querySelector('section.root-relatorio')
+let a = {}
+
 const filterRelatorio = ()=>{
     const botao = document.querySelector('.get-relatorio')
     
@@ -19,9 +21,62 @@ const filterRelatorio = ()=>{
     })
 }
 
-const responseRelatorio = (data) =>{
-    console.log(data)
-    rootRelatorio.innerHTML = `<button onClick="()">Gerar relatorio</button>`
+const responseRelatorio = (response) =>{
+    const { data } = response
+    if(data.length > 0){
+        rootRelatorio.innerHTML = `<button class="generate_relatorio">Gerar relatorio</button>`
+        renderRelatorio(data)
+    }else{
+        rootRelatorio.innerHTML = `<div class="warning">
+                                            <span class="omg-warning"></span>
+                                                <div class="warning-inside">Não há relatórios no mês e ano selecionados</div>
+                                        </div>`
+    }
+}
+
+
+const renderRelatorio = (data) =>{
+    rootRelatorio.innerHTML +=  `<table class="relatorio"><tbody class="tabela"></tbody></table>`
+    let tabela = document.querySelector("tbody.tabela")
+    data.map((dados)=>{
+        estrutura = `<tr>
+                        <td>${dados.nome_completo}</td>
+                        <td>${dados.codigo_boleto}</td>
+                    </tr>`
+        tabela.innerHTML += estrutura
+    })
+    mountPrintRelatorio(data)
+}
+
+
+const mountPrintRelatorio = (data) =>{
+    const botaoRelatorio = document.querySelector('.generate_relatorio')
+    botaoRelatorio.addEventListener("click", ()=>{
+        return tabelaRelatorio(data)
+    })
+}
+
+function tabelaRelatorio(data){
+    let relatorioPage = window.open('', "Relatório Collita", 'height=750, width=1000')
+        tabela = `
+        <h1>Relatório de MageHut-Collita Game</h1>
+        <table style="margin: 0 auto; border:1px black solid">
+                    <tbody>
+                            ${data.map((response)=>{
+                                return (`
+                                    <tr>
+                                        <td>${response.nome_completo}</td>
+                                        <td>${response.codigo_boleto}</td>
+                                    </tr>
+                                    `     
+                                    )
+                            })}
+                    </tbody>
+                </table>`
+        tabela = tabela.replace(/,/g, "")
+        relatorioPage.document.write(tabela)
+        relatorioPage.print()
+        relatorioPage.close()
 }
 
 const mountQueryFilter = (month) =>{
@@ -43,6 +98,10 @@ const requestTransactions = async (query) =>{
         return response
     }catch (err){
         console.log(err)
+        rootRelatorio.innerHTML = `<div class="warning">
+                                            <span class="omg-warning"></span>
+                                                <div class="warning-inside">Servidor fora do ar tente novamente mais tarde</div>
+                                        </div>`
     }
 }
 
