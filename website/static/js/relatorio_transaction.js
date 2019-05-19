@@ -1,6 +1,4 @@
-let findMonthAndYear = /\d+/g;
 let rootRelatorio = document.querySelector('section.root-relatorio')
-let a = {}
 
 const filterRelatorio = ()=>{
     const botao = document.querySelector('.get-relatorio')
@@ -36,12 +34,15 @@ const responseRelatorio = (response) =>{
 
 
 const renderRelatorio = (data) =>{
-    rootRelatorio.innerHTML +=  `<table class="relatorio"><tbody class="tabela"></tbody></table>`
+    rootRelatorio.innerHTML +=  `<table class="relatorio" style="width:100%"><tbody class="tabela"></tbody></table>`
     let tabela = document.querySelector("tbody.tabela")
-    data.map((dados)=>{
+    data.map((response)=>{
         estrutura = `<tr>
-                        <td>${dados.nome_completo}</td>
-                        <td>${dados.codigo_boleto}</td>
+                        <td>${response.id}</td>
+                        <td>${response.codigo_boleto}</td>
+                        <td>${response.nome_completo}</td>
+                        <td>${response.data_boleto_criado}</td>
+                        <td>${parseFloat(response.valor_boleto).toFixed(2)}</td>
                     </tr>`
         tabela.innerHTML += estrutura
     })
@@ -57,16 +58,20 @@ const mountPrintRelatorio = (data) =>{
 }
 
 function tabelaRelatorio(data){
+    const month = document.querySelector("input[type=month]")
     let relatorioPage = window.open('', "Relatório Collita", 'height=750, width=1000')
         tabela = `
-        <h1>Relatório de MageHut-Collita Game</h1>
-        <table style="margin: 0 auto; border:1px black solid">
+        <h1>MageHut - Relatório de Transações ${month.value}</h1>
+        <table style="margin: 0 auto; border:1px black solid; width:100%">
                     <tbody>
                             ${data.map((response)=>{
                                 return (`
                                     <tr>
-                                        <td>${response.nome_completo}</td>
+                                        <td>${response.id}</td>
                                         <td>${response.codigo_boleto}</td>
+                                        <td>${response.nome_completo}</td>
+                                        <td>${response.data_boleto_criado}</td>
+                                        <td>${parseFloat(response.valor_boleto).toFixed(2)}</td>
                                     </tr>
                                     `     
                                     )
@@ -79,15 +84,14 @@ function tabelaRelatorio(data){
         relatorioPage.close()
 }
 
-const mountQueryFilter = (month) =>{
+const mountQueryFilter = (data) =>{
     let query= ``
     const qtd_trans = document.querySelector(".qtd")
-    const date = month.match(findMonthAndYear)
+    const date = data.split('-')
     query = query + `?mes=${date[1]}`
     query = query + `&ano=${date[0]}`
     //captura o valor de quantidade e coloca dentro da query
     parseInt(qtd_trans.value) > 0 ? query = query + `&qtd=${qtd_trans.value}` : ``
-    console.log(query)
     return query
 }
 

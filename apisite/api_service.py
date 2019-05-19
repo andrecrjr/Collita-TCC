@@ -33,7 +33,7 @@ def transaction_filter(request):
             status = True
         transactions['data'] = list(Transacao.objects.filter(data_boleto_criado__month=mes, 
                                                             data_boleto_criado__year=ano, 
-                                                            status_boleto=status)[:int(qtd)].values())
+                                                            status_boleto=status)[int(qtd):].values())
         for key, value in enumerate(transactions['data']):
             user = Inventario.objects.get(id=value['usuario_transacao_id'])
             transactions['data'][key]['nome_completo'] = f"{user.usuario.first_name} {user.usuario.last_name}"
