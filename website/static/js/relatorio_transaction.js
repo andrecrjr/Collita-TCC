@@ -31,7 +31,7 @@ const responseRelatorio = (response, status_boleto, username) =>{
     }else{
         rootRelatorio.innerHTML = `<div class="warning">
                                             <span class="omg-warning"></span>
-                                                <div class="warning-inside">Não há relatórios no mês e ano selecionados</div>
+                                                <div class="warning-inside">Não há relatórios no mês, ano ou de usuário selecionado</div>
                                     </div>`
     }
 }
@@ -128,9 +128,7 @@ const mountQueryFilter = (data, boleto_status, username) =>{
         "status": boleto_status
     }
     username ? params.username = username : ``
-    console.log(username)
     var queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
-    console.log(queryString)
     return queryString
 }
 
