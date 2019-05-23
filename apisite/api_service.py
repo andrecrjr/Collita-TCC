@@ -28,6 +28,8 @@ def transaction_filter(request):
         qtd = request.GET.get("qtd", "")
         status = request.GET.get("status", "")
         username = request.GET.get("username", "")
+        username_verify = request.GET.get("username_verify", "")
+        
         if not qtd:
             qtd = 10
         if status:
@@ -35,11 +37,19 @@ def transaction_filter(request):
                 status = True
             else:
                 status = False
+        
+        if username_verify:
+            user = Inventario.objects.get(usuario__username=username_verify)
+            if user:
+                return JsonResponse({"username":user.usuario.username}, status=200)
+            else:
+                return JsonResponse(status=404)
+        
         if not username:
             transactions['data'] = list(Transacao.objects.filter(data_boleto_criado__month=mes, 
                                                     data_boleto_criado__year=ano, 
                                                     status_boleto=status).order_by("-id")[:int(qtd)].values())
-        else:
+        elif mes and ano and username:
             usuario = Inventario.objects.get(usuario__username = username)
             transactions['data'] = list(Transacao.objects.filter(data_boleto_criado__month=mes, 
                                                 data_boleto_criado__year=ano, 
