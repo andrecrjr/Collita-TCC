@@ -27,14 +27,26 @@ def transaction_filter(request):
         ano = request.GET.get("ano", "")
         qtd = request.GET.get("qtd", "")
         status = request.GET.get("status", "")
+        username = request.GET.get("username", "")
         if not qtd:
             qtd = 10
-        if not status:
-            status = True
-        transactions['data'] = list(Transacao.objects.filter(data_boleto_criado__month=mes, 
-                                                            data_boleto_criado__year=ano, 
-                                                            status_boleto=status)[int(qtd):].values())
+        if status:
+            if status == "true":
+                status = True
+            else:
+                status = False
+        if not username:
+            transactions['data'] = list(Transacao.objects.filter(data_boleto_criado__month=mes, 
+                                                    data_boleto_criado__year=ano, 
+                                                    status_boleto=status).order_by("-id")[:int(qtd)].values())
+        else:
+            usuario = Inventario.objects.get(usuario__username = username)
+            transactions['data'] = list(Transacao.objects.filter(data_boleto_criado__month=mes, 
+                                                data_boleto_criado__year=ano, 
+                                                status_boleto=status, usuario_transacao_id=usuario.id)[:int(qtd)].values())
         for key, value in enumerate(transactions['data']):
             user = Inventario.objects.get(id=value['usuario_transacao_id'])
             transactions['data'][key]['nome_completo'] = f"{user.usuario.first_name} {user.usuario.last_name}"
+            transactions['data'][key]['username'] = f"{user.usuario.username}"
+        reversed(transactions['data'])
         return JsonResponse(transactions, status=200)

@@ -1,0 +1,13 @@
+.relatorio-gerencial{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.generate_relatorio{
+    height:30px;
+    background-color: lightgrey;
+    border:1px black solid;
+    border-radius: 10px;
+    margin-top:15px;
+}

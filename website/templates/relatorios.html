@@ -1,14 +1,21 @@
 {% extends "layout/base.html" %}
 {% load static %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/relatorios.css' %}"/>
+{% endblock css %}
+
 
 {% block content %}
 {% if user.is_superuser %}
-<section class="relatorio-gerencial">
-    <div class="relatorio-filter">
-        <label for="Mês">Selecione mês e ano: </label><input type="month" min="2019-01" required>
-        <input type="number" min="1" class="qtd" value="5" placeholder="quantidade"/>
-        <button style="width:20%" class="get-relatorio">Filtrar Transações</button>
+<section class="relatorio-gerencial" style="width: 70%; margin: 0 auto;">
+    <div class="relatorio-filter" style="margin-top:25px;">
+        <label for="mes-ano" style="font-weight: bolder">Mês e ano: </label><input type="month" min="2019-01" required>
+        <label for="quantidade" style="font-weight: bolder">Quantidade de transações: </label>
+        <input type="number" min="1" class="qtd" value="5" class="qtd-relatorios" style="width:30px" placeholder="quantidade">
+        <label for="boleto-pago">Boleto pago:</label><input type="checkbox" class="boleto-check" value="true">
+        <label for="username">Nome do usuario: </label><input type="text" class="username" placeholder="Digite usuário especifico">
+        <button style="width:100%" class="get-relatorio">Filtrar Transações</button>
     </div>
     <section class="root-relatorio"></section>
 </section>

@@ -2,19 +2,22 @@ const boletoPrint = document.querySelector(".print-boleto")
 
 
 const convertValorBoleto = () =>{
-    const valorBoleto = document.querySelector(".valor-boleto")
-    const valorFloat = parseFloat(valorBoleto.textContent).toFixed(2)
-    return valorBoleto.textContent = valorFloat
+    if(document.querySelector(".valor-boleto")){
+        const valorBoleto = document.querySelector(".valor-boleto")
+        const valorFloat = parseFloat(valorBoleto.textContent).toFixed(2)
+        return valorBoleto.textContent = valorFloat
+    }
 }
 convertValorBoleto()
 
-
-boletoPrint.addEventListener('click', function print(e){
-    let div = document.querySelector('.cada-boleto')
-    this.disabled = true
-    setTimeout(()=>{ this.disabled = false; }, 5000);
-    printElement(div)
-})
+if(boletoPrint){
+    boletoPrint.addEventListener('click', function print(e){
+        let div = document.querySelector('.cada-boleto')
+        this.disabled = true
+        setTimeout(()=>{ this.disabled = false; }, 5000);
+        printElement(div)
+    })
+}
 
 const printElement = (div) =>{
     let printPage = window.open('', "Print Boleto", 'height=750, width=1000')
