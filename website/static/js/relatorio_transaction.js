@@ -1,6 +1,5 @@
 let rootRelatorio = document.querySelector('section.root-relatorio')
 
-document.body.backgroundImage = ""
 
 const filterRelatorio = ()=>{
     const botao = document.querySelector('.get-relatorio')
@@ -10,12 +9,6 @@ const filterRelatorio = ()=>{
         let username = document.querySelector(".username").value
         if(month.value.length > 0){
             let boleto_status = document.querySelector(".boleto-check").checked
-                if(username){
-                const username_exists = verify_user_existence(`username_verify=${username}`)
-                    username_exists.then((response)=>{
-                        console.log(response)
-                    })
-                }
             const dados = requestTransactions(mountQueryFilter(month.value, boleto_status, username))
             dados.then((response)=>{
                 return responseRelatorio(response, boleto_status, username)
@@ -31,15 +24,16 @@ const filterRelatorio = ()=>{
 
 const responseRelatorio = (response, status_boleto, username) =>{
     const { data } = response
+
     const month = document.querySelector("input[type=month]")
-    if(data.length > 0){
+    if(data.length > 0 || data === undefined){
         rootRelatorio.innerHTML = `<button class="generate_relatorio">Gerar relatorio</button>
-        <p class="">${status_boleto ? `Boletos pagos`: `Boletos a pagar` } de ${month.value} ${username ? `do usuário ${username}`: ``} </p>`
+        <p class="status-relatorio">${status_boleto ? `Boletos pagos`: `Boletos a pagar` } de ${month.value} ${username ? `do usuário ${username}`: ``} </p>`
         renderRelatorio(data, status_boleto, username)
     }else{
         rootRelatorio.innerHTML = `<div class="warning">
                                             <span class="omg-warning"></span>
-                                            <div class="warning-inside">Não há relatórios no ano/mês ${username ? `ou do usuario`: ``} selecionado</div>
+                                            <div class="warning-inside">Não há relatórios no ano/mês ${username ? `ou do usuario pesquisado`: ``} selecionado</div>
                                     </div>`
     }
 }
@@ -147,10 +141,9 @@ const requestTransactions = async (query) =>{
         const response = await result.json()
         return response
     }catch (err){
-        console.log(err)
         rootRelatorio.innerHTML = `<div class="warning">
                                             <span class="omg-warning"></span>
-                                            <div class="warning-inside">Servidor fora do ar</div>
+                                            <div class="warning-inside">Servidor fora do ar ou usuario inexistente</div>
                                     </div>`
     }
 }
@@ -162,10 +155,6 @@ const verify_user_existence = async(query) =>{
         return response
     }catch (err){
         console.log(err)
-        rootRelatorio.innerHTML = `<div class="warning">
-                                            <span class="omg-warning"></span>
-                                            <div class="warning-inside">Usuário não existe!</div>
-                                    </div>`
     }
 }
 

@@ -8,16 +8,16 @@
 
 {% block content %}
 {% if user.is_superuser %}
-<section class="relatorio-gerencial" style="width: 70%; margin: 0 auto;">
+<section class="relatorio-gerencial">
     <div class="relatorio-filter" style="margin-top:25px;">
         <label for="mes-ano" style="font-weight: bolder">Mês e ano: </label><input type="month" min="2019-01" required>
         <label for="quantidade" style="font-weight: bolder">Quantidade de transações: </label>
         <input type="number" min="1" class="qtd" value="5" class="qtd-relatorios" style="width:30px" placeholder="quantidade">
-        <label for="boleto-pago">Boleto pago:</label><input type="checkbox" class="boleto-check" value="true">
-        <label for="username">Nome do usuario: </label><input type="text" class="username" placeholder="Digite usuário especifico">
+        <label for="boleto-pago" style="font-weight: bolder">Boleto pago:</label><input type="checkbox" class="boleto-check" value="true"><br>
+        <label for="username" style="font-weight: bolder">Nome do usuario: </label><input type="text" class="username" placeholder="Digite usuário especifico">
         <button style="width:100%" class="get-relatorio">Filtrar Transações</button>
     </div>
-    <section class="root-relatorio"></section>
+    <section class="root-relatorio" style="background:white"></section>
 </section>
 
 <script type="text/javascript" src="{% static 'js/relatorio_transaction.js' %}"></script>
