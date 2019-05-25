@@ -70,3 +70,26 @@ span.titulo-inventario{
 button{
     width:100%;
 }
+
+.base-homepage{
+    border: 10px solid transparent;
+    border-image: url(/static/assets/border-homepage.png);
+    border-image-slice: 95 82 91 92;
+    border-image-width: 60px 60px 60px 60px;
+    border-image-repeat: stretch stretch;
+    width:500px;
+    height:auto;  
+    padding-left: 50px;
+    background-color: transparent;
+    animation: change_background 3s;
+}
+
+@keyframes change_background {
+    from   {
+        opacity:0;
+    }
+    to  {
+        opacity:1;
+    }
+  }
+  

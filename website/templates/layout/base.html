@@ -17,6 +17,12 @@
 <header>
     <nav class="main-menu">
         <ul>
+                <li class="logo">
+                        <a href="/">
+                            <span class="logo-collita"><img src="{{STATIC_URL}}/static/assets/collita-logo.png" width="145"/></span>
+                        </a>
+
+                </li>
         {% if user.is_authenticated %}
             <a href="{% url 'inventario_user' user.id %}">
                 <li>

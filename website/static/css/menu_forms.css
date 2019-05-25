@@ -11,12 +11,12 @@ nav.main-menu ul{
 .main-menu ul li{
     background: url('/static/icons/plaquinha_icon.png') no-repeat;
     width: 125px;
-    height:50px;
+    height:38px;
     margin-left:70px;
 }
 
 .main-menu ul a li:hover {
-    url('/static/icons/plaquinha_icon.png');
+    background: url('/static/icons/plaquinha_icon.png');
     filter: brightness(77%);
     transition: filter .7s;
 }
@@ -35,7 +35,7 @@ nav.main-menu ul{
 
 
 /* menu nome do usuario */
-.main-menu ul a li:nth-child(1){
+.main-menu ul a li:nth-child(2){
     width: 125px;
     overflow: hidden;
     margin-left:70px;
@@ -62,6 +62,7 @@ nav.footer-menu ul{
     color: white;
     text-decoration:none;
     display: block;
+    margin-left:25px;
 }
 
 /*******************************/
@@ -103,9 +104,6 @@ ul.form-login li input{
     background-color:lightgrey;
 }
 
-ul.form-login li{
-    margin-top:15px;
-}
 
 .form-group{
     max-width: 500px;
@@ -118,13 +116,13 @@ h1.title-section{
 
 .form-group button{
     float:right;
-    background:green;
+    background:#1eb421;
     color:white;
     width:200px;
     font-size:1.1em;
     padding:10px;
     border-radius:5px;
-    border: 1px solid black;
+    border: 1px dotted black;
 }
 
 span.helptext{
@@ -138,4 +136,31 @@ span.helptext{
 .form-group button:hover{
     background-color:lightgreen;
     transition: background-color 1s;
+}
+
+.base-homepage ul{
+    list-style-type: none;
+}
+
+
+.base-homepage ul li{
+    font-size:18px;
+    padding-left:25px;
+    margin-top:15px;
+}
+
+.base-homepage ul li a{
+    text-decoration: underline;
+    text-decoration-color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+
+.main-menu ul li.logo{
+    background: transparent;
+}
+
+.main-menu ul li.logo:hover{
+    background: transparent;
+    filter: brightness(95%);
 }

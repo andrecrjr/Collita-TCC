@@ -18,7 +18,7 @@
 }
 
 .omg-warning{
-    background:url('/static/icons/404.png');
+    background:url('/static/assets/404.png');
     background-size: cover;
     background-size: cover;
     width:200px;
@@ -50,16 +50,23 @@ span.helptext ul{
 ul.errorlist{
     width:95%;
     height:118px;
-    font-size:16px;
-    list-style: none;
-    font-weight:bold;
-    color:#960018;
     text-align:center;
     border: 1px solid red;
     border-radius:15px;
+    background:url('/static/assets/404.png') no-repeat #FF7F7F;
+    background-size:90px;
 }
 
-ul.errorlist{
-    background:url('/static/icons/404.png') no-repeat #FF7F7F;
-    background-size:90px;
+ul.errorlist li{
+    font-size:18px;
+    list-style: none;
+    color:rgb(184, 0, 0);
+    font-weight:bold;
+    width: 150px;
+    display: inline-block;
+    padding-top:10px;
+}
+
+ul.errorlist li:first-child{
+    width: 170px;
 }

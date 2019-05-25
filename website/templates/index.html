@@ -9,10 +9,9 @@
         <h1>
             Bem vindo {{ request.user }} !
         </h1>
-        <div class="home-page">
-        <p>E-commerce e inventário para o jogo Collita!</p>
-            <ul style="list-style: none">
-                <li>Central de links:</li>
+        <div class="base-homepage">
+            <ul>
+                <li><p>E-commerce e inventário para o jogo Collita!</p></li>
                 <li>
                     <a href="{% url 'inventario_user' user.id %}">Seu inventário</a>
                 </li>
@@ -26,11 +25,11 @@
         </div>
         {% else %}
         <section>
-            <div>
+            <div class="base-homepage">
                 <h1>MageHut Game apresenta Collita Game!</h1>
                 <p>Aqui é onde você irá se cadastrar para jogar</p>
                 <p>Aceitamos apenas boleto bancário!</p>
-
+                <img src="{{STATIC_URL}}/static/assets/caozinho.png/" width="400" style="margin:0 auto"/>
             </div>
         </section>
     {% endif %}

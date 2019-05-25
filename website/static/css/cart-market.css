@@ -1,0 +1,31 @@
+table.cart-market{
+    margin: 0 auto;
+}
+
+table.cart-market thead td{
+    background: #d8d8d8;
+    color:black;
+    width:auto;
+    padding: 5px;
+    height: 20px;
+}
+
+tbody.carrinho-main tr td{
+    text-align: center;
+    padding:5px;
+}
+
+h1{
+    font-size:1.8em;
+}
+
+section.carrinho{
+    display: flex;
+    flex-wrap: wrap;
+    width:auto;
+}
+
+h1.none-cart{
+    margin: 0 auto;
+    font-size: 1.5em;
+}
