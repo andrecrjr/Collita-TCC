@@ -4,7 +4,7 @@
     flex-direction: column;
 }
 
-.generate_relatorio{
+.generate_relatorio,  .get-relatorio{
     height:30px;
     background-color: lightgrey;
     border:1px black solid;

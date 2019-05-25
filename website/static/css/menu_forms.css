@@ -96,17 +96,17 @@ ul.form-login li label{
 }
 
 ul.form-login li input{
-    width:95%;
+    width:100%;
     height:40px;
     padding-left:10px;
-    border: 1px solid black;
+    border: 1px solid transparent;
     border-radius:10px;
     background-color:lightgrey;
 }
 
 
 .form-group{
-    max-width: 500px;
+    max-width: 600px;
     margin:0 auto;
 }
 
@@ -154,7 +154,6 @@ span.helptext{
     text-decoration-color: rgb(0, 0, 0);
     font-weight: bold;
 }
-
 
 .main-menu ul li.logo{
     background: transparent;

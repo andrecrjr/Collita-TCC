@@ -34,6 +34,7 @@ footer{
      position:fixed;
    left:0px;
    bottom:0px;
+   z-index:0;
 }
 
 section#main-content {
@@ -79,17 +80,15 @@ button{
     border-image-repeat: stretch stretch;
     width:500px;
     height:auto;  
-    padding-left: 50px;
+    padding-left: 100px;
     background-color: transparent;
-    animation: change_background 3s;
+    padding-top:25px;
 }
 
-@keyframes change_background {
-    from   {
-        opacity:0;
-    }
-    to  {
-        opacity:1;
-    }
-  }
-  
+
+body{
+    background: url('/static/assets/TeamLogo.png') no-repeat;
+    background-size:280px 280px;
+    background-position:bottom left;
+    animation: change_background 8s infinite;
+}

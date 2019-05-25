@@ -26,17 +26,14 @@ async function printMainCart(){
                         <tr>
                             <td class="id_pedido">${response.id_compra}</td>
                             <td>${response.nome_item}</td>
-                            <td>${response.preco_item.toFixed(2)}</td>
+                            <td>R$ ${response.preco_item.toFixed(2)}</td>
                             <td>${response.quantidade}</td>
                             <td><button id="delete-button">Excluir item</button></td>
                         </tr>
-                    
                     `
-
             })
 
             let deletedButtons = document.querySelectorAll('#delete-button')
-
             for(let i = 0; i < deletedButtons.length; i++) {
                     deletedButtons[i].addEventListener('click', function () {
                             let id_pedido = this.closest('tr').cells[0].textContent;
@@ -86,9 +83,9 @@ async function sum_final(data){
             valorFinal.push(total[num.nome_item])
             return valorFinal
             }, {});
+        console.log(valorFinal)
         let final = valorFinal.reduce((total, num)=>total+num);
         return valorFinal.length > 1 ? parseFloat(final) : parseFloat(valorFinal[0]);
-
     }catch{
         return 0;
     }
@@ -99,14 +96,13 @@ async function sum_final(data){
 async function valor_total(valor_final){
     try{
         return elementFinal.innerHTML+= `
-                                        <tr> 
-                                            <td>Valor total</td>
+                                        <tr class="footer-cart"> 
+                                            <td class="total-cart">Preço total:</td>
                                             <td>R$ ${valor_final.toFixed(2)}</td>
-                                            <td><a href="${link}generate_boleto/"><button>Gerar boleto</button></a></td>
+                                            <td><a href="${link}generate_boleto/"><button class="print-boleto">Gerar Boleto</button></a></td>
                                         </tr>
                                     `
     }catch{
-
     }
 }
 printMainCart()

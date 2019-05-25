@@ -1,5 +1,7 @@
 let rootRelatorio = document.querySelector('section.root-relatorio')
 
+document.body.backgroundImage = ""
+
 const filterRelatorio = ()=>{
     const botao = document.querySelector('.get-relatorio')
     

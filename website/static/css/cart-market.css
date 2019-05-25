@@ -29,3 +29,16 @@ h1.none-cart{
     margin: 0 auto;
     font-size: 1.5em;
 }
+
+button.print-boleto{
+    height:30px;
+    background-color: #1eb421;
+    color:white;
+    font-weight: bold;
+    border:1px transparent solid;
+    border-radius: 10px;
+}
+
+td.total-cart{
+    font-weight: bolder;
+}

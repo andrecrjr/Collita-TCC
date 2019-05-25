@@ -18,10 +18,9 @@
     <nav class="main-menu">
         <ul>
                 <li class="logo">
-                        <a href="/">
-                            <span class="logo-collita"><img src="{{STATIC_URL}}/static/assets/collita-logo.png" width="145"/></span>
-                        </a>
-
+                    <a href="/">
+                        <span class="logo-collita"><img src="{{STATIC_URL}}/static/assets/collita-logo.png" width="145"/></span>
+                    </a>
                 </li>
         {% if user.is_authenticated %}
             <a href="{% url 'inventario_user' user.id %}">
@@ -71,8 +70,8 @@
 <footer>
     <nav class="footer-menu" style="flex-direction: row">
         <ul>
-            <li style="color:white;">
-                Collita Game 2019
+            <li style="color:white; padding-left:15px">
+               MageHut Games - 2019
             </li>
         </ul>
     </nav>

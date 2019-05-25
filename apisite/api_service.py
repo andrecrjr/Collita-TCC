@@ -41,7 +41,7 @@ def transaction_filter(request):
         if username_verify:
             user = Inventario.objects.get(usuario__username=username_verify)
             if user:
-                return JsonResponse({"username":user.usuario.username}, status=200)
+                return JsonResponse(status=200)
             else:
                 return JsonResponse(status=404)
         

@@ -23,6 +23,16 @@
     background-size: cover;
     width:200px;
     height:240px;
+    animation: pluf 2s;
+}
+
+@keyframes pluf{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity:1;
+    }
 }
 
 .warn-logout{
@@ -35,9 +45,8 @@ ul.errorlist.nonfield{
     list-style: none;
 }
 
-ul.errorlist.nonfield li{
-    width:50%;
-    margin-left: 120px;
+ul.errorlist.nonfield li:first-child{
+    width:300px;
 }
 
 span.helptext ul{
@@ -46,12 +55,14 @@ span.helptext ul{
     font-size:14px;
     font-weight: bolder;
 }
-
+li ul.errorlist{
+    margin: 0 auto;
+    display:block;
+}
 ul.errorlist{
     width:95%;
     height:118px;
     text-align:center;
-    border: 1px solid red;
     border-radius:15px;
     background:url('/static/assets/404.png') no-repeat #FF7F7F;
     background-size:90px;

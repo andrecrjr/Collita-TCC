@@ -21,19 +21,19 @@
             <div class="info-usuario">
                 {% for dado in dados %}
                     <ul>
-                        <li>Username: {{ dado.usuario }}</li>
-                        <li>Nome do jogador: <B>{{dado.usuario.first_name}} {{dado.usuario.last_name}}</B></li>
-                        <li>E-mail: {{dado.usuario.email}} </li>
+                        <li><b>Username</b>: {{ dado.usuario }}</li>
+                        <li><b>Nome do jogador</b>: <B>{{dado.usuario.first_name}} {{dado.usuario.last_name}}</B></li>
+                        <li><b>E-mail</b>: {{dado.usuario.email}} </li>
                     </ul>
                 {% endfor %}
             </div>
             <div class="boletos-usuario">
-                <p style="text-align: center">Ultimo boleto:</p>
+                <p style="text-align: center"><b>Ultimo boleto:</b></p>
                 {% if boletos %}
-                    <p>Código boleto: {{ boletos.codigo_boleto }}</p>
-                    <p>Status: <span class="status-boleto">{{ boletos.status_boleto }}</span></p>
+                    <p><b>Código boleto</b>: {{ boletos.codigo_boleto }}</p>
+                    <p><b>Status</b>: <span class="status-boleto">{{ boletos.status_boleto }}</span></p>
                     {% if boletos.status_boleto is False %}
-                        <p>Prazo do pagamento: {{ boletos.expiration_boleto_date }}</p>
+                        <p><b>Prazo do pagamento</b>: {{ boletos.expiration_boleto_date }}</p>
                     {% endif%}
                     <a href="{% url 'boleto_final' %}">Todos os boletos</a>
                 {% else %}
