@@ -63,3 +63,12 @@ class InventarioItemGame(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='item_inventario')
     quantidade = models.IntegerField(default=0)
     usuario = models.ForeignKey(Inventario, on_delete=models.CASCADE, related_name='usuario_inventario')
+
+
+class ItemSession(models.Model):
+    class Meta:
+        db_table = 'save_itens_session'
+
+    itens = models.CharField(max_length=1500, null=True)
+    user = models.ForeignKey(Inventario, on_delete=models.CASCADE, related_name='user_itens')
+    codigo_boleto = models.IntegerField(null=True, default=0)

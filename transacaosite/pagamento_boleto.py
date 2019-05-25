@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from transacaosite.models import *
 from apisite.models import Inventario
-
+import json
 
 pagarme.authentication_key(settings.PAGAR_ME_TOKEN)
 
@@ -66,6 +66,8 @@ def request_boleto(request):
                                                     valor_boleto = calc_total(itens)
                                                     )
             request.session['codigo_boleto'] = transact['tid']
+            ItemSession.objects.create(user=Inventario.objects.get(usuario=request.user.pk),
+                                                         itens=json.dumps(itens), codigo_boleto=transact['tid'])
             return redirect('/marketplace/boleto/')
 
 
@@ -87,8 +89,15 @@ def get_data_from_boleto(request):
 
 def paid_boleto(request):
     if request.method == 'GET':
-        itens = request.session['boleto_' + request.user.username]
         codigo = request.session.get('codigo_boleto')
+        itens = request.session.get('boleto_' + request.user.username)
+        print(codigo)
+        if not itens:
+            itens_db = items_from_session(request.user.pk)
+            json_itens = json.loads(itens_db.itens)
+            itens = json_itens
+            if not codigo:
+                codigo = itens_db.codigo_boleto
         if itens and codigo:
             trans = Transacao.objects.get(codigo_boleto=codigo)
             for dados in itens:
@@ -99,7 +108,7 @@ def paid_boleto(request):
                 inventario_salvo = verify_itens_in_inventario(item,request.user.pk, int(dados['quantidade']))
                 pedido.save()
             trans.status_boleto = True
-            trans.save()
+            trans.save() 
             itens.clear()
             del codigo
             request.session.modified = True
@@ -120,3 +129,8 @@ def verify_itens_in_inventario(item, id_usuario, quantidade_item):
         itens_usuario = InventarioItemGame.objects.create(usuario=usuario,
                                                         item=item, quantidade=quantidade_item)
         return itens_usuario.save()
+
+def items_from_session(user):
+    inventario = Inventario.objects.get(usuario=user)
+    item_salvo = ItemSession.objects.filter(user=inventario).order_by('-id')[0]
+    return item_salvo

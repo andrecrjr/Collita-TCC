@@ -15,14 +15,14 @@
 
 <div class="perfil-usuario">
         <span class="titulo-inventario">
-                <h1 class="plaquinha">Status</h1>
+                <h1 class="plaquinha">Perfil do usuário</h1>
         </span>
         <div class="dados-usuario">
             <div class="info-usuario">
                 {% for dado in dados %}
                     <ul>
                         <li><b>Username</b>: {{ dado.usuario }}</li>
-                        <li><b>Nome do jogador</b>: <B>{{dado.usuario.first_name}} {{dado.usuario.last_name}}</B></li>
+                        <li><b>Nome do jogador</b>: {{dado.usuario.first_name}} {{dado.usuario.last_name}}</li>
                         <li><b>E-mail</b>: {{dado.usuario.email}} </li>
                     </ul>
                 {% endfor %}
@@ -35,7 +35,7 @@
                     {% if boletos.status_boleto is False %}
                         <p><b>Prazo do pagamento</b>: {{ boletos.expiration_boleto_date }}</p>
                     {% endif%}
-                    <a href="{% url 'boleto_final' %}">Todos os boletos</a>
+                    <a href="{% url 'boleto_final' %}" style="float:right; font-weight:bold">Todos os boletos</a>
                 {% else %}
                     <p style="font-weight: bolder">Nenhum boleto encontrado D:</p>
                 {% endif %}

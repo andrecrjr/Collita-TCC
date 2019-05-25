@@ -2,6 +2,7 @@ import json
 from django.shortcuts import render, HttpResponse, redirect
 from django.views.decorators.csrf import csrf_exempt
 from .pagamento_boleto import request_boleto
+from .models import Transacao
 
 
 @csrf_exempt
@@ -48,11 +49,12 @@ def delete_item(request, id):
 
 def generate_boleto(request):
     if request.method == 'GET':
-        boletao = 'boleto_' + request.user.username
-        if not request.session.get(boletao):
+        boleto = 'boleto_' + request.user.username
+        boleto_nao_pago = Transacao.objects.filter(status_boleto = False, usuario_transacao_id=request.user.pk)
+        if not request.session.get(boleto) and not boleto_nao_pago:
             data_cart = request.session.get(request.user.username)
             if data_cart and len(data_cart) > 0:
-                request.session[boletao] = data_cart
+                request.session[boleto] = data_cart
                 request.session[request.user.username] = []
                 return request_boleto(request)
             else:

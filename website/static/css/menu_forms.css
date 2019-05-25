@@ -86,7 +86,11 @@ span.items-menu-count:before{
 ul.form-login{
     list-style: none;
     padding:0;
-    width:500px;
+    width:600px;
+}
+
+ul.form-login form li{
+    margin-top:15px;
 }
 
 ul.form-login li label{
@@ -104,9 +108,10 @@ ul.form-login li input{
     background-color:lightgrey;
 }
 
-
 .form-group{
     max-width: 600px;
+    display: flex;
+    flex-wrap: wrap;
     margin:0 auto;
 }
 
@@ -141,7 +146,6 @@ span.helptext{
 .base-homepage ul{
     list-style-type: none;
 }
-
 
 .base-homepage ul li{
     font-size:18px;
