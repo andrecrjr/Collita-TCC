@@ -1,5 +1,6 @@
 table.cart-market{
     margin: 0 auto;
+    z-index:1;
 }
 
 table.cart-market thead td{

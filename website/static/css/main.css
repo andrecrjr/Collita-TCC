@@ -41,7 +41,8 @@ section#main-content {
     width: auto;
     margin: 0 auto;
     margin-top: 6%;
-    margin-bottom:6%;
+    background-color: transparent;
+    z-index:1;
 }
 
 div.home-page{
@@ -55,6 +56,7 @@ span.titulo-inventario{
     background: url('/static/icons/plaquinha_topo.png') center no-repeat;;
     background-size: 252px;
     height: 70px;
+    z-index:1;
 }
 
 .titulo-inventario h1{
@@ -81,14 +83,83 @@ button{
     width:500px;
     height:auto;  
     padding-left: 100px;
-    background-color: transparent;
+    background-color: white;
     padding-top:25px;
 }
 
-
+/*
 body{
-    background: url('/static/assets/TeamLogo.png') no-repeat;
-    background-size:280px 280px;
-    background-position:bottom left;
-    animation: change_background 8s infinite;
+    background: url('/static/assets/bkg.png') repeat;
+    background-size:900px 700px;
+    background-position:bottom;
+}
+*/
+
+.falling-down{
+    z-index:0;
+}
+
+.falling-down:nth-child(1){
+    width:50px;
+    height: 50px;
+    display: block;
+    position: absolute;
+    top:-10px;
+    left:12%;
+    animation: fruits-falling 2s infinite;
+    animation-timing-function: ease;
+}
+
+.falling-down:nth-child(2){
+    width:50px;
+    height: 50px;
+    display: block;
+    position: absolute;
+    top:-10px;
+    left:25%;
+    animation: fruits-falling 6s infinite;
+    animation-timing-function: ease;
+}
+
+.falling-down:nth-child(3){
+    width:50px;
+    height: 50px;
+    display: block;
+    position: absolute;
+    top:-55px;
+    left:35%;
+    animation: fruits-falling 4s infinite;
+    animation-timing-function: ease;
+}
+
+.falling-down:nth-child(4){
+    width:50px;
+    height: 50px;
+    display: block;
+    position: absolute;
+    top:-10px;
+    left:55%;
+    animation: fruits-falling 3s infinite;
+    animation-timing-function: ease;
+}
+
+.falling-down:nth-child(5){
+    width:50px;
+    height: 50px;
+    display: block;
+    position: absolute;
+    top:-10px;
+    left:85%;
+    animation: fruits-falling 6s infinite;
+    animation-timing-function: ease;
+}
+
+
+@keyframes fruits-falling{
+    from{
+        top:-15px;
+    }
+    to{
+        top:90%;
+    }
 }

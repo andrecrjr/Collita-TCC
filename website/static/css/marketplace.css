@@ -10,6 +10,7 @@
     width:100%;
     height: auto;
     text-align: center;
+    z-index:1;
 }
 
 .marketplace-items{
@@ -17,6 +18,7 @@
   flex-flow:wrap;
   width:732px;
   height:auto;
+  z-index:1;
 }
 
 .item-marketplace{

@@ -9,6 +9,7 @@
     width:100%;
     height: 250px;
     text-align:center;
+    background: white;
 }
 
 .warning-inside{
@@ -18,10 +19,9 @@
 }
 
 .omg-warning{
-    background:url('/static/assets/404.png');
+    background:url('/static/assets/404.png') ;
     background-size: cover;
-    background-size: cover;
-    width:200px;
+    width:250px;
     height:240px;
     animation: pluf 2s;
 }

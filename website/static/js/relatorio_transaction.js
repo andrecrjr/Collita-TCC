@@ -143,19 +143,10 @@ const requestTransactions = async (query) =>{
     }catch (err){
         rootRelatorio.innerHTML = `<div class="warning">
                                             <span class="omg-warning"></span>
-                                            <div class="warning-inside">Servidor fora do ar ou usuario inexistente</div>
+                                            <div class="warning-inside">Usuario inexistente</div>
                                     </div>`
     }
 }
 
-const verify_user_existence = async(query) =>{
-    try{
-        const result = await fetch(`${link}filter?${query}`)
-        const response = await result.json()
-        return response
-    }catch (err){
-        console.log(err)
-    }
-}
 
 filterRelatorio()
