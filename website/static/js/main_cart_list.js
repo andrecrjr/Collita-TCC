@@ -28,7 +28,7 @@ async function printMainCart(){
                             <td>${response.nome_item}</td>
                             <td>R$ ${response.preco_item.toFixed(2)}</td>
                             <td>${response.quantidade}</td>
-                            <td><button id="delete-button">Excluir item</button></td>
+                            <td><button id="delete-button"></button></td>
                         </tr>
                     `
             })
