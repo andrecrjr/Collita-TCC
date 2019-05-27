@@ -32,12 +32,11 @@ const responseRelatorio = (response, status_boleto, username) =>{
         renderRelatorio(data, status_boleto, username)
     }else{
         rootRelatorio.innerHTML = `<div class="warning">
-                                            <span class="omg-warning"></span>
-                                            <div class="warning-inside">Não há relatórios no ano/mês ${username ? `ou do usuario pesquisado`: ``} selecionado</div>
+                                        <span class="omg-warning"></span>
+                                        <div class="warning-inside">Não há relatórios no ano/mês ${username ? `ou do usuario`: ``} selecionado</div>
                                     </div>`
     }
 }
-
 
 const renderRelatorio = (data, status_boleto, username) =>{
     rootRelatorio.innerHTML +=  `<table class="relatorio" style="width:100%"><tbody class="tabela"></tbody></table>`

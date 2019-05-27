@@ -28,7 +28,7 @@ def transaction_filter(request):
         qtd = request.GET.get("qtd", "")
         status = request.GET.get("status", "")
         username = request.GET.get("username", "")
-        
+
         if not qtd:
             qtd = 10
         if status:
