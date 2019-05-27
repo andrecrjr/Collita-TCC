@@ -22,6 +22,7 @@ function printTotal(result){
         return totalCart.innerHTML =
             `<p>
                 Você já tem ${result.length} ${item_name} no total de ${unity_cart} unidades.<br>
+                <a href="cart/" style="font-weight:bold">Verifique seu carrinho!</a><br><br>
                 Total da transação: R$ ${total_cart.toFixed(2)}
             </p>`
 
