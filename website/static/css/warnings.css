@@ -1,7 +1,6 @@
 /* error */
 
 .warning{
-    border: 1px solid black;
     border-radius:15px;
     padding: 5px;
     text-align: center;
@@ -16,6 +15,15 @@
     width:100%;
     height: auto;
     padding-top:75px;
+}
+
+.warning-inside p, .warning-inside a{
+    font-weight: bold;
+    font-size:1.3em;
+}
+
+.warning-inside a{
+    font-size:1.1em;
 }
 
 .omg-warning{

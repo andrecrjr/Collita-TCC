@@ -57,12 +57,16 @@ nav.footer-menu ul{
     text-align: center;
 }
 
-.footer-menu ul a{
-    padding-bottom:25px;
-    color: white;
+.footer-menu ul a{    
+    padding-top:70px;
+    color: black;
     text-decoration:none;
     display: block;
     margin-left:25px;
+}
+
+.footer-menu ul a:hover{
+    color:#808080;
 }
 
 /*******************************/

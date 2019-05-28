@@ -75,14 +75,13 @@ const printElement = (div) =>{
         </table>
         <table style="margin: 0 auto;">
             <tbody>
-            <tr>
-                <td>
-                    <img src="https://codigosdebarrasbrasil.com.br/wp-content/uploads/2016/10/1-codigo-de-barras.jpg" style="width:400px" heigth="180px"/>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <img src="https://i.imgur.com/iTZP25N.png" width="500">
+                    </td>
+                </tr>
             </tbody>
-        </table>
-`)
+        </table>`)
 
     printPage.print()
     printPage.close()
