@@ -56,19 +56,23 @@ def request_boleto(request):
             itens.clear()
             return render(request, 'marketplace.html', {'error': 'O boleto tem que valer maior que R$1'})
         else:
-            params = params_boleto(valor_moeda, request.user.email, request.user.first_name)
-            transact = pagarme.transaction.create(params)
-            time_expiration = convert_data_to_datetime(transact)
-            Transacao.objects.create(usuario_transacao=usuario,
-                                                    status_boleto=False,
-                                                    codigo_boleto=transact['tid'],
-                                                    expiration_boleto_date = time_expiration,
-                                                    valor_boleto = calc_total(itens)
-                                                    )
-            request.session['codigo_boleto'] = transact['tid']
-            ItemSession.objects.create(user=Inventario.objects.get(usuario=request.user.pk),
-                                                         itens=json.dumps(itens), codigo_boleto=transact['tid'])
-            return redirect('/marketplace/boleto/')
+            try:
+                params = params_boleto(valor_moeda, request.user.email, request.user.first_name)
+                transact = pagarme.transaction.create(params)
+                time_expiration = convert_data_to_datetime(transact)
+                Transacao.objects.create(usuario_transacao=usuario,
+                                                        status_boleto=False,
+                                                        codigo_boleto=transact['tid'],
+                                                        expiration_boleto_date = time_expiration,
+                                                        valor_boleto = calc_total(itens)
+                                                        )
+                request.session['codigo_boleto'] = transact['tid']
+                ItemSession.objects.create(user=Inventario.objects.get(usuario=request.user.pk),
+                                                            itens=json.dumps(itens), codigo_boleto=transact['tid'])
+                return redirect('/marketplace/boleto/')
+            except:
+                return render(request, 'marketplace.html', {'error': 'Servidor fora do ar ou sem conexão com internet'})
+
 
 
 def convert_data_to_datetime(trans):

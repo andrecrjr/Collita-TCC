@@ -51,7 +51,8 @@ def generate_boleto(request):
     if request.method == 'GET':
         boleto = 'boleto_' + request.user.username
         boleto_nao_pago = Transacao.objects.filter(status_boleto = False, usuario_transacao_id=request.user.pk)
-        if not request.session.get(boleto) and not boleto_nao_pago:
+        if not boleto_nao_pago:
+            print(request.session.get(boleto))
             data_cart = request.session.get(request.user.username)
             if data_cart and len(data_cart) > 0:
                 request.session[boleto] = data_cart
