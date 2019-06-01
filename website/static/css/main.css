@@ -36,7 +36,7 @@ footer{
 section#main-content {
     width: auto;
     margin: 0 auto;
-    margin-top: 5%;
+    margin-top: 7%;
     background-color: white;
     z-index:1;
 }
@@ -83,13 +83,6 @@ button{
     padding-top:25px;
 }
 
-/*
-body{
-    background: url('/static/assets/bkg.png') repeat;
-    background-size:900px 700px;
-    background-position:bottom;
-}
-*/
 
 .falling-down{
     width:50px;

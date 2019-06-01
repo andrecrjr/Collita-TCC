@@ -9,14 +9,15 @@
     <div class="warning">
      <div class="warning-inside">
         <p>Você está autenticado não precisa se logar</p>
-
             <br>
             <a href="{% url 'inventario_user' user.pk  %}"/>Voltar ao perfil</a>
      </div>
     </div>
     {% else %}
     <div class="form-group">
-        <h1 class="title-section">Login</h1>
+        <span class="titulo-inventario">
+                <h1 class="plaquinha">Login</h1>
+            </span>
         <form method='POST'>
             <ul class="form-login">
                 {% csrf_token %}

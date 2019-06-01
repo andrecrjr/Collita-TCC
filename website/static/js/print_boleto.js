@@ -20,19 +20,18 @@ if(boletoPrint){
 }
 
 const printElement = (div) =>{
-    let printPage = window.open('', "Print Boleto", 'height=750, width=1000')
-
-    printPage.document.write(`
-    <title>Boleto MageHut Collita </title>
-    <table style="margin:0 auto; margin-top:15px;">
-        <tr>
-            <td>BOLETO MAGEHUT - COLLITA</td>
-            <td style="border-left:1px; font-size:25px; text-indent:3px; text-align:center">${div.children[1].children[1].children[1].textContent}</td>
-        </tr>
-        <tr>
-            <td style="padding-left:5px;">Pagável em qualquer banco até o vencimento.</td><td><img src=""/></td>
-        </tr>
-    </table>
+    let printPage = window.open('', "Print Boleto", 'height=750', 'width=1000')
+    /*const estrutura = `
+        <title>Boleto MageHut Collita </title>
+            <table style="margin:0 auto; margin-top:15px;">
+                <tr>
+                    <td>BOLETO MAGEHUT - COLLITA</td>
+                    <td style="border-left:1px; font-size:25px; text-indent:3px; text-align:center">${div.children[1].children[1].children[1].textContent}</td>
+                </tr>
+                <tr>
+                    <td style="padding-left:5px;">Pagável em qualquer banco até o vencimento.</td><td><img src=""/></td>
+                </tr>
+            </table>
         <table style="border:1px black solid; margin:0 auto; font-size:16px; margin-top:20px;">
         <tr>
             <td>
@@ -69,20 +68,14 @@ const printElement = (div) =>{
                         <td>${div.children[1].children[4].children[0].textContent}</td>
                         <td style="border-left:1px black solid;">${div.children[1].children[4].children[1].textContent}</td>
                     </tr>
-                    </table>
+                </table>
             </td>
         </tr>
         </table>
-        <table style="margin: 0 auto;">
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="https://i.imgur.com/iTZP25N.png" width="500">
-                    </td>
-                </tr>
-            </tbody>
-        </table>`)
+        `*/
 
+    let estrutura = `<img src='127.0.0.1:8000/static/assets/boletocodigo.jpg' width="200"/> `
+    printPage.document.write(estrutura)
     printPage.print()
     printPage.close()
 }

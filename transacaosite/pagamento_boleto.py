@@ -95,14 +95,13 @@ def paid_boleto(request):
     if request.method == 'GET':
         codigo = request.session.get('codigo_boleto')
         itens = request.session.get('boleto_' + request.user.username)
-        print(codigo)
         if not itens:
             itens_db = items_from_session(request.user.pk)
             json_itens = json.loads(itens_db.itens)
             itens = json_itens
             if not codigo:
                 codigo = itens_db.codigo_boleto
-        if itens and codigo:
+        if itens and codigo and pay_boleto_pagarme(codigo):
             trans = Transacao.objects.get(codigo_boleto=codigo)
             for dados in itens:
                 item = Item.objects.get(id_item=int(dados['id_item']))
@@ -116,6 +115,8 @@ def paid_boleto(request):
             itens.clear()
             del codigo
             request.session.modified = True
+        else:
+            return render(request, 'marketplace.html', {'error': 'Houve problema com pagamento, verificar com administrador.'})
         return redirect('/marketplace/')
 
 def verify_itens_in_inventario(item, id_usuario, quantidade_item):
@@ -138,3 +139,10 @@ def items_from_session(user):
     inventario = Inventario.objects.get(usuario=user)
     item_salvo = ItemSession.objects.filter(user=inventario).order_by('-id')[0]
     return item_salvo
+
+def pay_boleto_pagarme(id_boleto):
+    try:
+        pagarme.transaction.pay_boleto(id_boleto, {'status': 'paid'})
+        return True
+    except:
+        return False

@@ -15,6 +15,7 @@
     width:100%;
     height: auto;
     padding-top:75px;
+    font-weight: bold;
 }
 
 .warning-inside p, .warning-inside a{

@@ -36,9 +36,14 @@ button.print-boleto{
     background-color: #1eb421;
     color:white;
     font-weight: bold;
-    border:1px transparent solid;
+    border:1px black solid;
     border-radius: 10px;
 }
+button.print-boleto:hover{
+    background-color: #1cca1c;
+    transition: 0.8s background-color;
+}
+
 
 td.total-cart{
     font-weight: bolder;

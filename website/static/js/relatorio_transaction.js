@@ -1,11 +1,20 @@
 let rootRelatorio = document.querySelector('section.root-relatorio')
 
+const month = document.querySelector("input[type=month]")
+
+const monthValue = () =>{
+    let date = new Date
+    let dataFull = `${date.getFullYear()}-${date.getMonth()+1 < 9 ? `0${date.getMonth()+1}` : date.getMonth()+1}`
+    month.value = dataFull
+}
+
+monthValue()
 
 const filterRelatorio = ()=>{
+
     const botao = document.querySelector('.get-relatorio')
     
     botao.addEventListener("click", function(){
-        const month = document.querySelector("input[type=month]")
         let username = document.querySelector(".username").value
         if(month.value.length > 0){
             let boleto_status = document.querySelector(".boleto-check").checked
@@ -80,8 +89,10 @@ const mountPrintRelatorio = (data, status_boleto, username) =>{
 
 function tabelaRelatorio(data, status_boleto, username){
     const month = document.querySelector("input[type=month]")
-    let relatorioPage = window.open('', "Relatório Collita", 'height=750, width=1000')
-        tabela = `
+    let relatorioPage = window.open('', `Relatorio Collita ${month.value}`, 'height=800', 'width=900')
+        let tabela = `
+        <img src='http://127.0.0.1:8000/static/assets/collita-logo.png' width="100"/>
+        <img src='http://127.0.0.1:8000/static/assets/TeamLogo.png' width="100"/>
         <h3>MageHut - Relatório de 
             ${status_boleto ? `Boletos pagos`: `Boletos a pagar` } - Transações ${month.value}</h3>
         ${username?`<h4>Usuário: ${username}</h4>`: ``}
