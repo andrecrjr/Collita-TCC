@@ -115,8 +115,6 @@ def paid_boleto(request):
             itens.clear()
             del codigo
             request.session.modified = True
-        else:
-            return render(request, 'marketplace.html', {'error': 'Houve problema com pagamento, verificar com administrador.'})
         return redirect('/marketplace/')
 
 def verify_itens_in_inventario(item, id_usuario, quantidade_item):

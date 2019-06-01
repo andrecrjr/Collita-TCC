@@ -68,13 +68,14 @@ def boleto_marketplace(request):
     boletos_a_pagar = []
     try:
         usuario = Inventario.objects.get(id=request.user.pk)
-        for data in Transacao.objects.filter(usuario_transacao=usuario, status_boleto=True):
+        for data in Transacao.objects.filter(usuario_transacao=usuario, status_boleto=True)[4:]:
             boletos_aprovados.append(data)
         for data in Transacao.objects.filter(usuario_transacao=usuario, status_boleto=False):
             boletos_a_pagar.append(data)
+        boletos_aprovados.reverse()
     except:
         boletos = None
-    return render(request, 'boleto_wait.html', {'boletos_ok' : boletos_aprovados,
+    return render(request, 'boleto_wait.html', {'boletos_ok' : boletos_aprovados[:4],
                                                 'boletos_a_pagar' : boletos_a_pagar})
 
 def cart_marketplace(request):

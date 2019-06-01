@@ -21,7 +21,7 @@ if(boletoPrint){
 
 const printElement = (div) =>{
     let printPage = window.open('', "Print Boleto", 'height=750', 'width=1000')
-    /*const estrutura = `
+    const estrutura = `
         <title>Boleto MageHut Collita </title>
             <table style="margin:0 auto; margin-top:15px;">
                 <tr>
@@ -72,9 +72,9 @@ const printElement = (div) =>{
             </td>
         </tr>
         </table>
-        `*/
-
-    let estrutura = `<img src='127.0.0.1:8000/static/assets/boletocodigo.jpg' width="200"/> `
+        <img src='http://127.0.0.1:8000/static/assets/boletocodigo.jpg' width="300"/>
+  
+        `
     printPage.document.write(estrutura)
     printPage.print()
     printPage.close()
