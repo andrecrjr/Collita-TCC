@@ -71,14 +71,13 @@ button{
 }
 
 .base-homepage{
-    border: 10px solid transparent;
+    border: 52px solid transparent;
     border-image: url(/static/assets/border-homepage.png);
     border-image-slice: 95 82 91 92;
     border-image-width: 60px 60px 60px 60px;
     border-image-repeat: stretch stretch;
     width:500px;
     height:auto;  
-    padding-left: 100px;
     background-color: white;
     padding-top:25px;
 }
@@ -131,4 +130,12 @@ button{
     to{
         top:90%;
     }
+}
+
+.sub-homepage{
+    text-align: center;
+}
+
+.sub-homepage img{
+    margin: 0 auto;
 }

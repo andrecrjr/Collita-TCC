@@ -83,7 +83,6 @@ async function sum_final(data){
             valorFinal.push(total[num.nome_item])
             return valorFinal
             }, {});
-        console.log(valorFinal)
         let final = valorFinal.reduce((total, num)=>total+num);
         return valorFinal.length > 1 ? parseFloat(final) : parseFloat(valorFinal[0]);
     }catch{
@@ -94,6 +93,7 @@ async function sum_final(data){
 
 
 async function valor_total(valor_final){
+    
     try{
         return elementFinal.innerHTML+= `
                                         <tr class="footer-cart"> 
@@ -105,5 +105,6 @@ async function valor_total(valor_final){
     }catch{
     }
 }
+
 printMainCart()
 listCart()

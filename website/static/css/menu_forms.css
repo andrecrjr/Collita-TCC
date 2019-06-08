@@ -171,3 +171,15 @@ span.helptext{
     background: transparent;
     filter: brightness(95%);
 }
+
+.download-game{
+    background: #1eb421;
+    height:25px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-weight: bold;
+    color:white;
+    font-size:1.2em;
+    margin-top:10px;
+    margin-bottom:15px;
+}

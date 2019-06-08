@@ -57,9 +57,10 @@
                     </tbody>
                     </table>
                 {% endfor %}
+                <img src='http://127.0.0.1:8000/static/assets/boletocodigo.jpg' class="codigo_fiscal" width="350"/>
                 <button class="print-boleto">Imprimir boleto</button>
             {% else %}
-            <p>Ooops Nenhum boleto em andamento!<br><a href="{% url "marketplace_site" %}">Compre agora!</a></p>
+            <p><b>Ufa! Nenhum boleto aguardando pagamento!</b><br><a href="{% url "marketplace_site" %}">Compre agora!</a></p>
         {% endif %}
         </div>
         
