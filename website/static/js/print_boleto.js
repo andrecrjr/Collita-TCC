@@ -73,7 +73,7 @@ const printElement = (div) =>{
         </tr>
         </table>
         <img src='http://127.0.0.1:8000/static/assets/boletocodigo.jpg' width="300"/>
-  
+
         `
     printPage.document.write(estrutura)
     printPage.print()
