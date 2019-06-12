@@ -1,6 +1,5 @@
 .relatorio-gerencial{
     display:flex;
-    flex-wrap: wrap;
     flex-direction: column;
     width: 900px;
     height:400px;
