@@ -39,21 +39,19 @@
                         <input type="number" class="quantidade" min="1" max="100" value="1">
                         <button class="comprar"><span class="cart-market"></span></button>
                     </div>
-                    <aside class="my-cart">
-                            <b style="position:fixed; top:125px;">Historico de compra:</b>
-                                <div>
-                                    <table>
-                                        <tbody class="cart-list">
-                        
-                                        </tbody>
-                                    </table>
-                                    <div class="total-market">
-                                    </div>
-                                    <a href="{% url 'transacaosite:generate_boleto' %}"><button class="finaliza-cart">Gerar Boleto</button></a>
-                                    <button class="remove-itens">Limpar Carrinho</button>
-                                </div>
-                            </aside>
                 {% endfor %}
+                <aside class="my-cart">
+                    <b style="position:fixed; top:125px;">Historico de compra:</b>
+                            <table>
+                                <tbody class="cart-list">
+                
+                                </tbody>
+                            </table>
+                            <div class="total-market">
+                            </div>
+                            <a href="{% url 'transacaosite:generate_boleto' %}"><button class="finaliza-cart">Gerar Boleto</button></a>
+                            <button class="remove-itens">Limpar Carrinho</button>
+                </aside>
         {% else %}
             <div class="warning">
                 <h1>Nenhum item para compra</h1>
