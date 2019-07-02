@@ -2,7 +2,6 @@
     display:flex;
     flex-direction: column;
     width: 900px;
-    height:400px;
 }
 
 .generate_relatorio,  .get-relatorio{
