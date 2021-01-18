@@ -24,7 +24,7 @@ pycparser==2.19
 pylint==2.1.1
 Pyphen==0.9.5
 pytz==2018.5
-requests==2.18.2
+requests==2.20.0
 six==1.11.0
 tinycss2==1.0.2
 typed-ast==1.1.0
