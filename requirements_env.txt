@@ -10,7 +10,7 @@ defusedxml==0.6.0
 Django==2.2.13
 django-cors-headers==2.4.0
 django-rest-auth==0.9.3
-djangorestframework==3.9.1
+djangorestframework==3.11.2
 html5lib==1.0.1
 idna==2.5
 isodate==0.6.0
